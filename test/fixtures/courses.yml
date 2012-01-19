@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  department: MyString
+  number: 1
+  name: MyString
+  instructor: MyString
+  course_rating: 9.99
+  instructor_rating: 9.99
+  difficulty_rating: 9.99
+
+two:
+  department: MyString
+  number: 1
+  name: MyString
+  instructor: MyString
+  course_rating: 9.99
+  instructor_rating: 9.99
+  difficulty_rating: 9.99
