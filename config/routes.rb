@@ -1,5 +1,9 @@
 Pennscheduleassembler::Application.routes.draw do
+
+
   resources :users
+  resources :courses
+  
   resources :sessions, :only => [:new, :create, :destroy]
 
   root :to => "pages#home"
@@ -10,6 +14,9 @@ Pennscheduleassembler::Application.routes.draw do
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
+
+  match '/courses/edit', :to => 'courses#edit'
+  match '/courses',   :to => 'courses#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
