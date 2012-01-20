@@ -9,6 +9,7 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+    @meetings = @course.meetings.paginate(:page => params[:page])
     @title = @course.name
   end
 

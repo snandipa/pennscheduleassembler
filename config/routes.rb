@@ -3,6 +3,7 @@ Pennscheduleassembler::Application.routes.draw do
 
   resources :users
   resources :courses
+  resources :meetings
   
   resources :sessions, :only => [:new, :create, :destroy]
 

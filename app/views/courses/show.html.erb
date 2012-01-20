@@ -15,5 +15,8 @@
       <strong>Difficulty Rating</strong> <%= @course.difficulty_rating %><br />
       <strong>URL</strong>  <%= link_to course_path(@course), @course %><br />
     </td>
+    <td>     
+        <%= render :partial => "meetings" %>
+    </td>
   </tr>
 </table>
