@@ -1,12 +1,13 @@
 Pennscheduleassembler::Application.routes.draw do
 
-
+#Resources
   resources :users
   resources :courses
   resources :meetings
-  
+  resources :constraints
   resources :sessions, :only => [:new, :create, :destroy]
 
+#Routes
   root :to => "pages#home"
 
   match '/contact', :to => 'pages#contact'

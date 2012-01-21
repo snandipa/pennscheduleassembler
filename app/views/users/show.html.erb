@@ -9,5 +9,11 @@
       <strong>Name</strong> <%= @user.name %><br />
       <strong>URL</strong>  <%= link_to user_path(@user), @user %><br />
     </td>
+    <td>
+      <strong>Constraints</strong>
+      <% @constraints.each do |constraint| %>
+        <li><%= constraint.course.name %> | <%= constraint.course.instructor %></li>
+      <% end %>
+    </td>
   </tr>
 </table>
