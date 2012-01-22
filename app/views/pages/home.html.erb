@@ -1,8 +1,18 @@
 <h1>Welcome to the Penn Schedule Assembler</h1>
 <% if signed_in? %>
   <table class="front" summary="For signed-in users">
-    Hi you are signed in
+    Hi, you are signed in!
   </table>
 <% else %>
-  <%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+  <%= link_to "Sign up now!", signup_path %>
 <% end %>
+
+
+<br><br><br>
+<%= form_tag() do %>
+  <%= label_tag(:q, "Add suggestion:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Add!") %>
+<% end %>
+
+<a href="http://www.ted.com">Link to my fav website!</a>
