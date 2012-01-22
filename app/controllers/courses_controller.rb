@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
   def index
     @courses = Course.paginate(:page => params[:page])
     @title = "All users"
-
+    @constraint = Constraint.new
   end
 
   def show
