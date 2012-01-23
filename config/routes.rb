@@ -18,7 +18,7 @@ Pennscheduleassembler::Application.routes.draw do
   match '/signout', :to => 'sessions#destroy'
 
   match '/courses/edit', :to => 'courses#edit'
-  match '/courses',   :to => 'courses#index' #courses_path
+  match '/courses',   :to => 'courses#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -12,7 +12,9 @@
     <td>
       <strong>Constraints</strong>
       <% @constraints.each do |constraint| %>
-        <li><%= constraint.course.name %> | <%= constraint.course.instructor %></li>
+        <li><%= constraint.course.name %> | <%= constraint.course.instructor %> |
+            <%= button_to "Delete", constraint, :url => { :action => "hello" } %>
+        </li>
       <% end %>
     </td>
   </tr>
