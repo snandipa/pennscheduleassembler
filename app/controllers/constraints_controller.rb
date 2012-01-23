@@ -4,13 +4,12 @@ class ConstraintsController < ApplicationController
     if @constraint.save
       redirect_to user_path(current_user.id), :flash => { :success => "Constraint added!" }
     else
-      @title = "Failure"
-      render user_path(current_user.id)
+      redirect_to user_path(current_user.id), :flash => { :success => "Constraint already exists" }
     end
   end
   
   def destroy
-    @constraint.destroy
+    Constraint.find(params[:id]).destroy #is this proper?
     redirect_to user_path(current_user.id), :flash => { :success => "Constraint deleted!" }
   end
   

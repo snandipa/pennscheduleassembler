@@ -10,11 +10,8 @@
       <strong>URL</strong>  <%= link_to user_path(@user), @user %><br />
     </td>
     <td>
-      <strong>Constraints</strong>
-      <% @constraints.each do |constraint| %>
-        <li><%= constraint.course.name %> | <%= constraint.course.instructor %> |
-            <%= button_to "Delete", constraint, :url => { :action => "hello" } %>
-        </li>
+      <% if @user==current_user %>
+        <%= render :partial => "shared/constraint" %>
       <% end %>
     </td>
   </tr>
