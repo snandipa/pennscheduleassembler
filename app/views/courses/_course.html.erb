@@ -1,9 +1,3 @@
 <li>
   <%= link_to "#{course.department} #{course.number} #{course.name}", course %>
-  |
-  <%= form_for @constraint do |f| %> 
-    <%= f.hidden_field :course_id, :value => course.id %>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.submit %> 
-  <% end %>
 </li>

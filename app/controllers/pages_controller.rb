@@ -7,9 +7,5 @@ class PagesController < ApplicationController
   
   def about
   end
-  
-  def schedule
-    @hello = "Schedule my classes here?"
-  end
 
 end
