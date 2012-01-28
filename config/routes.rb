@@ -1,10 +1,15 @@
 Pennscheduleassembler::Application.routes.draw do
 
+  get "timings/create"
+
+  get "timings/destroy"
+
 #Resources
   resources :users
   resources :courses
   resources :meetings
   resources :constraints
+  resources :timings
   resources :sessions, :only => [:new, :create, :destroy]
 
 #Routes

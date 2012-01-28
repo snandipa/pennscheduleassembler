@@ -7,11 +7,13 @@ class SchedulingController < ApplicationController
   end
 
   def timing
+    @timing = Timing.new
   end
 
   private
     def retrieve_variables
       @courses = Course.all
+      @timings = current_user.timings
       @constraints = current_user.constraints
     end
 end

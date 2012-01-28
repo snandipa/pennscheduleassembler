@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120121163522) do
+ActiveRecord::Schema.define(:version => 20120127232644) do
 
   create_table "constraints", :force => true do |t|
     t.integer  "course_id"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(:version => 20120121163522) do
     t.string   "days"
     t.integer  "listing"
     t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "timings", :force => true do |t|
+    t.integer  "user_id"
+    t.decimal  "start_time"
+    t.decimal  "end_time"
+    t.string   "days"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

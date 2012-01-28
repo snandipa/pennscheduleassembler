@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  start_time: 9.99
+  end_time: 9.99
+  days: MyString
+
+two:
+  user_id: 1
+  start_time: 9.99
+  end_time: 9.99
+  days: MyString
