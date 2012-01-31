@@ -16,11 +16,12 @@
       <strong>URL</strong>  <%= link_to course_path(@course), @course %><br />
     </td>
     <td>     
-      <% @course.meetings.each do |meeting| %>
-        <li>Start time: <%= meeting.start_time %></li>
-        <li>End time: <%= meeting.end_time %></li>
-        <li>Days: <%= meeting.days %></li>
-        <li>Listing: <%= meeting.listing %></li>
+      <% @course.sections.each do |section| %>
+        <li>Listing: <%= section.listing %> goes from
+          <% section.meetings.each do |meeting| %>
+            <%= meeting.start_time %> to <%= meeting.end_time %> on <%= meeting.day %> |
+          <% end %>
+        </li>
         <br>
       <% end %>
     </td>
