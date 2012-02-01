@@ -1,3 +1,5 @@
+
+<br><br>
 <table class="profile" summary="Course information">
   <tr>
     <td class="main">
@@ -17,11 +19,12 @@
     </td>
     <td>     
       <% @course.sections.each do |section| %>
-        <li>Listing: <%= section.listing %> goes from
+        Listing: <%= section.listing %> goes from
           <% section.meetings.each do |meeting| %>
-            <%= meeting.start_time %> to <%= meeting.end_time %> on <%= meeting.day %> |
+            <li><%= meeting.start_time_to_s %> to <%= meeting.end_time_to_s %>
+            on <%= meeting.day_to_s %> </li>
           <% end %>
-        </li>
+        <br />
         <br>
       <% end %>
     </td>

@@ -1,5 +1,9 @@
 Pennscheduleassembler::Application.routes.draw do
 
+  get "meetings/create"
+
+  get "meetings/destroy"
+
   get "timings/create"
 
   get "timings/destroy"
@@ -7,6 +11,7 @@ Pennscheduleassembler::Application.routes.draw do
 #Resources
   resources :users
   resources :courses
+  resources :sections
   resources :meetings
   resources :constraints
   resources :timings

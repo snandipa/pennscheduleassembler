@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
   
 #Features of the Assembler
-  has_many :constraints
-  has_many :timings
+  has_many :constraints, :dependent => :destroy
+  has_many :timings, :dependent => :destroy
   
   email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   

@@ -16,6 +16,8 @@ group :development, :test do
 end
 
 gem 'will_paginate'
+gem 'json'
+gem 'activesupport'
 
 # Gems used only for assets and not required
 # in production environments by default.

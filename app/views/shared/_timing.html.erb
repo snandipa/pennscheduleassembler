@@ -1,6 +1,7 @@
 <strong>Do Not Have Class On:</strong>
   <% @timings.each do |timing| %>
-  <li><%= timing.start_time %> to <%= timing.end_time %> on <%= timing.days %>
+  <li><%= timing.meeting.start_time_to_s %> to <%= timing.meeting.end_time_to_s %> on
+      <%= timing.meeting.day_to_s %>
       <%= button_to "Delete", timing, :method => :delete %>
   </li>
  <% end %>

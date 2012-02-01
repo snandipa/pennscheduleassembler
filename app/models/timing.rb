@@ -1,7 +1,8 @@
 class Timing < ActiveRecord::Base
     attr_accessible :user_id
 
-    has_many :meetings
+    has_one :meeting, :dependent => :destroy
+      accepts_nested_attributes_for :meeting
     belongs_to :user
 
     validates_presence_of :user_id

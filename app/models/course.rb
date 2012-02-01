@@ -1,8 +1,8 @@
 class Course < ActiveRecord::Base
   attr_accessible :department, :number, :name, :instructor, :course_rating, :instructor_rating, :difficulty_rating
   
-  has_many :sections
-  has_many :constraints
+  has_many :sections, :dependent => :destroy
+  has_many :constraints, :dependent => :destroy
   
   validates_presence_of :department, :number, :name, :instructor, :course_rating, :instructor_rating, :difficulty_rating
   validates_uniqueness_of :number, :scope => :department # ie only one 451 for ESE
