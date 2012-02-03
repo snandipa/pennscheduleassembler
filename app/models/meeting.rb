@@ -1,8 +1,9 @@
 class Meeting < ActiveRecord::Base
-  attr_accessible :start_time, :end_time, :day, :section_id, :timing_id
+  attr_accessible :start_time, :end_time, :day, :section_id, :timing_id, :recitation_id
   #bad practice to include course_id as accessible attribute
   #you should add validations
   belongs_to :section
+  belongs_to :recitation
   belongs_to :timing
   
   validates_presence_of :start_time, :end_time, :day
@@ -23,19 +24,21 @@ class Meeting < ActiveRecord::Base
     end
   end
   
-  def start_time_to_s #still NEED coding for if its am or pm
+  def start_time_to_s #
     hr = (start_time*10.0).round / 10
     min = ((start_time - hr) * 60).round
     case
+      when hr == 12 then return min > 0 ? "#{hr}:#{min}pm" : "#{hr}:#{min}0pm"
       when hr >= 12 then return min > 0 ? "#{hr % 12}:#{min}pm" : "#{hr % 12}:#{min}0pm"
       else return min > 0 ? "#{hr}:#{min}am" : "#{hr}:#{min}0am"
     end
   end
   
-  def end_time_to_s #still NEED coding for if its am or pm
+  def end_time_to_s #
     hr = (end_time*10.0).round / 10
     min = ((end_time - hr) * 60).round
     case
+      when hr == 12 then return min > 0 ? "#{hr}:#{min}pm" : "#{hr}:#{min}0pm"
       when hr >= 12 then return min > 0 ? "#{hr % 12}:#{min}pm" : "#{hr % 12}:#{min}0pm"
       else return min > 0 ? "#{hr}:#{min}am" : "#{hr}:#{min}0am"
     end

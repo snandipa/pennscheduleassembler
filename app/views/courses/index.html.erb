@@ -3,7 +3,11 @@
 <%= will_paginate %>
 
 <ul class="courses">
-  <%= render @courses %>
+  <% @courses.each do |course| %>
+    <li>
+    <%= link_to "#{course.department} #{course.number_to_s} - #{course.name}", course %>
+    </li>
+  <% end %>
 </ul>
 
 <%= will_paginate %>

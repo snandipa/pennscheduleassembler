@@ -12,6 +12,7 @@ Pennscheduleassembler::Application.routes.draw do
   resources :users
   resources :courses
   resources :sections
+  resources :recitations
   resources :meetings
   resources :constraints
   resources :timings

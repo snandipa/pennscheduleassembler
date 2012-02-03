@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120131045749) do
+ActiveRecord::Schema.define(:version => 20120203205148) do
 
   create_table "constraints", :force => true do |t|
     t.integer  "course_id"
@@ -30,6 +30,18 @@ ActiveRecord::Schema.define(:version => 20120131045749) do
     t.decimal  "difficulty_rating"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cusip"
+    t.decimal  "cus"
+  end
+
+  create_table "courses_crosslists", :id => false, :force => true do |t|
+    t.integer "course_id"
+    t.integer "crosslist_id"
+  end
+
+  create_table "crosslists", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "meetings", :force => true do |t|
@@ -40,6 +52,14 @@ ActiveRecord::Schema.define(:version => 20120131045749) do
     t.integer  "day"
     t.integer  "section_id"
     t.integer  "timing_id"
+    t.integer  "recitation_id"
+  end
+
+  create_table "recitations", :force => true do |t|
+    t.integer  "listing"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sections", :force => true do |t|

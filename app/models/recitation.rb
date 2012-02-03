@@ -1,7 +1,8 @@
-class Section < ActiveRecord::Base
+class Recitation < ActiveRecord::Base
   attr_accessible :listing, :course_id
   #bad practice to include course_id as accessible attribute
   #you should add validations
+  
   belongs_to :course
   has_many :meetings, :dependent => :destroy
   
@@ -15,7 +16,7 @@ class Section < ActiveRecord::Base
       else return "#{listing}"
     end
   end
-  
-  #Section.create(listing:1, course_id:1)
+    
+  #Recitation.create(listing:231, course_id:1)
   #then you have to associate meetings with it
 end
