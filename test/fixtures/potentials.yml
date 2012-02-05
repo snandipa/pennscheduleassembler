@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  avg_course_rating: 9.99
+  avg_instructor_rating: 9.99
+  avg_difficulty_rating: 9.99
+
+two:
+  avg_course_rating: 9.99
+  avg_instructor_rating: 9.99
+  avg_difficulty_rating: 9.99

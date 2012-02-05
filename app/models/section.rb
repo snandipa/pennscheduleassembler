@@ -1,8 +1,9 @@
 class Section < ActiveRecord::Base
-  attr_accessible :listing, :course_id
+  attr_accessible :listing, :course_id, :schedule_id
   #bad practice to include course_id as accessible attribute
   #you should add validations
   belongs_to :course
+  belongs_to :schedule
   has_many :meetings, :dependent => :destroy
   
   validates_presence_of :listing, :course_id
