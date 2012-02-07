@@ -12,16 +12,15 @@
       <strong>Number</strong> <%= @course.number_to_s %><br />
       <strong>Name</strong> <%= @course.name %><br />
       <strong>Course Units</strong> <%= @course.cus %><br />
-      <strong>Instructor</strong> <%= @course.instructor %><br />
       <strong>Course Rating</strong> <%= @course.course_rating %><br />
-      <strong>Instructor Rating</strong> <%= @course.instructor_rating %><br />
       <strong>Difficulty Rating</strong> <%= @course.difficulty_rating %><br />
       <strong>URL</strong>  <%= link_to course_path(@course), @course %><br />
     </td>
     <td>
-        <strong>Lectures</strong><br><br>
+        <strong>Sections</strong><br><br>
       <% @course.sections.each do |section| %>
-        Listing: <%= section.listing %> goes from
+        Listing: <%= section.listing %> with <%= section.instructor %><br /> who is rated <%= section.instructor_rating %><br />
+        goes from
           <% section.meetings.each do |meeting| %>
             <li><%= meeting.start_time_to_s %> to <%= meeting.end_time_to_s %>
             on <%= meeting.day_to_s %> </li>
@@ -44,9 +43,7 @@
     </td>
       <td>
         <strong>Crosslisted Classes</strong><br><br>
-      <% @course.crosslists.each do |crosslist| %>
-        <%= crosslist.courses %> <br>
-      <% end %>
+      <% @course.crosslistings %>
         <br />
         <br>
     </td>

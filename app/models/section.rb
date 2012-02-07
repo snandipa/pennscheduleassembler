@@ -1,12 +1,12 @@
 class Section < ActiveRecord::Base
-  attr_accessible :listing, :course_id, :schedule_id
+  attr_accessible :listing, :course_id, :schedule_id, :instructor, :instructor_rating
   #bad practice to include course_id as accessible attribute
   #you should add validations
   belongs_to :course
   belongs_to :schedule
   has_many :meetings, :dependent => :destroy
   
-  validates_presence_of :listing, :course_id
+  validates_presence_of :listing, :course_id, :instructor, :instructor_rating
   validates_uniqueness_of :listing, :scope => :course_id #ie only one 001 for ESE 451
   
   def listing_to_s

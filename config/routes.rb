@@ -16,6 +16,7 @@ Pennscheduleassembler::Application.routes.draw do
   resources :meetings
   resources :constraints
   resources :timings
+  resources :schedules
   resources :sessions, :only => [:new, :create, :destroy]
 
 #Routes
@@ -35,7 +36,8 @@ Pennscheduleassembler::Application.routes.draw do
   
   match '/scheduling/course', :to => 'scheduling#course' #scheduling_course_path
   match '/scheduling/timing', :to => 'scheduling#timing' #scheduling_timing_path
-
+  match '/scheduling/assemble', :to => 'scheduling#assemble' #scheduling_assemble_path
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

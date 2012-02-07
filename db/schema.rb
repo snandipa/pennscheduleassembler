@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120205155952) do
+ActiveRecord::Schema.define(:version => 20120207034316) do
 
   create_table "constraints", :force => true do |t|
     t.integer  "course_id"
@@ -24,14 +24,13 @@ ActiveRecord::Schema.define(:version => 20120205155952) do
     t.string   "department"
     t.integer  "number"
     t.string   "name"
-    t.string   "instructor"
     t.decimal  "course_rating"
-    t.decimal  "instructor_rating"
     t.decimal  "difficulty_rating"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "cusip"
     t.decimal  "cus"
+    t.string   "crosslistings"
   end
 
   create_table "courses_crosslists", :id => false, :force => true do |t|
@@ -76,6 +75,9 @@ ActiveRecord::Schema.define(:version => 20120205155952) do
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "schedule_id"
+    t.decimal  "instructor_rating"
+    t.string   "instructor"
   end
 
   create_table "timings", :force => true do |t|

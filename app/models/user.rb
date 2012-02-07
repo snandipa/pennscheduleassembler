@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 #Features of the Assembler
   has_many :constraints, :dependent => :destroy
   has_many :timings, :dependent => :destroy
+  has_many :schedules, :dependent => :destroy
   
   email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   

@@ -10,6 +10,10 @@ class SchedulingController < ApplicationController
     @timing = Timing.new
     @meeting = @timing.build_meeting #to create nested form
   end
+  
+  def assemble
+    @schedules = current_user.schedules
+  end
 
   private
     def retrieve_variables

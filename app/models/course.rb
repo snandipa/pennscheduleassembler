@@ -1,10 +1,14 @@
 class Course < ActiveRecord::Base
-  attr_accessible :department, :number, :cusip, :name, :cus, :instructor, :course_rating, :instructor_rating, :difficulty_rating
+  attr_accessible :department, :number, :cusip, :name, :cus, :course_rating, :difficulty_rating, :crosslistings
   
   has_many :sections, :dependent => :destroy
   has_many :recitations, :dependent => :destroy
   has_many :constraints, :dependent => :destroy
-  has_and_belongs_to_many :crosslists
+  
+  #has_and_belongs_to_many :crosslists
+  #has_many :crosslists
+  #has_many :courses, :through => :crosslists
+  #belongs_to :course
   
   
   validates_presence_of :department, :number, :cusip, :name, :cus, :instructor, :course_rating, :instructor_rating, :difficulty_rating

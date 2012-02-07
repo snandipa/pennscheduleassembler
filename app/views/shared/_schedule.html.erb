@@ -1,0 +1,14 @@
+<strong>Assembled Schedules</strong><br>
+  <% @schedules.each do |schedule| %>
+    <% schedule.sections.each do |section| %>
+        <% course = section.course %>
+        <%= course.department %> <%= course.number_to_s %> <%= section.listing_to_s %> -
+            <% section.meetings.each do |meeting| %>
+                <li>
+                <%= meeting.start_time_to_s %> to <%= meeting.end_time_to_s %> on <%= meeting.day_to_s %>
+                </li>
+            <% end %>   
+    <% end %>
+    <br>
+ <% end %>
+ <br>
