@@ -1,5 +1,9 @@
 Pennscheduleassembler::Application.routes.draw do
 
+  get "schedules/create"
+
+  get "schedules/destroy"
+
   get "meetings/create"
 
   get "meetings/destroy"
