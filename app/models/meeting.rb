@@ -11,6 +11,17 @@ class Meeting < ActiveRecord::Base
   #validate :section_xor_timing #meeting can only belong to one of those models
   #should fix this
   
+  #other_meeting is a Meeting object
+  #if self overlaps with other_meeting, it returns TRUE
+  def overlaps_with?(other_meeting) 
+      if day == other_meeting.day
+         if (other_meeting.start_time < end_time) && (other_meeting.end_time > start_time)
+          return true
+        end
+      end
+    return false
+  end
+  
   def day_to_s
     case
       when day == 0 then return "Sunday"  

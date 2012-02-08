@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120207034316) do
+ActiveRecord::Schema.define(:version => 20120207181602) do
 
   create_table "constraints", :force => true do |t|
     t.integer  "course_id"
@@ -68,6 +68,11 @@ ActiveRecord::Schema.define(:version => 20120207034316) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "schedules_sections", :id => false, :force => true do |t|
+    t.integer "schedule_id"
+    t.integer "section_id"
   end
 
   create_table "sections", :force => true do |t|

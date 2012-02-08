@@ -1,0 +1,14 @@
+--- 
+cursor_positions: 
+  - :path: app/models/course.rb
+    :cursor_offset: 423
+    :timestamp: 2012-02-06 22:52:33 -05:00
+  - :path: app/views/meetings/destroy.html.erb
+    :cursor_offset: 0
+    :timestamp: 2012-01-31 20:27:41 -05:00
+  - :path: log/testing_overlap_section
+    :cursor_offset: 463
+    :timestamp: 2012-02-08 17:59:28 -05:00
+    :selection_offset: 491
+    :block_selection_mode: false
+files_to_retain: 0

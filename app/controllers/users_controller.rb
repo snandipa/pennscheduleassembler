@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @constraints = @user.constraints
+    @schedules = @user.schedules
     @title = @user.name
   end
 

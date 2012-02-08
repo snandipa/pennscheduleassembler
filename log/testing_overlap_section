@@ -1,0 +1,18 @@
+s1=Section.create(listing:100, course_id:1)
+s2=Section.create(listing:100, course_id:2)
+
+m1=Meeting.create(start_time:9,end_time:10,day:1)
+m2=Meeting.create(start_time:9,end_time:10,day:3)
+m3=Meeting.create(start_time:9,end_time:10,day:5)
+
+s1.meetings << m1 << m2 << m3
+
+m4=Meeting.create(start_time:10.5,end_time:12,day:2)
+m5=Meeting.create(start_time:10.5,end_time:12,day:4)
+
+s2.meetings << m4 << m5
+
+s1.overlaps_with? s2
+
+m5.update_attribute(:start_time, 9.5)
+m5.update_attribute(:day, 5)

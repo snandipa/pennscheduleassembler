@@ -3,11 +3,24 @@ class Section < ActiveRecord::Base
   #bad practice to include course_id as accessible attribute
   #you should add validations
   belongs_to :course
-  belongs_to :schedule
+  #belongs_to :schedule
+  has_and_belongs_to_many :schedules
+  
   has_many :meetings, :dependent => :destroy
   
   validates_presence_of :listing, :course_id, :instructor, :instructor_rating
   validates_uniqueness_of :listing, :scope => :course_id #ie only one 001 for ESE 451
+  
+  #other_section is a Section object
+  #if self overlaps with other_section, it returns TRUE
+  def overlaps_with?(other_section) 
+    self.meetings.each do |self_meeting|
+      other_section.meetings.each do |other_meeting|
+        return true if self_meeting.overlaps_with? other_meeting
+      end
+    end
+    return false
+  end
   
   def listing_to_s
     case
