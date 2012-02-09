@@ -1,4 +1,4 @@
-1328749378
+1328752124
 AddAdminToUsers	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/db/migrate/20120112181133_add_admin_to_users.rb	class AddAdminToUsers 
 AddCrosslistidToCourses	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/db/migrate/20120203184217_add_crosslistid_to_courses.rb	class AddCrosslistidToCourses 
 AddCrosslistingsToCourse	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/db/migrate/20120207034316_add_crosslistings_to_course.rb	class AddCrosslistingsToCourse 
@@ -130,10 +130,10 @@ correct_user	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/c
 course	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/controllers/scheduling_controller.rb	  def course
 create	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/controllers/users_controller.rb	  def create
 create	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/controllers/sessions_controller.rb	  def create
-create	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/controllers/schedules_controller.rb	  def create
 create	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/controllers/courses_controller.rb	  def create 
 create	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/controllers/timings_controller.rb	  def create
 create	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/controllers/constraints_controller.rb	  def create
+create	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/controllers/schedules_controller.rb	  def create
 create_record	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/db/seeds.rb	def create_record
 current_user	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/helpers/sessions_helper.rb	  def current_user
 current_user=	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/helpers/sessions_helper.rb	  def current_user=(user)
@@ -142,10 +142,10 @@ day_to_s	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/model
 deny_access	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/helpers/sessions_helper.rb	  def deny_access
 destroy	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/controllers/users_controller.rb	  def destroy
 destroy	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/controllers/sessions_controller.rb	  def destroy
-destroy	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/controllers/schedules_controller.rb	  def destroy
 destroy	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/controllers/courses_controller.rb	  def destroy
 destroy	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/controllers/timings_controller.rb	  def destroy
 destroy	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/controllers/constraints_controller.rb	  def destroy
+destroy	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/app/controllers/schedules_controller.rb	  def destroy
 down	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/db/migrate/20120207033018_remove_instructor_rating_from_course.rb	  def down
 down	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/db/migrate/20120207032848_remove_instructor_from_course.rb	  def down
 down	/Users/snandipa/Documents/Senior/Spring/pennscheduleassembler/db/migrate/20120205155952_remove_potential.rb	  def down

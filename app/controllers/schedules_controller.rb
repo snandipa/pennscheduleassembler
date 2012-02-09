@@ -2,7 +2,7 @@ class SchedulesController < ApplicationController
   def create
     current_user.schedules.destroy_all
     constraints = current_user.constraints
-    @schedule = Schedule.new(user_id:current_user.id)
+    @schedule = Schedule.create(user_id:current_user.id)
     constraints.each do |constraint|
       @schedule.sections << constraint.course.sections
     end

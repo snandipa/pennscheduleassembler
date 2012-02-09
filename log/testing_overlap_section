@@ -16,3 +16,8 @@ s1.overlaps_with? s2
 
 m5.update_attribute(:start_time, 9.5)
 m5.update_attribute(:day, 5)
+
+---
+t1=Timing.create(user_id:1)
+m6=Meeting.create(start_time:9.5,end_time:12,day:4)
+t1.meetings << m6

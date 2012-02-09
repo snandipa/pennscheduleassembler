@@ -32,7 +32,13 @@ cursor_positions:
   - :path: app/views/scheduling/timing.html.erb
     :cursor_offset: 628
     :timestamp: 2012-02-08 19:30:52 -05:00
+  - :path: app/views/scheduling/assemble.html.erb
+    :cursor_offset: 0
+    :timestamp: 2012-02-06 22:52:33 -05:00
   - :path: app/controllers/scheduling_controller.rb
     :cursor_offset: 237
     :timestamp: 2012-02-08 19:51:17 -05:00
+  - :path: app/models/schedule.rb
+    :cursor_offset: 0
+    :timestamp: 2012-02-07 13:08:58 -05:00
 files_to_retain: 0
