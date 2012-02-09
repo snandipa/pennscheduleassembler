@@ -15,7 +15,7 @@
 <strong>Timing Selection</strong>
 
   <%= form_for @timing do |f| %>
-    <%= f.fields_for :meeting do |builder| %>
+    <%= f.fields_for @meeting do |builder| %>
       Start Time: <%= builder.text_field :start_time %><br />
       End Time: <%= builder.text_field :end_time %><br />
       Day of the Week (integer): <%= builder.text_field :day %><br />

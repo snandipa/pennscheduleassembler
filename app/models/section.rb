@@ -11,11 +11,11 @@ class Section < ActiveRecord::Base
   validates_presence_of :listing, :course_id, :instructor, :instructor_rating
   validates_uniqueness_of :listing, :scope => :course_id #ie only one 001 for ESE 451
   
-  #other_section is a Section object
-  #if self overlaps with other_section, it returns TRUE
-  def overlaps_with?(other_section) 
+  #other_obj is either a Section, Recitation, or Timing object
+  #if self overlaps with other_obj, it returns TRUE
+  def overlaps_with?(other_obj) 
     self.meetings.each do |self_meeting|
-      other_section.meetings.each do |other_meeting|
+      other_obj.meetings.each do |other_meeting|
         return true if self_meeting.overlaps_with? other_meeting
       end
     end

@@ -11,4 +11,28 @@ cursor_positions:
     :timestamp: 2012-02-08 17:59:28 -05:00
     :selection_offset: 491
     :block_selection_mode: false
+  - :path: app/views/shared/_timing.html.erb
+    :cursor_offset: 197
+    :timestamp: 2012-02-08 18:25:04 -05:00
+  - :path: app/models/recitation.rb
+    :cursor_offset: 376
+    :timestamp: 2012-02-08 19:14:13 -05:00
+  - :path: app/controllers/timings_controller.rb
+    :cursor_offset: 266
+    :timestamp: 2012-02-08 19:45:10 -05:00
+  - :path: app/controllers/meetings_controller.rb
+    :cursor_offset: 0
+    :timestamp: 2012-01-31 20:27:41 -05:00
+  - :path: app/controllers/courses_controller.rb
+    :cursor_offset: 0
+    :timestamp: 2012-01-31 20:27:41 -05:00
+  - :path: app/controllers/constraints_controller.rb
+    :cursor_offset: 521
+    :timestamp: 2012-02-08 19:50:11 -05:00
+  - :path: app/views/scheduling/timing.html.erb
+    :cursor_offset: 628
+    :timestamp: 2012-02-08 19:30:52 -05:00
+  - :path: app/controllers/scheduling_controller.rb
+    :cursor_offset: 237
+    :timestamp: 2012-02-08 19:51:17 -05:00
 files_to_retain: 0

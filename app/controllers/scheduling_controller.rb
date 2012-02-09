@@ -8,9 +8,11 @@ class SchedulingController < ApplicationController
 
   def timing
     @timing = Timing.new
-    @meeting = @timing.build_meeting #to create nested form
+    @meeting = Meeting.new
     @schedule = Schedule.new
   end
+  
+  #@meeting = @timing.build_meeting #to create nested form works for has_one
   
   def assemble
     @schedules = current_user.schedules
