@@ -9,7 +9,7 @@ class Timing < ActiveRecord::Base
     validate :correct_sequence_of_times #nothing now
     #validate :no_timing_overlap_repeats
  
-  #other_obj is either a Section or Timing object
+  #other_obj is either a Section Timing or Recitation object
   #if self overlaps with other_section, it returns TRUE
   def overlaps_with?(other_obj) 
     self.meetings.each do |self_meeting|
