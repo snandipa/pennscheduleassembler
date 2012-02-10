@@ -1,3 +1,7 @@
 --- 
-open_files: []
-
+open_files: 
+  - app/models/meeting.rb
+  - app/models/section.rb
+  - log/testing_overlap_section
+  - app/models/timing.rb
+  - app/controllers/schedules_controller.rb

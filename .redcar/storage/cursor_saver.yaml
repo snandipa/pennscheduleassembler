@@ -6,11 +6,6 @@ cursor_positions:
   - :path: app/views/meetings/destroy.html.erb
     :cursor_offset: 0
     :timestamp: 2012-01-31 20:27:41 -05:00
-  - :path: log/testing_overlap_section
-    :cursor_offset: 463
-    :timestamp: 2012-02-08 17:59:28 -05:00
-    :selection_offset: 491
-    :block_selection_mode: false
   - :path: app/views/shared/_timing.html.erb
     :cursor_offset: 197
     :timestamp: 2012-02-08 18:25:04 -05:00
@@ -41,4 +36,22 @@ cursor_positions:
   - :path: app/models/schedule.rb
     :cursor_offset: 0
     :timestamp: 2012-02-07 13:08:58 -05:00
+  - :path: app/models/constraint.rb
+    :cursor_offset: 0
+    :timestamp: 2012-01-23 09:32:10 -05:00
+  - :path: app/models/meeting.rb
+    :cursor_offset: 260
+    :timestamp: 2012-02-08 19:29:22 -05:00
+  - :path: app/models/section.rb
+    :cursor_offset: 627
+    :timestamp: 2012-02-08 20:49:21 -05:00
+  - :path: log/testing_overlap_section
+    :cursor_offset: 303
+    :timestamp: 2012-02-08 20:09:03 -05:00
+  - :path: app/models/timing.rb
+    :cursor_offset: 122
+    :timestamp: 2012-02-08 19:25:23 -05:00
+  - :path: app/controllers/schedules_controller.rb
+    :cursor_offset: 997
+    :timestamp: 2012-02-08 21:35:26 -05:00
 files_to_retain: 0

@@ -19,7 +19,7 @@ class Recitation < ActiveRecord::Base
       end
     return false
   end
-  
+
   def listing_to_s
     case
       when listing < 10 then return "00#{listing}"
