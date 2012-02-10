@@ -1,5 +1,7 @@
 class SchedulesController < ApplicationController
   def create
+    #find lb/core_extensions.rb for Array method of overlaps_with_itself?
+    
     current_user.schedules.destroy_all
     constraints = current_user.constraints #this is an Array of Constraints
     
