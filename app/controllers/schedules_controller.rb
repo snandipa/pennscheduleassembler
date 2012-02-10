@@ -8,6 +8,9 @@ class SchedulesController < ApplicationController
     num_sections = Array.new
     constraints.each do |constraint|
       num_sections << constraint.course.sections.count
+      if constraint.course.recitations.count > 0
+        num_sections << constraint.course.recitations.count
+      end
     end
     
     num_constraints = num_sections.length
@@ -16,15 +19,17 @@ class SchedulesController < ApplicationController
     
     #first arg is rows, second is cols
     combination_array = Array.new(num_combinations).map!{ Array.new(num_constraints) }
-################## This creates a generic Combinations (2,2) of section that I will use to test further code #############
-    combination_array = Array.new(2).map!{ Array.new(2) }
+################## This creates a generic Combinations (2,3) of section that I will use to test further code #############
+    combination_array = Array.new(2).map!{ Array.new(3) }
 
     for i in (0..1)
       for j in (0..num_constraints-1)
         section_list = constraints[j].course.sections
-        combination_array[i][j]=section_list = section_list[i]
+        combination_array[i][j] = section_list[i]
       end
     end
+    combination_array[0][2]=Course.find(1).recitations[0]
+    combination_array[1][2]=Course.find(1).recitations[0]
     puts "%$%$%$%$%$%$% Combinations Array: #{combination_array}"
 ####################It needs to be modified so it includes ALL combinations of sections and combos #####################
 
@@ -32,8 +37,10 @@ class SchedulesController < ApplicationController
     for i in (0..combination_array.length-1) #iterates through all Combination of Sections
       if combination_array[i].overlaps_with_itself? == false ##then you can create a schedule from this
         new_schedule = Schedule.create(user_id:current_user.id)
-        combination_array[i].each do |section|
-          new_schedule.sections << section #push all Sections from the current combo into new_schedule
+        combination_array[i].each do |component|
+          new_schedule.sections << component if component.class.name = "Section" #push all Sections from the current combo into new_schedule
+          new_schedule.recitations << component if component.class.name = "Recitation" #push all Recitations into new schedule
+          end 
         end
         any_created = true
       end

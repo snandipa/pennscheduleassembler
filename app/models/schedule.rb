@@ -4,6 +4,7 @@ class Schedule < ActiveRecord::Base
   belongs_to :user
   #has_many :sections #need to convert this to has_and_belongs_to_many :sections
   has_and_belongs_to_many :sections
+  has_and_belongs_to_many :recitations
   
   validates_presence_of :user_id
 end

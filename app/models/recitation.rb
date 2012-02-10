@@ -5,6 +5,7 @@ class Recitation < ActiveRecord::Base
   
   belongs_to :course
   has_many :meetings, :dependent => :destroy
+  has_and_belongs_to_many :schedules
   
   validates_presence_of :listing, :course_id
   validates_uniqueness_of :listing, :scope => :course_id #ie only one 001 for ESE 451
