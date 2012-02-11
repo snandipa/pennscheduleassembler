@@ -22,13 +22,18 @@ class SchedulesController < ApplicationController
 ################## This creates a generic Combinations (2,3) of section that I will use to test further code #############
     combination_array = Array.new(2).map!{ Array.new(3) }
 
-    for i in (0..1)
-      for j in (0..num_constraints-1)
-        section_list = constraints[j].course.sections
-        combination_array[i][j] = section_list[i]
-      end
-    end
+    #for i in (0..1)
+    #  for j in (0..num_constraints-1)
+    #    section_list = constraints[j].course.sections
+    #    combination_array[i][j] = section_list[i]
+    #  end
+    #end
+    combination_array[0][0]=constraints[0].course.sections[0]
+    combination_array[0][1]=constraints[1].course.sections[0]
     combination_array[0][2]=Course.find(1).recitations[0]
+    
+    combination_array[1][0]=constraints[0].course.sections[1]
+    combination_array[1][1]=constraints[1].course.sections[1]
     combination_array[1][2]=Course.find(1).recitations[0]
     puts "%$%$%$%$%$%$% Combinations Array: #{combination_array}"
 ####################It needs to be modified so it includes ALL combinations of sections and combos #####################
@@ -38,9 +43,8 @@ class SchedulesController < ApplicationController
       if combination_array[i].overlaps_with_itself? == false ##then you can create a schedule from this
         new_schedule = Schedule.create(user_id:current_user.id)
         combination_array[i].each do |component|
-          new_schedule.sections << component if component.class.name = "Section" #push all Sections from the current combo into new_schedule
-          new_schedule.recitations << component if component.class.name = "Recitation" #push all Recitations into new schedule
-          end 
+          new_schedule.sections << component if component.class.name == "Section" #push all Sections from the current combo into new_schedule
+          new_schedule.recitations << component if component.class.name == "Recitation" #push all Recitations into new schedule
         end
         any_created = true
       end

@@ -1,5 +1,6 @@
 <strong>Assembled Schedules</strong><br>
   <% @schedules.each do |schedule| %>
+  <strong>Sections: </strong><br>
     <% schedule.sections.each do |section| %>
         <% course = section.course %>
         <%= course.department %> <%= course.number_to_s %> <%= section.listing_to_s %> -
@@ -10,5 +11,15 @@
             <% end %>   
     <% end %>
     <br>
+    <strong> Recitations: </strong><br>
+    <% schedule.recitations.each do |recitation| %>
+        <% course = recitation.course %>
+        <%= course.department %> <%= course.number_to_s %> <%= recitation.listing_to_s %> -
+            <% recitation.meetings.each do |meeting| %>
+                <li>
+                <%= meeting.start_time_to_s %> to <%= meeting.end_time_to_s %> on <%= meeting.day_to_s %>
+                </li>
+            <% end %>   
+    <% end %>
  <% end %>
  <br>
