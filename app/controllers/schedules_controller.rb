@@ -5,6 +5,11 @@ class SchedulesController < ApplicationController
     current_user.schedules.destroy_all
     constraints = current_user.constraints #this is an Array of Constraints
     
+    if constraints.empty? #if no constraints exist, take them back
+      redirect_to scheduling_assemble_path, :flash => { :failure => "You have not added any constraints" }
+      return
+    end
+    
     num_sections = Array.new
     constraints.each do |constraint|
       num_sections << constraint.course.sections.count
