@@ -1,5 +1,6 @@
 <strong>Assembled Schedules</strong><br>
   <% @schedules.each do |schedule| %>
+  <strong>Schedule id: <%= schedule.id %> </strong><br>
   <strong>Sections: </strong><br>
     <% schedule.sections.each do |section| %>
         <% course = section.course %>
@@ -21,5 +22,6 @@
                 </li>
             <% end %>   
     <% end %>
+     <br><br>
  <% end %>
- <br>
+<br>

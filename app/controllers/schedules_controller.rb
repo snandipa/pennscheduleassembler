@@ -10,39 +10,8 @@ class SchedulesController < ApplicationController
       return
     end
 
-################## OLD WAY to create combination array ####################
-    num_sections = Array.new
-    constraints.each do |constraint|
-      num_sections << constraint.course.sections.count
-      if constraint.course.recitations.count > 0
-        num_sections << constraint.course.recitations.count
-      end
-    end
-    
-    num_constraints = num_sections.length
-    num_combinations = num_sections.inject(1) { |prod, element| prod * element }
-    period = num_combinations
-    
-    #first arg is rows, second is cols
-    combination_array = Array.new(num_combinations).map!{ Array.new(num_constraints) }
-################## This creates a generic Combinations (2,3) of section that I will use to test further code #############
-    combination_array = Array.new(2).map!{ Array.new(3) }
-
-    #for i in (0..1)
-    #  for j in (0..num_constraints-1)
-    #    section_list = constraints[j].course.sections
-    #    combination_array[i][j] = section_list[i]
-    #  end
-    #end
-    combination_array[0][0]=constraints[0].course.sections[0]
-    combination_array[0][1]=constraints[1].course.sections[0]
-    combination_array[0][2]=Course.find(1).recitations[0]
-    
-    combination_array[1][0]=constraints[0].course.sections[1]
-    combination_array[1][1]=constraints[1].course.sections[1]
-    combination_array[1][2]=Course.find(1).recitations[0]
-    puts "%$%$%$%$%$%$% Combinations Array: #{combination_array}"
-####################It needs to be modified so it includes ALL combinations of sections and combos #####################
+    combination_array = create_combinations_array
+    puts "%^%^%^%^%^%^^% combination array: #{combination_array}"
 
     any_created = false
     for i in (0..combination_array.length-1) #iterates through all Combination of Sections
@@ -59,8 +28,73 @@ class SchedulesController < ApplicationController
     if any_created
       redirect_to scheduling_assemble_path, :flash => { :success => "Schedules have been added!" }
     else
-      redirect_to scheduling_assemble_path, :flash => { :failure => "Could not create any schedules. Try removing courses?" }
+      #NEXT STEP: We want to remove the last col of the array as long as its not a course or recitation
+      #and then re-rerun this scheduling create algorithm to see if anything works
+      redirect_to scheduling_assemble_path, :flash => { :failure => "Could not create any schedules. Try removing courses or timing constraints?" }
     end
+  end
+
+  def create_combinations_array
+    num_sections = Array.new
+    section_type = Array.new
+    constraints = current_user.constraints #this is an Array of Constraints
+    constraints.each do |constraint|
+      num_sections << constraint.course.sections.count
+      section_type << "Course"
+      if constraint.course.recitations.count > 0
+        num_sections << constraint.course.recitations.count
+        section_type << "Recitation"
+      end
+    end
+    
+    if current_user.timings.count > 0
+      current_user.timings.each do |timing|
+        num_sections << 1 #each Timing makes a new column added to combinations_array
+        section_type << "Timing"
+      end
+    end
+    puts "%^%^%^%^^%%^ section type array: #{section_type}"
+    num_constraints = num_sections.length
+    num_combinations = num_sections.inject(1) { |prod, element| prod * element }
+    #period = num_combinations
+    
+    #first arg is rows, second is cols
+    combination_array = Array.new(num_combinations).map!{ Array.new(num_constraints) }
+    
+    timing_counter=0
+    constraints_counter = 0
+    for col in (0..num_constraints-1)
+      period = num_combinations/num_sections[col] - 1
+      combination_counter = 0
+      for repeat in (0..period)
+        puts "%^%^%^%^^%%^ #{section_type[col]} | col: #{col}"
+        case
+          when section_type[col] == "Course"
+            constraints[constraints_counter].course.sections.each do |section|
+              combination_array[combination_counter][col]=section
+              combination_counter = combination_counter + 1
+            end
+            
+          when section_type[col] == "Recitation"
+            constraints[constraints_counter].course.recitations.each do |recitation|
+              if constraints[constraints_counter].course.recitations.count > 0
+                combination_array[combination_counter][col]=recitation
+                combination_counter = combination_counter + 1
+              end
+            end
+          when section_type[col] == "Timing"
+              combination_array[combination_counter][col]=current_user.timings[timing_counter]
+              puts "%^%^%^%^^%%^ pudda in"
+              combination_counter = combination_counter + 1
+              
+        end
+      end
+      constraints_counter = constraints_counter + 1 if (col+1 < num_constraints) && (section_type[col+1] == "Course")
+      puts "%^%^%^%^^%%^ after potential increment constraintscounter: #{constraints_counter}"
+      timing_counter = timing_counter + 1 if (col+1 < num_constraints) && (section_type[col+1] == "Timing")
+    end
+    
+    return combination_array
   end
 
   def destroy
