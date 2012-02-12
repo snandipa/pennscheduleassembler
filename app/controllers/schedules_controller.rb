@@ -66,29 +66,27 @@ class SchedulesController < ApplicationController
     for col in (0..num_constraints-1)
       period = num_combinations/num_sections[col] - 1
       combination_counter = 0
-      for repeat in (0..period)
-        puts "%^%^%^%^^%%^ #{section_type[col]} | col: #{col}"
-        case
-          when section_type[col] == "Course"
-            constraints[constraints_counter].course.sections.each do |section|
-              combination_array[combination_counter][col]=section
-              combination_counter = combination_counter + 1
-            end
-            
-          when section_type[col] == "Recitation"
-            constraints[constraints_counter].course.recitations.each do |recitation|
-              if constraints[constraints_counter].course.recitations.count > 0
-                combination_array[combination_counter][col]=recitation
-                combination_counter = combination_counter + 1
-              end
-            end
-          when section_type[col] == "Timing"
-              combination_array[combination_counter][col]=current_user.timings[timing_counter]
-              puts "%^%^%^%^^%%^ pudda in"
+      for next_unit in (0..num_sections[col]-1)
+        for repeat in (0..period)
+          puts "%^%^%^%^^%%^ #{section_type[col]} | col: #{col}"
+          case
+            when section_type[col] == "Course"
+              combination_array[combination_counter][col]=constraints[constraints_counter].course.sections[next_unit]
               combination_counter = combination_counter + 1
               
-        end
+            when section_type[col] == "Recitation"
+              if constraints[constraints_counter].course.recitations.count > 0
+                combination_array[combination_counter][col]=constraints[constraints_counter].course.recitations[next_unit]
+                combination_counter = combination_counter + 1
+              end
+            when section_type[col] == "Timing"
+                combination_array[combination_counter][col]=current_user.timings[timing_counter]
+                puts "%^%^%^%^^%%^ pudda in"
+                combination_counter = combination_counter + 1 
+          end
+        end  
       end
+      
       constraints_counter = constraints_counter + 1 if (col+1 < num_constraints) && (section_type[col+1] == "Course")
       puts "%^%^%^%^^%%^ after potential increment constraintscounter: #{constraints_counter}"
       timing_counter = timing_counter + 1 if (col+1 < num_constraints) && (section_type[col+1] == "Timing")
