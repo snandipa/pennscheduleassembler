@@ -63,6 +63,7 @@ class SchedulesController < ApplicationController
     
     timing_counter=0
     constraints_counter = 0
+    
     for col in (0..num_constraints-1)
       period = num_combinations/num_sections[col] - 1
       combination_counter = 0
