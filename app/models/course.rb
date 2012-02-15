@@ -11,7 +11,7 @@ class Course < ActiveRecord::Base
   #belongs_to :course
   
   
-  validates_presence_of :department, :number, :cusip, :name, :cus, :instructor, :course_rating, :instructor_rating, :difficulty_rating
+  validates_presence_of :department, :number, :cusip, :name, :cus, :course_rating, :difficulty_rating
   validates_uniqueness_of :number, :scope => :department # ie only one 451 for ESE
   
   def number_to_s
@@ -22,5 +22,5 @@ class Course < ActiveRecord::Base
     end
   end
   
-  #Course.create(:department => "SAST", :number => 4, :name => "India's Literature", :instructor => "Patel", :course_rating => 3.3, :instructor_rating => 2.2, :difficulty_rating => 2.1)
+  #Course.create(:department => "SAST", :number => 4, :name => "India's Literature", :course_rating => 3.3, :difficulty_rating => 2.1)
 end

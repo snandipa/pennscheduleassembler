@@ -1,6 +1,10 @@
 <strong>Assembled Schedules</strong><br>
   <% @schedules.each do |schedule| %>
   <strong>Schedule id: <%= schedule.id %> </strong><br>
+  Metrics<br>
+  Course: <%= schedule.avg_course_rating %><br>
+  Instructor: <%= schedule.avg_instructor_rating %><br>
+  Difficulty: <%= schedule.avg_difficulty_rating %><br>
   <strong>Sections: </strong><br>
     <% schedule.sections.each do |section| %>
         <% course = section.course %>

@@ -7,5 +7,5 @@ class Array
             end
         end
         return false
-    end  
+    end
 end
