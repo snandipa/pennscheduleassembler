@@ -11,3 +11,10 @@
   <% end %>
 </li>
  <% end %>
+ 
+   <%= form_for @constraint do |f| %> 
+    <%= f.collection_select :course_id, Course.all, :id, :name %>
+    <%= f.submit class: 'medium nice blue radius button' %>
+    <br /><br />
+  <% end %>
+ 
