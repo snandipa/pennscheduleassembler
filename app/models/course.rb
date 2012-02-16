@@ -22,5 +22,5 @@ class Course < ActiveRecord::Base
     end
   end
   
-  #Course.create(:department => "SAST", :number => 4, :name => "India's Literature", :course_rating => 3.3, :difficulty_rating => 2.1)
+  #Course.create(:department => "ESE", :number => 451, :name => "Senior Design", :cusip => 4551, :cus => 1.0, :course_rating => 4.3, :difficulty_rating => 3.1)
 end
