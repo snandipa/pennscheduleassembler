@@ -66,6 +66,7 @@ class SchedulesController < ApplicationController
     total_periods = num_combinations
     total_repeats = num_combinations
     for col in (0..num_constraints-1)
+      
       total_repeats = total_repeats / num_sections[col]
       total_periods = num_combinations/total_repeats
       combination_counter = 0
