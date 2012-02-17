@@ -1,12 +1,17 @@
 <h1>Which courses would you like to have?</h1>
-<%= link_to "I am done adding courses. Take me onwards!", scheduling_timing_path %>
-<ul class="constraints">
-  <%= render :partial => 'shared/constraint' %>
-</ul>
-<ul class="timings">
-  <%= render :partial => 'shared/timing' %>
-</ul>
 
-<ul class="courses">
-  <%= render :partial => 'shared/course' %>
-</ul>
+<div class= "allbox">
+  <%= link_to "I am done adding courses. Take me onwards!", scheduling_timing_path %>
+
+  <div class= "constraintbox">
+    <%= render :partial => 'shared/constraint' %>
+    <%= render :partial => 'shared/timing' %>
+  </div>
+  
+  <ul class="courses">
+    <%= render :partial => 'shared/course' %>
+  </ul>
+
+</div>
+
+

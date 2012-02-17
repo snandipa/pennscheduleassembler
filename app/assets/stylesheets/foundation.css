@@ -76,6 +76,30 @@
 		background-repeat:repeat;
 		font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size: 13px; line-height: 18px; color: #555; position: relative; -webkit-font-smoothing: antialiased; }
 	
+/*	--------------------------------------------------
+	:: Our Code
+	-------------------------------------------------- */
+	div.allbox
+	    {
+	    width:650px;
+	    text-align:left;
+	    margin-left: auto;
+            margin-right: auto;
+	    } 
+	
+	div.constraintbox
+	    {
+	    width:240px;
+	    padding:10px;
+	    border:2px solid black;
+	    -moz-border-radius: 8px 8px / 8px 8px;
+	    border-radius: 8px;
+
+	    text-align:left;
+	    float:right;
+	    background: #fff;
+	    
+	    } 
 
 
 /*	--------------------------------------------------

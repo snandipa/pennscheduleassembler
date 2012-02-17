@@ -1,17 +1,20 @@
 <h1>When do you not want to go to class?</h1>
-<%= link_to "I want to add more courses. Take me back!", scheduling_course_path %><br />
+
+<div class= "allbox">
+  
+  <%= link_to "I want to add more courses. Take me back!", scheduling_course_path %><br />
   Schedule my classes by clicking below!
   <%= form_for @schedule do |f| %>
     <%= f.submit %>
     <br /><br />
  <% end %>
-<ul class="constraints">
-  <%= render :partial => 'shared/constraint' %>
-</ul>
-<ul class="courses">
-  <%= render :partial => 'shared/timing' %>
-</ul>
-
+ 
+ 
+  <div class= "constraintbox">
+    <%= render :partial => 'shared/constraint' %>
+    <%= render :partial => 'shared/timing' %>
+  </div>
+  
 <strong>Timing Selection</strong>
 
   <%= form_for @timing do |f| %>
@@ -24,3 +27,9 @@
     <%= f.submit %>
     <br /><br />
  <% end %>
+
+</div>
+
+
+
+
