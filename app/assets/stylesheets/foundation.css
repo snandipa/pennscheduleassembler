@@ -75,7 +75,6 @@
 		background-image: url("bgch1.jpg");
 		background-repeat:repeat;
 		font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size: 13px; line-height: 18px; color: #555; position: relative; -webkit-font-smoothing: antialiased; }
-	
 /*	--------------------------------------------------
 	:: Our Code
 	-------------------------------------------------- */
@@ -99,9 +98,8 @@
 	    float:right;
 	    background: #fff;
 	    
-	    } 
-
-
+	    }
+	    
 /*	--------------------------------------------------
 	:: Links
 	-------------------------------------------------- */
