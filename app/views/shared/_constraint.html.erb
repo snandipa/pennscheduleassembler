@@ -1,6 +1,5 @@
 <strong>Constraints</strong>
   <% @constraints.each do |constraint| %>
-  <li><%= constraint.course.name %> |
-      <%= button_to "Delete", constraint, :method => :delete %>
+  <li><%= constraint.course.name %> | <%= button_to "Delete", constraint, :method => :delete %>
   </li>
  <% end %>

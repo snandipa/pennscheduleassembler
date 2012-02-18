@@ -1,15 +1,23 @@
 <h1>Which courses would you like to have?</h1>
 
 <div class= "allbox">
-  <%= link_to "I am done adding courses. Take me onwards!", scheduling_timing_path %>
+  <h4><%= link_to "I am done adding courses. I want to add timing constraints.", scheduling_timing_path %></h4>
+  <br><br>
 
   <div class= "constraintbox">
     <%= render :partial => 'shared/constraint' %>
+    <br><br>
     <%= render :partial => 'shared/timing' %>
   </div>
   
   <ul class="courses">
-    <%= render :partial => 'shared/course' %>
+      <h6>Choose Your Courses Below:</h6>
+     <%= form_for @constraint do |f| %> 
+      <%= f.collection_select :course_id, Course.all, :id, :title %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.submit class: 'medium nice blue radius button' %>
+      <br /><br />
+    <% end %>
   </ul>
 
 </div>

@@ -1,19 +1,7 @@
-<strong>Choose Your Courses Below:</strong>
-<% @courses.each do |course| %>
-<li>
-  <%= link_to "#{course.department} #{course.number} #{course.name}", course %>
-  
-  <%= form_for @constraint do |f| %> 
-    <%= f.hidden_field :course_id, :value => course.id %>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.submit %>
-    <br />
-  <% end %>
-</li>
- <% end %>
- 
+<strong>Choose Your Courses Below:</strong> 
    <%= form_for @constraint do |f| %> 
-    <%= f.collection_select :course_id, Course.all, :id, :name %>
+    <%= f.collection_select :course_id, Course.all, :id, :title %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.submit class: 'medium nice blue radius button' %>
     <br /><br />
   <% end %>

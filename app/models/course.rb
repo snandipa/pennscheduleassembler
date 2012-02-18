@@ -22,5 +22,9 @@ class Course < ActiveRecord::Base
     end
   end
   
+  def title
+    return "#{department} #{number_to_s} - #{name}"
+  end
+  
   #Course.create(:department => "ESE", :number => 451, :name => "Senior Design", :cusip => 4551, :cus => 1.0, :course_rating => 4.3, :difficulty_rating => 3.1)
 end

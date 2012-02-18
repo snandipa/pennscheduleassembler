@@ -1,11 +1,10 @@
-<strong>Assembled Schedules</strong><br>
   <% @schedules.each do |schedule| %>
-  <strong>Schedule id: <%= schedule.id %> </strong><br>
-  Metrics<br>
-  Course: <%= schedule.avg_course_rating %><br>
-  Instructor: <%= schedule.avg_instructor_rating %><br>
-  Difficulty: <%= schedule.avg_difficulty_rating %><br>
-  <strong>Sections: </strong><br>
+  <h2>Schedule</h2>
+  <h4>Metrics</h4>
+  <strong>Course:</strong> <%= schedule.avg_course_rating %><br>
+  <strong>Instructor:</strong> <%= schedule.avg_instructor_rating %><br>
+  <strong>Difficulty:</strong> <%= schedule.avg_difficulty_rating %><br><br>
+  <h4>Sections: </h4>
     <% schedule.sections.each do |section| %>
         <% course = section.course %>
         <%= course.department %> <%= course.number_to_s %> <%= section.listing_to_s %> -
@@ -15,8 +14,7 @@
                 </li>
             <% end %>   
     <% end %>
-    <br>
-    <strong> Recitations: </strong><br>
+    <h4> Recitations: </h4><br>
     <% schedule.recitations.each do |recitation| %>
         <% course = recitation.course %>
         <%= course.department %> <%= course.number_to_s %> <%= recitation.listing_to_s %> -
@@ -26,6 +24,5 @@
                 </li>
             <% end %>   
     <% end %>
-     <br><br>
  <% end %>
 <br>

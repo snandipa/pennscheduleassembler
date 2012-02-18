@@ -1,7 +1,9 @@
-<h1>When do you not want to go to class?</h1>
-<%= link_to "I want to add more courses. Take me back!", scheduling_course_path %><br />
-<%= link_to "I want to add more timings!", scheduling_timing_path %>
-<br><br>
-<strong>Your Schedules have been Assembled</strong><br>
-<br><br>
-<%= render :partial => 'shared/schedule' %>
+<h1>Your schedules have been assembled!</h1>
+
+
+<div class="allbox">
+  <h4><%= link_to "I want to add more courses. Take me back!", scheduling_course_path %></h4><br />
+  <h4><%= link_to "I want to add more timings!", scheduling_timing_path %></h4>
+  <br><br>
+  <%= render :partial => 'shared/schedule' %>
+</div>

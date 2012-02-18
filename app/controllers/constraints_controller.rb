@@ -1,6 +1,6 @@
 class ConstraintsController < ApplicationController
   def create
-    @constraint = Constraint.create(params[:constraint])
+    @constraint = Constraint.new(params[:constraint])
     if @constraint.save
       redirect_to scheduling_course_path, :flash => { :success => "Constraint added!" }
     else
