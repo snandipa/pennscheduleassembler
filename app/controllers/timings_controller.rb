@@ -1,6 +1,7 @@
 class TimingsController < ApplicationController
   def create
-    check_timing = Timing.new(params)
+    the_user_id = params[:timing][:user_id].to_i
+    check_timing = Timing.new(user_id:the_user_id)
     check_meeting = Meeting.new(params[:timing][:meeting])
     check_timing.meetings << check_meeting
     
@@ -78,8 +79,9 @@ class TimingsController < ApplicationController
   end
 
   def create_unique_timing
-    @timing = Timing.create(params[:timing])
-    @meeting = Meeting.create(params[:timing][:meeting])
+    the_user_id = params[:timing][:user_id].to_i
+    @timing = Timing.new(user_id:the_user_id)
+    @meeting = Meeting.new(params[:timing][:meeting])
     #this is probably the wrong way to do it..but keep for now's sake
     @timing.meetings << @meeting
     if @timing.save

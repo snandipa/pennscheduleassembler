@@ -15,6 +15,11 @@ group :development, :test do
   gem 'pg'
 end
 
+group :test do
+  gem 'database_cleaner'
+  gem "capybara"
+end
+
 gem 'will_paginate'
 gem 'json'
 gem 'activesupport'

@@ -11,6 +11,7 @@
   </div>
   
   <ul class="courses">
+
       <h6>Choose Your Courses Below:</h6>
      <%= form_for @constraint do |f| %> 
       <%= f.collection_select :course_id, Course.all, :id, :title %>

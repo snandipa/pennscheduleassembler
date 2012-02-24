@@ -3,13 +3,9 @@
 one:
   start_time: 9.99
   end_time: 9.99
-  days: MyString
-  listing: 1
-  course_id: 1
+  day: 1
 
 two:
   start_time: 9.99
   end_time: 9.99
-  days: MyString
-  listing: 1
-  course_id: 1
+  day: 1

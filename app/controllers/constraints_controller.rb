@@ -4,7 +4,7 @@ class ConstraintsController < ApplicationController
     if @constraint.save
       redirect_to scheduling_course_path, :flash => { :success => "Constraint added!" }
     else
-      redirect_to scheduling_course_path, :flash => { :success => "Constraint already exists" }
+      redirect_to scheduling_course_path, :flash => { :failure => "Constraint already exists" }
     end
   end
   
