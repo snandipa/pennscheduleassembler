@@ -1,0 +1,35 @@
+<h1>Which worksheet requirements would you like to add?</h1>
+
+<div class= "allbox">
+  
+  <h4><%= link_to "I want to add more timings. Take me back!", scheduling_timing_path %></h4>
+  <br />
+  <h4>Schedule my classes by clicking below!</h4>
+  <%= form_for @schedule do |f| %>
+    <%= f.submit class: 'medium nice blue radius button' %>
+  <% end %>
+  <br /><br />
+ 
+  <div class= "constraintbox">
+    <%= render :partial => 'shared/constraint' %>
+    <br><br>
+    <%= render :partial => 'shared/timing' %>
+    <br><br>
+    <%= render :partial => 'shared/reqs' %>
+  </div>
+  
+<h6>Requirement Selection</h6>
+
+  <%= form_for @reqconstraint do |f| %>
+    <%= f.collection_select :requirement_id, Requirement.all, :id, :name %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.submit class: 'medium nice blue radius button' %>
+    <br /><br />
+ <% end %>
+
+
+</div>
+
+
+
+

@@ -4,12 +4,8 @@
   
   <h4><%= link_to "I want to add more courses. Take me back!", scheduling_course_path %></h4>
   <br />
-  <h4>Schedule my classes by clicking below!</h4>
-  <%= form_for @schedule do |f| %>
-    <%= f.submit class: 'medium nice blue radius button' %>
-  <% end %>
-  <br /><br />
- 
+  <h4><%= link_to "I am done adding timings. I want to add requirement constraints.", scheduling_reqs_path %></h4>
+  
   <div class= "constraintbox">
     <%= render :partial => 'shared/constraint' %>
     <br><br>

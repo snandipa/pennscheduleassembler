@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120210225046) do
+ActiveRecord::Schema.define(:version => 20120306142717) do
 
   create_table "constraints", :force => true do |t|
     t.integer  "course_id"
@@ -38,6 +38,11 @@ ActiveRecord::Schema.define(:version => 20120210225046) do
     t.integer "crosslist_id"
   end
 
+  create_table "courses_requirements", :id => false, :force => true do |t|
+    t.integer "course_id"
+    t.integer "requirement_id"
+  end
+
   create_table "crosslists", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -54,6 +59,19 @@ ActiveRecord::Schema.define(:version => 20120210225046) do
     t.integer  "recitation_id"
   end
 
+  create_table "rails_admin_histories", :force => true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
   create_table "recitations", :force => true do |t|
     t.integer  "listing"
     t.integer  "course_id"
@@ -64,6 +82,20 @@ ActiveRecord::Schema.define(:version => 20120210225046) do
   create_table "recitations_schedules", :id => false, :force => true do |t|
     t.integer "recitation_id"
     t.integer "schedule_id"
+  end
+
+  create_table "reqconstraints", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "requirement_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "requirements", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "category"
   end
 
   create_table "schedules", :force => true do |t|

@@ -1,5 +1,9 @@
 Pennscheduleassembler::Application.routes.draw do
 
+  get "reqconstraints/create"
+
+  get "reqconstraints/destroy"
+
   get "schedules/create"
 
   get "schedules/destroy"
@@ -19,6 +23,7 @@ Pennscheduleassembler::Application.routes.draw do
   resources :recitations
   resources :meetings
   resources :constraints
+  resources :reqconstraints
   resources :timings
   resources :schedules
   resources :sessions, :only => [:new, :create, :destroy]
@@ -40,6 +45,7 @@ Pennscheduleassembler::Application.routes.draw do
   
   match '/scheduling/course', :to => 'scheduling#course' #scheduling_course_path
   match '/scheduling/timing', :to => 'scheduling#timing' #scheduling_timing_path
+  match '/scheduling/reqs', :to => 'scheduling#reqs' #scheduling_reqs_path
   match '/scheduling/assemble', :to => 'scheduling#assemble' #scheduling_assemble_path
   
   # The priority is based upon order of creation:

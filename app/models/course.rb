@@ -4,13 +4,11 @@ class Course < ActiveRecord::Base
   has_many :sections, :dependent => :destroy
   has_many :recitations, :dependent => :destroy
   has_many :constraints, :dependent => :destroy
+  has_many :reqconstraints, :dependent => :destroy
   
   #has_and_belongs_to_many :crosslists
-  #has_many :crosslists
-  #has_many :courses, :through => :crosslists
-  #belongs_to :course
-  
-  
+  has_and_belongs_to_many :requirements
+
   validates_presence_of :department, :number, :cusip, :name, :cus, :course_rating, :difficulty_rating
   validates_uniqueness_of :number, :scope => :department # ie only one 451 for ESE
   

@@ -19,7 +19,7 @@ class Timing < ActiveRecord::Base
     end
     return false
   end
-    
+
   def correct_sequence_of_times
     #return if ([ start_time, end_time].find(&:blank?))
     #errors.add(:start_time, " cannot be before start time!") unless end_time > start_time

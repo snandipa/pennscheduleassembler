@@ -1,0 +1,5 @@
+<strong>Worksheet Constraints</strong>
+  <% @reqs.each do |req| %>
+  <li><%= req.requirement.name %> | <%= button_to "Delete", req, :method => :delete %>
+  </li>
+ <% end %>

@@ -41,9 +41,17 @@
         <br>
       <% end %>
     </td>
-      <td>
+    <td>
         <strong>Crosslisted Classes</strong><br><br>
-      <% @course.crosslistings %>
+          <%= @course.crosslistings %>
+        <br />
+        <br>
+    </td>
+        <td>
+        <strong>Requirements Fulfilled</strong><br><br>
+          <% @course.requirements.each do |requirement| %>
+            <li><%= requirement.name %></li>
+          <% end %>
         <br />
         <br>
     </td>
