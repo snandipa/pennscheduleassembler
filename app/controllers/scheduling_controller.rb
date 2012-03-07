@@ -16,7 +16,6 @@ class SchedulingController < ApplicationController
   def reqs
     @title = "Add Requirements"
     @reqconstraint = Reqconstraint.new
-    @schedule = Schedule.new
   end
   
   def assemble

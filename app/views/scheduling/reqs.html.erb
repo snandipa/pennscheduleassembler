@@ -5,10 +5,11 @@
   <h4><%= link_to "I want to add more timings. Take me back!", scheduling_timing_path %></h4>
   <br />
   <h4>Schedule my classes by clicking below!</h4>
-  <%= form_for @schedule do |f| %>
-    <%= f.submit class: 'medium nice blue radius button' %>
-  <% end %>
   <br /><br />
+  <%= form_tag url_for(:controller => 'schedules', :action => 'create'), :method => 'get' do %>
+    <%= submit_tag "Create schedule!!", class: 'medium nice blue radius button' %>
+  <% end %>
+  
  
   <div class= "constraintbox">
     <%= render :partial => 'shared/constraint' %>
@@ -22,6 +23,9 @@
 
   <%= form_for @reqconstraint do |f| %>
     <%= f.collection_select :requirement_id, Requirement.all, :id, :name %>
+    Course Rating: <%= f.text_field :course_rating_lb %> to <%= f.text_field :course_rating_ub %><br>
+    Instructor Rating: <%= f.text_field :instructor_rating_lb %> to <%= f.text_field :instructor_rating_ub %><br>
+    Difficulty Rating: <%= f.text_field :difficulty_rating_lb %> to <%= f.text_field :difficulty_rating_ub %><br>
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.submit class: 'medium nice blue radius button' %>
     <br /><br />
