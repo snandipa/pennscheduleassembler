@@ -1,4 +1,7 @@
 class SchedulesController < ApplicationController
+  
+  #creates two identical schedules when given two of the same req constraint
+  
   def create
     #find lib/core_extensions.rb for Array method of overlaps_with_itself?
     
@@ -14,7 +17,12 @@ class SchedulesController < ApplicationController
     any_created = false
     for i in (0..combination_array.length-1) #iterates through all Combination of Sections
       if combination_array[i].overlaps_with_itself? == false #then you can see if any degree requirements fit with this
-        any_created = add_reqs(combination_array[i]) #add degree requirements to temporary schedules
+        if current_user.reqconstraints.empty?
+          any_created = create_schedule(combination_array[i])
+        else
+          any_created = add_reqs(combination_array[i]) #add degree requirements to temporary schedules
+        end
+  
       end
     end
 
@@ -37,15 +45,14 @@ class SchedulesController < ApplicationController
     combination_array.each {|section| courseconstraints << section.course if section.class.name == "Section"} #contains all courses being used, not counting recitations
     
     any_created = false
-    #puts "()()()()()()()()() all course constraints #{courseconstraints}"
+
     reqconstraints.each do |reqconstraint| #so reqconstraint = Humanities for User 1 for instance
       #find all Courses that satisfy the boundaries and Humanities constraint
       all_tagged_courses=reqconstraint.requirement.courses #all Courses that has the Humanities tag
       
       #delete all tagged courses that don't satisfy boundary constraints
       all_tagged_courses.delete_if { |course| courseconstraints.include?(course) || course.course_rating < reqconstraint.course_rating_lb || course.difficulty_rating > reqconstraint.difficulty_rating_ub }
-      
-      puts "%^%^%^%^%^%^%^%^%^% #{all_tagged_courses}"
+
       #all_tagged_courses contains all the courses that could satisfy the worksheet requirement
       #now I need to find which course will fit in the current schedule, by iterating through each course's sections,
         #adding them in the temp array of different sections, then seeing if there are overlaps
@@ -54,35 +61,12 @@ class SchedulesController < ApplicationController
         course.sections.each do |section|
           temp_combination_array = Array.new(combination_array)
           temp_combination_array << section
-          puts "$%$%$%$%$% combo array:"
-          combination_array.each do |sec|
-            puts sec.to_s
-          end
-          
-          puts "$%$%$%$%$% temp combo array:"
-          temp_combination_array.each do |sec|
-            puts sec.to_s
-          end
-          
-          
-          
-          if temp_combination_array.overlaps_with_itself? == false #if the section doesn't overlap with any current schedule
-            temp_timing_constraints = Array.new(current_user.timings) << section
 
-            #puts "$%$%$%$%$% temp timing array #{temp_timing_constraints} and it should sho temo array: #{temp_combination_array}"
-            if temp_timing_constraints.overlaps_with_itself? == false #if the section doesn't overlap with any timing constraints
-              #puts "3.5 HIHIHIHIH*&*&*&*&*&*&*&*&*&*& &*&*&*& &*&*&*& and #{course.recitations}"
-              #check if you need to add a recitation
-              if course.recitations.empty? #if no recitations exist, create the schedule
-                any_created = create_schedule(temp_combination_array)
-                #puts "4. HIHIHIHIH*&*&*&*&*&*&*&*&*&*& &*&*&*& &*&*&*&"
-              else #recitations do exist, so need to find which recitations will work in this schedule
-                recitations_for_section = section.course.recitations
-                
-              end
-               
-            end
-          end
+          any_created_on_this_iteration = try_to_add_listing(temp_combination_array, course, section)
+          
+          any_created = any_created || any_created_on_this_iteration
+          
+          
 
         end
       end
@@ -90,6 +74,29 @@ class SchedulesController < ApplicationController
 
     end
 
+    return any_created
+  end
+  
+  def try_to_add_listing(temp_combination_array, course, section)
+    any_created = false
+    if temp_combination_array.overlaps_with_itself? == false #if the section doesn't overlap with any current schedule
+      temp_timing_constraints = Array.new(current_user.timings) << section
+
+      if temp_timing_constraints.overlaps_with_itself? == false #if the section doesn't overlap with any timing constraints
+        #check if you need to add a recitation
+        if course.recitations.empty? || section.class.name=="Recitation" #if no recitations exist, create the schedule
+          any_created = create_schedule(temp_combination_array)
+        else #recitations do exist, so need to find which recitations will work in this schedule
+          recitations_for_section = section.course.recitations
+          recitations_for_section.each do |recitation|
+            temp_combination_array << recitation
+            any_created = try_to_add_listing(temp_combination_array, course, recitation)
+          end
+        end
+         
+      end
+    end
+    
     return any_created
   end
   
