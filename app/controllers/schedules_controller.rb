@@ -1,6 +1,6 @@
 class SchedulesController < ApplicationController
   
-  #creates two identical schedules when given two of the same req constraint
+  #creates two identical schedules when given two of the same req constraint?!?!?!?!
   
   def create
     #find lib/core_extensions.rb for Array method of overlaps_with_itself?
