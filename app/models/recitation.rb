@@ -28,6 +28,7 @@ class Recitation < ActiveRecord::Base
       else return "#{listing}"
     end
   end
+
   
   #Recitation.create(listing:231, course_id:1)
   #then you have to associate meetings with it

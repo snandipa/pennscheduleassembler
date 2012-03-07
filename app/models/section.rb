@@ -30,6 +30,10 @@ class Section < ActiveRecord::Base
     end
   end
   
+  def to_s
+    return "| Section (ID: #{self.id}) (Listing: #{self.listing})|"
+  end
+  
   #Section.create(listing:1, course_id:1)
   #then you have to associate meetings with it
 end

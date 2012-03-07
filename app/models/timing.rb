@@ -25,4 +25,5 @@ class Timing < ActiveRecord::Base
     #errors.add(:start_time, " cannot be before start time!") unless end_time > start_time
   end
   
+  
 end

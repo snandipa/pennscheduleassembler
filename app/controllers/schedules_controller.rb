@@ -13,13 +13,8 @@ class SchedulesController < ApplicationController
     combination_array = create_combinations_array
     any_created = false
     for i in (0..combination_array.length-1) #iterates through all Combination of Sections
-      if combination_array[i].overlaps_with_itself? == false ##then you can create a schedule from this
-        new_schedule = Schedule.create(user_id:current_user.id)
-        combination_array[i].each do |component|
-          new_schedule.sections << component if component.class.name == "Section" #push all Sections from the current combo into new_schedule
-          new_schedule.recitations << component if component.class.name == "Recitation" #push all Recitations into new schedule
-        end
-        any_created = true
+      if combination_array[i].overlaps_with_itself? == false #then you can see if any degree requirements fit with this
+        any_created = add_reqs(combination_array[i]) #add degree requirements to temporary schedules
       end
     end
 
@@ -33,6 +28,78 @@ class SchedulesController < ApplicationController
       redirect_to scheduling_assemble_path, :flash => { :failure => "Could not create any schedules. Try removing courses or timing constraints?" }
       return
     end
+  end
+  
+  def add_reqs(combination_array)
+    #iterate through each requirement they've added
+    reqconstraints = current_user.reqconstraints #contains all users' requirement constraints
+    courseconstraints = Array.new #contains all the courses that are being used
+    combination_array.each {|section| courseconstraints << section.course if section.class.name == "Section"} #contains all courses being used, not counting recitations
+    
+    any_created = false
+    #puts "()()()()()()()()() all course constraints #{courseconstraints}"
+    reqconstraints.each do |reqconstraint| #so reqconstraint = Humanities for User 1 for instance
+      #find all Courses that satisfy the boundaries and Humanities constraint
+      all_tagged_courses=reqconstraint.requirement.courses #all Courses that has the Humanities tag
+      
+      #delete all tagged courses that don't satisfy boundary constraints
+      all_tagged_courses.delete_if { |course| courseconstraints.include?(course) || course.course_rating < reqconstraint.course_rating_lb || course.difficulty_rating > reqconstraint.difficulty_rating_ub }
+      
+      puts "%^%^%^%^%^%^%^%^%^% #{all_tagged_courses}"
+      #all_tagged_courses contains all the courses that could satisfy the worksheet requirement
+      #now I need to find which course will fit in the current schedule, by iterating through each course's sections,
+        #adding them in the temp array of different sections, then seeing if there are overlaps
+
+      all_tagged_courses.each do |course|
+        course.sections.each do |section|
+          temp_combination_array = Array.new(combination_array)
+          temp_combination_array << section
+          puts "$%$%$%$%$% combo array:"
+          combination_array.each do |sec|
+            puts sec.to_s
+          end
+          
+          puts "$%$%$%$%$% temp combo array:"
+          temp_combination_array.each do |sec|
+            puts sec.to_s
+          end
+          
+          
+          
+          if temp_combination_array.overlaps_with_itself? == false #if the section doesn't overlap with any current schedule
+            temp_timing_constraints = Array.new(current_user.timings) << section
+
+            #puts "$%$%$%$%$% temp timing array #{temp_timing_constraints} and it should sho temo array: #{temp_combination_array}"
+            if temp_timing_constraints.overlaps_with_itself? == false #if the section doesn't overlap with any timing constraints
+              #puts "3.5 HIHIHIHIH*&*&*&*&*&*&*&*&*&*& &*&*&*& &*&*&*& and #{course.recitations}"
+              #check if you need to add a recitation
+              if course.recitations.empty? #if no recitations exist, create the schedule
+                any_created = create_schedule(temp_combination_array)
+                #puts "4. HIHIHIHIH*&*&*&*&*&*&*&*&*&*& &*&*&*& &*&*&*&"
+              else #recitations do exist, so need to find which recitations will work in this schedule
+                recitations_for_section = section.course.recitations
+                
+              end
+               
+            end
+          end
+
+        end
+      end
+
+
+    end
+
+    return any_created
+  end
+  
+  def create_schedule(combination_array)
+    new_schedule = Schedule.create(user_id:current_user.id)
+    combination_array.each do |component|
+      new_schedule.sections << component if component.class.name == "Section" #push all Sections from the current combo into new_schedule
+      new_schedule.recitations << component if component.class.name == "Recitation" #push all Recitations into new schedule
+    end
+    return true
   end
 
   def create_combinations_array

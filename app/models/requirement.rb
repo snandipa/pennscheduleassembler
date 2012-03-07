@@ -7,4 +7,6 @@ class Requirement < ActiveRecord::Base
     
     validates_presence_of :name, :category
     validates_uniqueness_of :name, :category
+    
+
 end

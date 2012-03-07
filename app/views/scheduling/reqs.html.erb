@@ -23,9 +23,8 @@
 
   <%= form_for @reqconstraint do |f| %>
     <%= f.collection_select :requirement_id, Requirement.all, :id, :name %>
-    Course Rating: <%= f.text_field :course_rating_lb %> to <%= f.text_field :course_rating_ub %><br>
-    Instructor Rating: <%= f.text_field :instructor_rating_lb %> to <%= f.text_field :instructor_rating_ub %><br>
-    Difficulty Rating: <%= f.text_field :difficulty_rating_lb %> to <%= f.text_field :difficulty_rating_ub %><br>
+    I want my course to be rated ABOVE <%= f.text_field :course_rating_lb %> <br><br>
+    I want the course difficulty to be BELOW <%= f.text_field :difficulty_rating_ub %><br>
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.submit class: 'medium nice blue radius button' %>
     <br /><br />
