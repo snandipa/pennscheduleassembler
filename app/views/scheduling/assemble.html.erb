@@ -1,5 +1,12 @@
 <h1>Your schedules have been assembled!</h1>
 
+  <div class= "constraintbox">
+    <%= render :partial => 'shared/constraint' %>
+    <br><br>
+    <%= render :partial => 'shared/timing' %>
+    <br><br>
+    <%= render :partial => 'shared/reqs' %>
+  </div>
 
 <div class="allbox">
   <h4><%= link_to "I want to add more courses. Take me back!", scheduling_course_path %></h4><br />

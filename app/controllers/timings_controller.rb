@@ -1,4 +1,9 @@
 class TimingsController < ApplicationController
+  def create_timing
+    puts "HEHEHEHEHEHEHEHEHE"
+    puts params[:start_time]
+  end
+  
   def create
     the_user_id = params[:timing][:user_id].to_i
     check_timing = Timing.new(user_id:the_user_id)
