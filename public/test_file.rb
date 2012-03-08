@@ -1,6 +1,6 @@
-    the_start_time_str = "930"
+    the_start_time_str = "1:30pm"
     
-    puts "whooops" if !([4,5].include?(the_start_time_str.length))
+    puts "whooops" if !([4..7].include?(the_start_time_str.length))
     
     the_start_time_hr = the_start_time_str.split(":").first.to_i
     if !(the_start_time_hr > 0 && the_start_time_hr <= 12)
@@ -25,5 +25,6 @@
       #return
       puts "mistake eee!"
     end
+    the_start_time_hr = the_start_time_hr + 12 if the_start_time_noon == "pm"
     
     puts "#{the_start_time_hr} #{the_start_time_sec} #{the_start_time_noon}"

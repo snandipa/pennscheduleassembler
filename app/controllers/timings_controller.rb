@@ -45,7 +45,7 @@ class TimingsController < ApplicationController
     the_day_str = params[:day].downcase
     
     #CUSTOMIZE START TIME
-    the_start_time = format_time(the_start_time_str)
+    the_start_time = the_start_time_str.format_time
     case the_start_time
     when -1
       redirect_to scheduling_timing_path, :flash => { :success => "Wrong hr format for start time" }
@@ -57,13 +57,13 @@ class TimingsController < ApplicationController
       redirect_to scheduling_timing_path, :flash => { :success => "Wrong am/pm format for start time" }
       return
     when -4
-      redirect_to scheduling_timing_path, :flash => { :success => "Completely wrong format" }
+      redirect_to scheduling_timing_path, :flash => { :success => "Completely wrong format for start" }
       return
     end
 
   
     #CUSTOMIZE END TIME
-    the_end_time = format_time(the_end_time_str)
+    the_end_time = the_end_time_str.format_time
     case the_end_time
     when -1
       redirect_to scheduling_timing_path, :flash => { :success => "Wrong hr format for end time" }
@@ -75,14 +75,14 @@ class TimingsController < ApplicationController
       redirect_to scheduling_timing_path, :flash => { :success => "Wrong am/pm format for end time" }
       return
     when -4
-      redirect_to scheduling_timing_path, :flash => { :success => "Completely wrong format" }
+      redirect_to scheduling_timing_path, :flash => { :success => "Completely wrong format for end" }
       return
     end
     
     #CUSTOMIZE DAY
-    the_day = format_day(the_day_str)
+    the_day = the_day_str.format_day
     if the_day == -1
-      redirect_to scheduling_timing_path, :flash => { :success => "Wrong day format" }
+      redirect_to scheduling_timing_path, :flash => { :success => "Wrong day format!!" }
       return
     end
     
@@ -121,42 +121,6 @@ class TimingsController < ApplicationController
     
   end
 
-  def format_day(the_day_str)
-    case the_day_str
-    when "monday", "m", "mon"
-      the_day=1
-    when "tuesday", "tu", "tues","t"
-      the_day=2
-    when "wednesday", "w", "wed"
-      the_day=3
-    when "thursday", "th", "thurs"
-      the_day=4
-    when "friday", "f", "fri"
-      the_day=5
-    else
-      return -1
-    end
-  end
-
-  def format_time(the_start_time_str)
-    return -4 if !([4,5].include?(the_start_time_str.length))
-    
-    the_start_time_hr = the_start_time_str.split(":").first.to_i
-    return -1 if !(the_start_time_hr > 0 && the_start_time_hr <= 12)
-
-    the_start_time_second = the_start_time_str.split(":").last
-    
-    the_start_time_sec = the_start_time_second[0,2].to_f/60.0
-    return -2 if !(the_start_time_sec > 0 && the_start_time_sec <= 1)
-    
-    the_start_time_noon = the_start_time_second[the_start_time_second.length-2,the_start_time_second.length].downcase
-    the_start_time_noon = "am" if the_start_time_noon.to_i == the_start_time_second[0,2].to_i
-    return -3 if !(the_start_time_noon == "am" || the_start_time_noon == "pm")
-    
-    the_start_time = the_start_time_hr + the_start_time_sec
-    the_start_time = the_start_time + 12 if the_start_time_noon == "pm"
-    return the_start_time
-  end
 
   def clean_through_timings
     current_timings = current_user.timings

@@ -119,5 +119,38 @@ class Array
 end
 
 class String
+    def format_day
+        case self
+        when "monday", "m", "mon"
+          the_day=1
+        when "tuesday", "tu", "tues","t"
+          the_day=2
+        when "wednesday", "w", "wed"
+          the_day=3
+        when "thursday", "th", "thurs"
+          the_day=4
+        when "friday", "f", "fri"
+          the_day=5
+        else
+          return -1
+        end
+    end
     
+    def format_time
+        return -4 if !([4,5,6,7].include?(self.length))
+        
+        the_start_time_hr = self.split(":").first.to_i
+        return -1 if !(the_start_time_hr > 0 && the_start_time_hr <= 12)
+    
+        the_start_time_second = self.split(":").last
+        
+        the_start_time_sec = the_start_time_second[0,2].to_f/60.0
+        return -2 if !(the_start_time_sec >= 0 && the_start_time_sec <= 1)
+        
+        the_start_time_noon = the_start_time_second[the_start_time_second.length-2,the_start_time_second.length].downcase
+
+        the_start_time = the_start_time_hr + the_start_time_sec
+        the_start_time = the_start_time + 12 if the_start_time_noon == "pm"
+        return the_start_time
+  end
 end
