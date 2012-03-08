@@ -13,24 +13,16 @@
     <br><br>
     <%= render :partial => 'shared/reqs' %>
   </div>
-  
+
+<h6>Timing Selection</h6>
+
   <%= form_tag url_for(:controller => 'timings', :action => 'create'), :method => 'get' do %>
-    I don't want to go to class between <%= text_field_tag :start_time %>
+    I don't want to go to class between <%= text_field_tag :start_time %> and <%= text_field_tag :end_time %>
+    on <%= text_field_tag :day %>
     <%= submit_tag "Add Timing Constraint", class: 'medium nice blue radius button' %>
   <% end %>
   
-<h6>Timing Selection</h6>
-
-  <%= form_for @timing do |f| %>
-    <%= f.fields_for @meeting do |builder| %>
-      Start Time: <%= builder.text_field :start_time %><br />
-      End Time: <%= builder.text_field :end_time %><br />
-      Day of the Week (integer): <%= builder.text_field :day %><br />
-    <% end %>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.submit class: 'medium nice blue radius button' %>
-    <br /><br />
- <% end %>
+<br><br> Example: I don't want to go to class between <strong>9:30am</strong> and <strong>1:00pm</strong> on <strong> Wed</strong>
 
 
 </div>
