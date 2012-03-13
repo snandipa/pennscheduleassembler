@@ -5,16 +5,22 @@
   <br><br>
 
   <div class= "constraintbox">
-    <%= render :partial => 'shared/constraint' %>
+    <div id="constraints">
+      <%= render :partial => 'shared/constraint' %>
+    </div>
     <br><br>
     <%= render :partial => 'shared/timing' %>
     <br><br>
     <%= render :partial => 'shared/reqs' %>
   </div>
   
+  
+
+  
   <ul class="courses">
 
       <h6>Choose Your Courses Below:</h6>
+      <%# , :remote => true do %>
      <%= form_for @constraint do |f| %> 
       <%= f.collection_select :course_id, Course.all, :id, :title %>
       <%= f.hidden_field :user_id, :value => current_user.id %>

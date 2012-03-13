@@ -32,8 +32,9 @@ class SchedulesController < ApplicationController
       workable_sections = Array.new
       degree_constraints = current_user.reqconstraints[0..1].to_course_combinations
       all_degree_combinations = Array.new
-      degree_constraints.each do |course_array| #each course_array is an array of degree courses
+      degree_constraints.each do |course_array| #each course_array is an array of degree reqconstraints
         degree_combination_constraints = course_array.to_section_combinations
+        
         degree_combination_constraints = degree_combination_constraints.remove_overlaps
         degree_combination_constraints = degree_combination_constraints.apply_timing_constraints(current_user.timings) if !(current_user.timings.empty?)
         #degree_combination_constraints contain all the sections that WORK for this specific set of degree courses

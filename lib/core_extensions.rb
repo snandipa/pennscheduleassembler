@@ -95,7 +95,11 @@ class Array
           combination_counter = 0
           for num_period in (0..total_periods-1)
             for repeat in (0..total_repeats-1)
-                combination_array[combination_counter][col]=self[constraints_counter].requirement.courses[num_period % num_sections[col]]
+                the_course = self[constraints_counter].requirement.courses[num_period % num_sections[col]]
+                if the_course.difficulty_rating > self[col].difficulty_rating_ub || the_course.course_rating < self[col].course_rating_lb
+                    the_course = Course.find_by_cusip(0)
+                end
+                combination_array[combination_counter][col]=the_course
                 combination_counter = combination_counter + 1            
 
             end
@@ -109,10 +113,18 @@ class Array
         #Clean up combination_array
         combination_array.delete_if {|combo| combo[0]==combo[1]} #ASSUME A Nx2 ARRAY!!
         combination_array.each do |combo|
-            combo.sort! { |a,b| a.id <=> b.id } #a and b are courses
+            combo.sort! { |a,b| a.id <=> b.id } #a and b are courses #sorts them in order of id
+            combination_array.delete(combo) if combo.violates_boundaries
         end
         
         return combination_array.uniq
+    end
+    
+    def violates_boundaries
+        self.each do |course|
+            return true if course.cusip==0
+        end
+        return false
     end
     
 
