@@ -63,7 +63,7 @@ namespace :courses do
         r.courses << c1 << c2
     end
     
-    task :pop_requirements => environment do
+    task :pop_requirements => :environment do
         c1 = Course.find_by_name("Hindu Philosophy")
         c2 = Course.find_by_name("India's Literature")
         
