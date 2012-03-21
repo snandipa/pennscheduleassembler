@@ -67,6 +67,7 @@ class SchedulesController < ApplicationController
       u=User.find(current_user.id)
       schedules=u.schedules
       schedules.sort! { |a,b| a.avg_instructor_rating <=> b.avg_instructor_rating }
+      schedules.each {|schedule| schedule.compute_metrics}
       
       redirect_to scheduling_assemble_path, :flash => { :success => "Schedules have been added!" }
       return
@@ -87,7 +88,6 @@ class SchedulesController < ApplicationController
   end  
 
   def share_with_friends
-    puts "&&&&&&&&&&&&&&&&&&&&&&& #{params[:course][:course_id]}"
     u=User.find(current_user.id)
     return_param = u.share_with_friends(params)
     case return_param

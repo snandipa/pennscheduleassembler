@@ -22,9 +22,10 @@ class Schedule < ActiveRecord::Base
       temp_avg_course_rating << recitation.course.course_rating
       temp_avg_difficulty_rating << recitation.course.difficulty_rating
     end
-    avg_course_rating = decaverage(temp_avg_course_rating)
-    avg_instructor_rating = decaverage(temp_avg_instructor_rating)
-    avg_difficulty_rating = decaverage(temp_avg_difficulty_rating)
+    self.avg_course_rating = decaverage(temp_avg_course_rating)
+    self.avg_instructor_rating = decaverage(temp_avg_instructor_rating)
+    self.avg_difficulty_rating = decaverage(temp_avg_difficulty_rating)
+    self.save
   end
   
   def matches(friend_schedules, course_interest)
