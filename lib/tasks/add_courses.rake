@@ -55,6 +55,18 @@ namespace :courses do
         c.sections << s1 << s2
     end
     
+    task :requirement_associations do
+        r = Requirement.find_by_category("H")
+        c1 = Course.find_by_name("Hindu Philosophy")
+        c2 = Course.find_by_name("India's Literature")
+        
+        r.courses << c1 << c2
+        c1.requirements << r
+        c2.requirements << r
+    end
+        
+        
+    
     desc "Run all bootstrapping tasks"
     task :all => [:add]
 end
