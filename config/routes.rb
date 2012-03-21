@@ -7,6 +7,8 @@ Pennscheduleassembler::Application.routes.draw do
   get "schedules/create"
 
   get "schedules/destroy"
+  
+  get "schedules/share_with_friends"
 
   get "meetings/create"
 

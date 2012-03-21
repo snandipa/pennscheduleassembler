@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120307022130) do
+ActiveRecord::Schema.define(:version => 20120320030318) do
 
   create_table "constraints", :force => true do |t|
     t.integer  "course_id"
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(:version => 20120307022130) do
     t.string   "encrypted_password"
     t.boolean  "admin",              :default => false
     t.string   "salt"
+    t.string   "sharecode"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

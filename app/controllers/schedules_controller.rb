@@ -86,6 +86,30 @@ class SchedulesController < ApplicationController
     new_schedule.compute_metrics
   end  
 
+  def share_with_friends
+    puts "&&&&&&&&&&&&&&&&&&&&&&& #{params[:course][:course_id]}"
+    u=User.find(current_user.id)
+    return_param = u.share_with_friends(params)
+    case return_param
+    when 0
+      redirect_to scheduling_assemble_path, :flash => { :failure => "That sharecode doesn't exist!" }
+      return
+    when -1
+      redirect_to scheduling_assemble_path, :flash => { :failure => "Your friend doesn't have any schedules created yet. Tell them to do that!" }
+      return
+    when -2
+      redirect_to scheduling_assemble_path, :flash => { :failure => "There is no overlap between your and your friends schedules. I restored your original schedules" }
+      return
+    when 1
+      redirect_to scheduling_assemble_path, :flash => {:success => "Your new schedules that work with your friend are shown below!"}
+      return
+    else
+      redirect_to scheduling_assemble_path, :flash => {:failure => "I don't even know how you got this"}
+      return
+    end
+
+  end
+
   def destroy
     Schedule.find(params[:id]).destroy
   end

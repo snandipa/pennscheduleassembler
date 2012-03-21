@@ -27,6 +27,25 @@ class Schedule < ActiveRecord::Base
     avg_difficulty_rating = decaverage(temp_avg_difficulty_rating)
   end
   
+  def matches(friend_schedules, course_interest)
+    section_interest = nil #will contain the correct section that needs to overlap with friend schedules
+    self.sections.each do |section|
+      section_interest = section if section.course == course_interest
+    end
+
+    friend_schedules.each do |fschedule|
+      return true if fschedule.contains(section_interest)
+    end
+    return false
+  end
+  
+  def contains(section_interest)
+    self.sections.each do |section|
+      return true if section == section_interest
+    end
+    return false
+  end
+  
   private
   
   def decaverage(array)

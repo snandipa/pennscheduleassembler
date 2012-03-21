@@ -162,7 +162,9 @@ class String
         the_start_time_noon = the_start_time_second[the_start_time_second.length-2,the_start_time_second.length].downcase
 
         the_start_time = the_start_time_hr + the_start_time_sec
-        the_start_time = the_start_time + 12 if the_start_time_noon == "pm"
+        the_start_time = the_start_time + 12 if the_start_time_noon == "pm" && the_start_time_hr < 12
+        the_start_time = 0 if the_start_time_noon != "pm" && the_start_time == 12
+        
         return the_start_time
   end
 end

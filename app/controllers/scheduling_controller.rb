@@ -20,6 +20,13 @@ class SchedulingController < ApplicationController
   
   def assemble
     @schedules = current_user.schedules
+    @schedule_courses = Array.new
+    unless @schedules.nil?
+      @schedules[0].sections.each do |section|
+        @schedule_courses << section.course
+      end
+    end
+    
   end
 
   private
