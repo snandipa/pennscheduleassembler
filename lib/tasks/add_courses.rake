@@ -67,7 +67,7 @@ namespace :courses do
         c1 = Course.find_by_name("Hindu Philosophy")
         c2 = Course.find_by_name("India's Literature")
         
-        r.courses << c1 << c2
+        
     end
         
     desc "Run all bootstrapping tasks"
