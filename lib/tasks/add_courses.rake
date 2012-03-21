@@ -17,7 +17,7 @@ namespace :courses do
     
     desc 'Adding a selection of courses'
     task :add => :environment do
-        Course.create(:department => "ESE", :number => 406, :name => "Control of Systems", :cusip => 4512, :cus => 1.0, :course_rating => 2.3, :difficulty_rating => 3.9)
+        Course.create(:department => "ESE", :number => 408, :name => "Control of Systems", :cusip => 4512, :cus => 1.0, :course_rating => 2.3, :difficulty_rating => 3.9)
         s = Section.create(listing:401, course_id:Course.find_by_cusip(4512).id, instructor:"Bruce", instructor_rating:3.8)
         c=Course.find_by_cusip(4512)
         c.sections << s
