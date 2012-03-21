@@ -1,5 +1,12 @@
 
 namespace :courses do
+    task :clean => :environment do
+        c = Course.all
+        c.each do |course|
+            course.destroy
+        end
+    end
+    
     desc 'Adding the marked for deletion course'
     task :onecourse => :environment do
         Course.create(:department => "MARK", :number => 000, :name => "for deletion", :cusip => 0, :cus => 0, :course_rating => 0, :difficulty_rating => 4)
@@ -62,17 +69,7 @@ namespace :courses do
         
         r.courses << c1 << c2
     end
-    
-    task :pop_requirements => :environment do
-        c1 = Course.find_by_name("Hindu Philosophy")
-        c2 = Course.find_by_name("India's Literature")
         
-        c1.requirements.pop
-        c2.requirements.pop
-    end
-        
-        
-    
     desc "Run all bootstrapping tasks"
     task :all => [:add]
 end
