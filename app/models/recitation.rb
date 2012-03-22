@@ -20,6 +20,22 @@ class Recitation < ActiveRecord::Base
     end
     return false
   end
+  
+  def earliest_start_time
+    earliest_start_time = 24
+    self.meetings.each do |meeting|
+      earliest_start_time = meeting.start_time if meeting.start_time < earliest_start_time
+    end
+    return earliest_start_time
+  end
+  
+  def latest_end_time
+    latest_end_time = 0
+    self.meetings.each do |meeting|
+      latest_end_time = meeting.end_time if meeting.end_time > latest_end_time
+    end
+    return latest_end_time
+  end
 
   def listing_to_s
     case

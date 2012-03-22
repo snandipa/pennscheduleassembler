@@ -28,6 +28,32 @@ class Schedule < ActiveRecord::Base
     self.save
   end
   
+  def earliest_start_time
+    earliest_start_time = 24
+    self.sections.each do |section|
+      earliest_start_time = section.earliest_start_time if section.earliest_start_time < earliest_start_time
+    end
+    
+    self.recitations.each do |recitation|
+      earliest_start_time = recitation.earliest_start_time if recitation.earliest_start_time < earliest_start_time
+    end
+        
+    return earliest_start_time
+  end
+  
+  def latest_end_time
+    latest_end_time = 0
+    self.sections.each do |section|
+      latest_end_time = section.latest_end_time if section.latest_end_time > latest_end_time
+    end
+    
+    self.recitations.each do |recitations|
+      latest_end_time = recitations.latest_end_time if recitations.latest_end_time > latest_end_time
+    end
+        
+    return latest_end_time
+  end
+  
   def matches(friend_schedules, course_interest)
     section_interest = nil #will contain the correct section that needs to overlap with friend schedules
     self.sections.each do |section|

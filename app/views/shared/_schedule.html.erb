@@ -4,6 +4,8 @@
   <strong>Course:</strong> <%= schedule.avg_course_rating %><br>
   <strong>Instructor:</strong> <%= schedule.avg_instructor_rating %><br>
   <strong>Difficulty:</strong> <%= schedule.avg_difficulty_rating %><br><br>
+  <strong>Earliest Start: </strong> <%= schedule.earliest_start_time %> <br><br>
+  <strong>Latest End Time: </strong> <%= schedule.latest_end_time %> <br><br>
   <h4>Sections: </h4>
     <% schedule.sections.each do |section| %>
         <% course = section.course %>
