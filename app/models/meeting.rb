@@ -7,7 +7,7 @@ class Meeting < ActiveRecord::Base
   belongs_to :timing
   
   validates_presence_of :start_time, :end_time, :day
-  
+  validate :end_time_after_start_time
   #validate :section_xor_timing #meeting can only belong to one of those models
   #should fix this
   
@@ -62,6 +62,12 @@ class Meeting < ActiveRecord::Base
     def section_xor_timing #this isnt working yet
       if !(section_id.blank? ^ timing_id.blank?)
         errors.add(:section_id, "Specify either section or timing, but not both")
+      end
+    end
+    
+    def end_time_after_start_time #this isnt working yet
+      if self.end_time < self.start_time
+        errors.add :start_time, "Your start time is too late"
       end
     end
 

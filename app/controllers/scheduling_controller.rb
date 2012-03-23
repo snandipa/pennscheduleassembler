@@ -4,11 +4,27 @@ class SchedulingController < ApplicationController
   def course
     @title = "Schedule Courses"
     @constraint = Constraint.new
+    
+    #adding search stuff
+    @searched_courses = Course.search(params[:search_department],params[:search_number])
   end
 
   def timing
-    @timing = Timing.new
-    @meeting = Meeting.new
+    @start_meetings = Array.new
+    (12..46).to_a.each do |the_start_time|
+      @start_meetings << Meeting.new(:start_time => the_start_time/2.0, :end_time => the_start_time/2.0 + 1.0, :day => 3)
+    end
+    
+    @end_meetings = Array.new
+    (12..45).to_a.each do |the_end_time|
+      @end_meetings << Meeting.new(:start_time => the_end_time/2.0, :end_time => the_end_time/2.0 + 1.0, :day => 3)
+    end
+    
+    @day_meetings = Array.new
+    (1..5).to_a.each do |the_day|
+      @day_meetings << Meeting.new(:start_time => 6, :end_time => 7, :day => the_day)
+    end
+    
   end
   
   #@meeting = @timing.build_meeting #to create nested form works for has_one

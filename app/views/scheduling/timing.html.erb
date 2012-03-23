@@ -17,8 +17,12 @@
 <h6>Timing Selection</h6>
 
   <%= form_tag url_for(:controller => 'timings', :action => 'create'), :method => 'get' do %>
-    I don't want to go to class between <%= text_field_tag :start_time %> and <%= text_field_tag :end_time %>
-    on <%= text_field_tag :day %>
+    I don't want to go to class between <%= select_tag :start_time, options_from_collection_for_select(@start_meetings, 'start_time','start_time_to_s') %>
+    and <%= select_tag :end_time, options_from_collection_for_select(@end_meetings, 'end_time','end_time_to_s') %>
+    on <%= select_tag :day, options_from_collection_for_select(@day_meetings, 'day','day_to_s') %>
+    
+    
+    
     <%= submit_tag "Add Timing Constraint", class: 'medium nice blue radius button' %>
   <% end %>
   

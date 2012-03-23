@@ -28,3 +28,20 @@
     the_start_time_hr = the_start_time_hr + 12 if the_start_time_noon == "pm"
     
     puts "#{the_start_time_hr} #{the_start_time_sec} #{the_start_time_noon}"
+    
+    
+    
+    
+      
+  
+  <ul class="courses">
+
+
+      <%# , :remote => true do %>
+     <%= form_for @constraint do |f| %> 
+      <%= f.collection_select :course_id, Course.all, :id, :title %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.submit class: 'medium nice blue radius button' %>
+      <br /><br />
+    <% end %>
+  </ul>

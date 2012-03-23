@@ -14,20 +14,40 @@
     <%= render :partial => 'shared/reqs' %>
   </div>
   
-  
+        <h6>Search for your course below</h6>
+  <%= form_tag scheduling_course_path, :method => 'get' do %>
+  <p>
+    Department: <%= text_field_tag :search_department, params[:search_department] %><br>
+    Number: <%= text_field_tag :search_number, params[:search_number] %><br>
+    
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
 
-  
-  <ul class="courses">
 
-      <h6>Choose Your Courses Below:</h6>
-      <%# , :remote => true do %>
-     <%= form_for @constraint do |f| %> 
-      <%= f.collection_select :course_id, Course.all, :id, :title %>
+  <% if @searched_courses.class == Array %>
+    
+    <% if @searched_courses.blank? %>
+      Could not find any of those courses. Sorry!
+    <% else %>
+     <% @searched_courses.each do |course| %>
+     <%= form_for @constraint do |f| %>
+      
       <%= f.hidden_field :user_id, :value => current_user.id %>
-      <%= f.submit class: 'medium nice blue radius button' %>
-      <br /><br />
+        
+          <%= f.hidden_field :course_id, :value => course.id %>
+          <%= course.department %> <%= course.number %> - <%= course.name %> <%= f.submit class: 'medium nice blue radius button' %>
+          <br />
+        <% end %>
+      <% end %>
+      <br>
+    
     <% end %>
-  </ul>
+    
+  <% else %>
+    <%= @searched_courses %>
+  <% end %>
+
 
 </div>
 

@@ -20,6 +20,21 @@ class Course < ActiveRecord::Base
     end
   end
   
+  def self.search(search_department,search_number)
+
+    if !search_department.blank? && search_number.blank?
+      search_department = search_department.strip.upcase
+      #puts "$%$%$%$%%$%$%$%$ #{search} #{search.class}"
+      find(:all, :conditions => ['department LIKE ?', "%#{search_department}%"])
+    elsif !search_department.blank? && !search_number.blank?
+      search_department = search_department.strip.upcase
+      search_number = search_number.strip
+      find(:all, :conditions => ['department LIKE ? AND number = ?', "%#{search_department}%", "#{search_number}"])
+    else
+      return "Please search here."
+    end
+  end
+  
   def title
     return "#{department} #{number_to_s} - #{name}"
   end

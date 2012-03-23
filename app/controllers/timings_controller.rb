@@ -40,52 +40,10 @@ class TimingsController < ApplicationController
     the_user_id = current_user.id
     check_timing = Timing.new(user_id:the_user_id)
     
-    the_start_time_str = params[:start_time]
-    the_end_time_str = params[:end_time]
-    the_day_str = params[:day].downcase
-    
-    #CUSTOMIZE START TIME
-    the_start_time = the_start_time_str.format_time
-    case the_start_time
-    when -1
-      redirect_to scheduling_timing_path, :flash => { :success => "Wrong hr format for start time" }
-      return
-    when -2
-      redirect_to scheduling_timing_path, :flash => { :success => "Wrong second format for start time" }
-      return
-    when -3
-      redirect_to scheduling_timing_path, :flash => { :success => "Wrong am/pm format for start time" }
-      return
-    when -4
-      redirect_to scheduling_timing_path, :flash => { :success => "Completely wrong format for start" }
-      return
-    end
-
-  
-    #CUSTOMIZE END TIME
-    the_end_time = the_end_time_str.format_time
-    case the_end_time
-    when -1
-      redirect_to scheduling_timing_path, :flash => { :success => "Wrong hr format for end time" }
-      return
-    when -2
-      redirect_to scheduling_timing_path, :flash => { :success => "Wrong second format for end time" }
-      return
-    when -3
-      redirect_to scheduling_timing_path, :flash => { :success => "Wrong am/pm format for end time" }
-      return
-    when -4
-      redirect_to scheduling_timing_path, :flash => { :success => "Completely wrong format for end" }
-      return
-    end
-    
-    #CUSTOMIZE DAY
-    the_day = the_day_str.format_day
-    if the_day == -1
-      redirect_to scheduling_timing_path, :flash => { :success => "Wrong day format!!" }
-      return
-    end
-    
+    the_start_time = params[:start_time]
+    the_end_time = params[:end_time]
+    the_day = params[:day].downcase
+        
     check_meeting = Meeting.new(start_time:the_start_time, end_time:the_end_time, day:the_day)
     check_timing.meetings << check_meeting
     
