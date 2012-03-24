@@ -27,8 +27,6 @@ class SchedulingController < ApplicationController
     
   end
   
-  #@meeting = @timing.build_meeting #to create nested form works for has_one
-  
   def reqs
     @title = "Add Requirements"
     @reqconstraint = Reqconstraint.new
@@ -37,7 +35,7 @@ class SchedulingController < ApplicationController
   def assemble
     @schedules = current_user.schedules
     @schedule_courses = Array.new
-    unless @schedules.nil?
+    unless @schedules[0].nil?
       @schedules[0].sections.each do |section|
         @schedule_courses << section.course
       end

@@ -1,20 +1,12 @@
 <h1>Which courses would you like to have?</h1>
 
 <div class= "allbox">
-  <h4><%= link_to "I am done adding courses. I want to add timing constraints.", scheduling_timing_path %></h4>
-  <br><br>
+  <h4 align="right"><%= link_to "Timing Constraints >>", scheduling_timing_path, class:'medium nice blue radius button' %>
+  </h4>
+  <br>
+  <div class="querybox">
 
-  <div class= "constraintbox">
-    <div id="constraints">
-      <%= render :partial => 'shared/constraint' %>
-    </div>
-    <br><br>
-    <%= render :partial => 'shared/timing' %>
-    <br><br>
-    <%= render :partial => 'shared/reqs' %>
-  </div>
-  
-        <h6>Search for your course below</h6>
+       <h6>Search for your course below</h6>
   <%= form_tag scheduling_course_path, :method => 'get' do %>
   <p>
     Department: <%= text_field_tag :search_department, params[:search_department] %><br>
@@ -25,7 +17,13 @@
 <% end %>
 
 
-  <% if @searched_courses.class == Array %>
+
+
+  </div>
+  
+  <div class="contextbox">
+    
+      <% if @searched_courses.class == Array %>
     
     <% if @searched_courses.blank? %>
       Could not find any of those courses. Sorry!
@@ -47,8 +45,17 @@
   <% else %>
     <%= @searched_courses %>
   <% end %>
-
+  </div>
+  
+  <div class= "constraintbox">
+    <%= render :partial => 'shared/constraint' %>
+    <br><br>
+    <%= render :partial => 'shared/timing' %>
+    <br><br>
+    <%= render :partial => 'shared/reqs' %>
+  </div>
 
 </div>
+
 
 

@@ -29,8 +29,9 @@ class SchedulesController < ApplicationController
     workable_sections = Array.new(combination_constraints)
     
     if !(current_user.reqconstraints.empty?)
+
       workable_sections = Array.new
-      degree_constraints = current_user.reqconstraints[0..1].to_course_combinations
+      degree_constraints = current_user.reqconstraints[0..1].to_course_combinations(constraints)
       all_degree_combinations = Array.new
       degree_constraints.each do |course_array| #each course_array is an array of degree reqconstraints
         degree_combination_constraints = course_array.to_section_combinations

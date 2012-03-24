@@ -4,6 +4,7 @@
 /* -------------------------------------------------- 
     Table of Contents
 -----------------------------------------------------
+:: Our Code
 :: Reset & Standards
 :: Links
 :: Lists
@@ -69,21 +70,163 @@
 		border-spacing: 0;
 	}
 	
-	
+	header {
+		text-align:left;
+		font-size: 14px; font-size: 1.4rem; margin-top: 5px; margin-bottom: 10px;
+	}
 	
 	body {
+		text-align:center;
+		background-color: #2F4F4F;
 		background-image: url("bgch1.jpg");
-		background-repeat:repeat;
-		font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size: 13px; line-height: 18px; color: #555; position: relative; -webkit-font-smoothing: antialiased; }
+		/*background-repeat:repeat;*/
+		font-family: "Myriad Pro", sans-serif; font-size: 13px; line-height: 18px; color: #555; position: relative; -webkit-font-smoothing: antialiased; }
+		/*font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size: 13px; line-height: 18px; color: #555; position: relative; -webkit-font-smoothing: antialiased; }*/
 /*	--------------------------------------------------
 	:: Our Code
 	-------------------------------------------------- */
+	
+	.right {
+        }
+        .left {
+        width:250px;
+        float:left;
+        }
+	
+	div.box
+	{
+	}
+
+	div.headerbox
+	    {
+	    width:1000px;
+	    margin-top: 10px;
+	    margin-left:150px;
+	    margin-bottom:30px;
+	    }
+	    
+	/*Schedule*/
+	
+	.grid
+	{
+	float:left;
+	align:center;
+	width:612px;
+	!--height:397px;
+	-moz-border-radius: 4px 4px / 4px 4px;
+	border-radius: 4px;
+	!--border-right: 1px gray solid;
+	border-top: 1px gray solid;
+	border-bottom: 1px gray solid;
+	border-left: 1px gray solid;
+	border-right: 1px gray solid;
+	clear:both;
+	overflow:hidden;
+	}
+	.row
+	{
+	float: left;
+	!--border-top: 1px red solid;
+	!--border-bottom: 1px gray solid;
+	!--border-left: 1px gray solid;
+	!--border-right: 1px gray solid;
+	}
+	.headercell
+	{
+	text-align: center;
+	height: 20px;
+	float: left;
+	border-top: 1px gray solid;
+	border-bottom: 2px gray solid;
+	border-left: 1px gray solid;
+	border-right: 1px gray solid;
+	}
+	.cell
+	{
+	text-align: center;
+	height: 20px;
+	float: left;
+	!--border-top: 1px gray solid;
+	border-bottom: 1px gray solid;
+	border-left: 1px gray solid;
+	border-right: 1px gray solid;
+	}
+	
+	.schedulebox
+	{
+	    position:relative;
+	    margin-left:auto;
+            margin-right:auto;
+	    margin-bottom:auto;  
+	}
+
+	div.transbox
+	{
+	    !--width:750px;
+	    margin-left:auto;
+            margin-right:auto;
+	    margin-top: auto;
+	    margin-bottom: auto;
+	    -moz-border-radius: 4px 4px / 4px 4px;
+	    border-radius: 4px;	
+	    background-color:#ffffff;
+	    border:1px solid black;
+	    opacity:0.5;
+	    filter:alpha(opacity=50);
+	}
+	
+	div.floatleft
+	    {
+	    float:left;
+	    }
+	
+	div.flash_success
+	    {
+	    padding:10px;
+	    width:250px;
+	    font-size:18px;
+	    font-style:bold;
+	    color:black;
+	    text-align:center;
+	    -moz-border-radius: 4px 4px / 4px 4px;
+	    border-radius: 4px;
+	    border-style:solid;
+	    border-color: #008B00;
+	    border-width: 4px;
+	    margin-left:auto;
+            margin-right:auto;
+	    margin-bottom:15px;
+	    margin-top:15px;
+	    background-color: #fff;
+	    }
+
+	div.flash_failure
+	    {
+	    padding:10px;
+	    width:250px;
+	    text-align:center;
+	    color:black;
+	    font-size:18px;
+	    font-style:bold;
+	    -moz-border-radius: 4px 4px / 4px 4px;
+	    border-radius: 4px;
+	    border-style:solid;
+	    border-color: #F00;
+	    border-width: 4px;
+	    margin-left:auto;
+            margin-right:auto;
+	    margin-bottom:15px;
+	    margin-top:15px;
+	    background-color: #fff;
+	    }
+	
 	div.allbox
 	    {
 	    width:650px;
-	    text-align:left;
-	    margin-left: auto;
-            margin-right: auto;
+	    margin-left:auto;
+            margin-right:auto;
+	    margin-top: 30px;
+	    margin-bottom:300px;
 	    } 
 	
 	div.constraintbox
@@ -93,11 +236,33 @@
 	    border:2px solid black;
 	    -moz-border-radius: 8px 8px / 8px 8px;
 	    border-radius: 8px;
-
 	    text-align:left;
 	    float:right;
 	    background: #fff;
-	    
+	    }
+	
+	div.querybox
+	    {
+	    width:630px;
+	    padding:10px;
+	    margin-bottom:20px;
+	    border:2px solid black;
+	    -moz-border-radius: 8px 8px / 8px 8px;
+	    border-radius: 8px;
+	    text-align:left;
+	    background: #fff;
+	    }
+	
+	div.contextbox
+	    {
+	    width:330px;
+	    padding:10px;
+	    border:2px solid black;
+	    -moz-border-radius: 8px 8px / 8px 8px;
+	    border-radius: 8px;
+	    text-align:left;
+	    float:left;
+	    background: #fff;
 	    }
 	    
 /*	--------------------------------------------------
@@ -162,7 +327,7 @@
 	-------------------------------------------------- */
 	h1, h2, h3, h4, h5, h6 { color: #181818; font-weight: bold; line-height: 1.25 }
 	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
-	h1 { font-size: 46px; font-size: 4.6rem; margin-bottom: 12px;}
+	h1 { font-size: 36px; font-size: 3.6rem; margin-bottom: 12px;}
 	h2 { font-size: 35px; font-size: 3.5rem; margin-bottom: 9px; }
 	h3 { font-size: 28px; font-size: 2.8rem; margin-bottom: 9px; }
 	h4 { font-size: 21px; font-size: 2.1rem; margin-bottom: 3px; }

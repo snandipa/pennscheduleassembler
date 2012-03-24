@@ -1,15 +1,14 @@
 <h1>Which worksheet requirements would you like to add?</h1>
 
 <div class= "allbox">
+    <span class="left">
+  <h4><%= link_to "<< Timings", scheduling_timing_path, class:'medium nice blue radius button' %></h4></span>
+  <span class="right">
+  <h4>      <%= form_tag url_for(:controller => 'schedules', :action => 'create'), :method => 'get' do %>
+    <%= submit_tag "Schedule Classes >>", class: 'medium nice blue radius button' %>
+  <% end %></h4></span>
   
-  <h4><%= link_to "I want to add more timings. Take me back!", scheduling_timing_path %></h4>
-  <br />
-  <h4>Schedule my classes by clicking below!</h4>
-  <br /><br />
-  <%= form_tag url_for(:controller => 'schedules', :action => 'create'), :method => 'get' do %>
-    <%= submit_tag "Create schedule!!", class: 'medium nice blue radius button' %>
-  <% end %>
-  
+  <br><br><br><br>
  
   <div class= "constraintbox">
     <%= render :partial => 'shared/constraint' %>

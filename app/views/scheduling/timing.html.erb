@@ -1,10 +1,29 @@
 <h1>When do you not want to go to class?</h1>
 
-<div class= "allbox">
+<div class="allbox">
+  <span class="left">
+  <h4><%= link_to "<< Courses", scheduling_course_path, class:'medium nice blue radius button' %></h4></span>
+  <span class="right">
+  <h4><%= link_to "Requirements >>", scheduling_reqs_path, class:'medium nice blue radius button' %></h4></span>
   
-  <h4><%= link_to "I want to add more courses. Take me back!", scheduling_course_path %></h4>
-  <br />
-  <h4><%= link_to "I am done adding timings. I want to add requirement constraints.", scheduling_reqs_path %></h4>
+  <br><br><br><br>
+    
+  <div class="querybox"> 
+  <h6>Timing Selection</h6>
+
+  <%= form_tag url_for(:controller => 'timings', :action => 'create'), :method => 'get' do %>
+    I don't want to go to class between <%= select_tag :start_time, options_from_collection_for_select(@start_meetings, 'start_time','start_time_to_s') %>
+    and <%= select_tag :end_time, options_from_collection_for_select(@end_meetings, 'end_time','end_time_to_s') %>
+    on <%= select_tag :day, options_from_collection_for_select(@day_meetings, 'day','day_to_s') %>
+
+    <%= submit_tag "Add Timing Constraint", class: 'medium nice blue radius button' %>
+  <% end %>
+
+  </div>
+
+  <div class="contextbox">
+    Example: I don't want to go to class between <strong>9:30am</strong> and <strong>1:00pm</strong> on <strong> Wed</strong>
+  </div>
   
   <div class= "constraintbox">
     <%= render :partial => 'shared/constraint' %>
@@ -13,21 +32,6 @@
     <br><br>
     <%= render :partial => 'shared/reqs' %>
   </div>
-
-<h6>Timing Selection</h6>
-
-  <%= form_tag url_for(:controller => 'timings', :action => 'create'), :method => 'get' do %>
-    I don't want to go to class between <%= select_tag :start_time, options_from_collection_for_select(@start_meetings, 'start_time','start_time_to_s') %>
-    and <%= select_tag :end_time, options_from_collection_for_select(@end_meetings, 'end_time','end_time_to_s') %>
-    on <%= select_tag :day, options_from_collection_for_select(@day_meetings, 'day','day_to_s') %>
-    
-    
-    
-    <%= submit_tag "Add Timing Constraint", class: 'medium nice blue radius button' %>
-  <% end %>
-  
-<br><br> Example: I don't want to go to class between <strong>9:30am</strong> and <strong>1:00pm</strong> on <strong> Wed</strong>
-
 
 </div>
 

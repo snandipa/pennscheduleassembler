@@ -71,7 +71,8 @@ class Array
         return combination_array
     end
     
-    def to_course_combinations
+    
+    def to_course_combinations(constraints)
         #self is the array of degree Reqconstraints
         num_sections = Array.new
 
@@ -96,9 +97,11 @@ class Array
           for num_period in (0..total_periods-1)
             for repeat in (0..total_repeats-1)
                 the_course = self[constraints_counter].requirement.courses[num_period % num_sections[col]]
+                #if course doesn't match PCR ratings, then add a blank course
                 if the_course.difficulty_rating > self[col].difficulty_rating_ub || the_course.course_rating < self[col].course_rating_lb
                     the_course = Course.find_by_cusip(0)
                 end
+                #if course already exists within the schedule, then add a blank course
                 combination_array[combination_counter][col]=the_course
                 combination_counter = combination_counter + 1            
 

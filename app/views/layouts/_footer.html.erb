@@ -1,8 +1,24 @@
-<footer>
+<!--footer>
   <nav class="round">
     <ul>
       <li><%= link_to "About", about_path %></li>
       <li><%= link_to "Contact", contact_path %></li>
     </ul>
   </nav>
+</footer-->
+
+<footer>
+  <hr style="solid:#000;" />
+  <div id="footer"><font face="palatino">
+    <div id="footer-inner" class="container_12">
+      <%= link_to "About", about_path %>
+      <span>|</span>
+      <%= link_to "Contact Us", contact_path %>
+      <p id="copyright">
+          Copyright &copy; 2012
+          <a><strong>Penn Schedule Assembler</strong></a>
+      </p>
+      </font>
+    </div>
+  </div>
 </footer>

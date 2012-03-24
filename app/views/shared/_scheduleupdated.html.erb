@@ -1,0 +1,87 @@
+  <%i=1%>
+  <% @schedules.each do |schedule| %>
+  <h2><u>Schedule <%=i%></u></h2>
+  <%i+=1%> 
+
+<div class="schedulebox">
+<%earliest_end_time= schedule.earliest_start_time %> 
+<%latest_end_time= schedule.latest_end_time + 1.0 %>
+<div class="grid">
+    
+    <div class="row">
+<div class="headercell" style="width: 100px;">SCHEDULE</div>
+<div class="headercell" style="width: 100px;">Monday</div>
+<div class="headercell" style="width: 100px;">Tuesday</div>
+<div class="headercell" style="width: 100px;">Wednesday</div>
+<div class="headercell" style="width: 100px;">Thursday</div>
+<div class="headercell" style="width: 100px;">Friday</div>
+</div>
+
+<%while earliest_end_time<latest_end_time%>
+<%hr = (earliest_end_time*10.0).round / 10%>
+<%min = (((earliest_end_time - hr) * 60)/10).round%>
+<%if hr<=12 then time="#{hr}:#{min}0am"%>
+    <%end%>
+<%if hr>=12 then time="#{hr % 12}:#{min}0pm"%>
+    <%end%>
+<%if hr==12 then time="#{hr}:#{min}0pm"%>
+    <%end%>
+    
+<div class="row">
+<div class="cell" style="width: 100px;"><%=time%></div>
+<div class="cell" style="width: 100px;"></div>
+<div class="cell" style="width: 100px;"></div>
+<div class="cell" style="width: 100px;"></div>
+<div class="cell" style="width: 100px;"></div>
+<div class="cell" style="width: 100px;"></div>
+</div>
+<%earliest_end_time+=0.5%>
+<%end%>
+
+
+</div>
+    <% color_array = ["#FFFFFF", "#000000", "#FFFFFF", "#000000"] %>
+    <% counter = 0 %>
+    <% schedule.sections.each do |section| %>
+        <% course = section.course %>
+            <% section.meetings.each do |meeting| %>
+                <div style="position:absolute;left:<%= (100*meeting.day)+2+(2*meeting.day) %>px;top:<%= 24+(2*21*(meeting.start_time-9)) %>px;height:<%= ((2*21*(meeting.end_time-meeting.start_time))-1) %>px;width:100px;background-color:<%= color_array[counter] %>;text-align:center;color:#000;"><%= course.department %> <%= course.number_to_s %>-<%= section.listing_to_s %></div>  
+            <% end %>
+            <% counter = counter + 1 %>
+    <% end %>
+    
+    <% schedule.recitations.each do |recitation| %>
+        <% course = recitation.course %>
+            <% recitation.meetings.each do |meeting| %>
+                <div style="position:absolute;left:<%= (100*meeting.day)+2+(2*meeting.day)%>px;top:<%= 24+(2*21*(meeting.start_time-9))%>px;height:<%= ((2*21*(meeting.end_time-meeting.start_time))-1)%>px;width:100px;background-color:#7FFF00;text-align:center;color:#000;"><%= course.department %> <%= course.number_to_s %>-<%= recitation.listing_to_s %></div>
+            <% end %>   
+    <% end %>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<h4>Metrics</h4>
+  <strong>Course:</strong> <%= schedule.avg_course_rating %><br>
+  <strong>Instructor:</strong> <%= schedule.avg_instructor_rating %><br>
+  <strong>Difficulty:</strong> <%= schedule.avg_difficulty_rating %><br><br>
+  <h4>Sections: </h4>
+    <% schedule.sections.each do |section| %>
+        <% course = section.course %>
+        <%= course.department %> <%= course.number_to_s %> <%= section.listing_to_s %> -
+            <% section.meetings.each do |meeting| %>
+                <li>
+                <%= meeting.start_time_to_s %> to <%= meeting.end_time_to_s %> on <%= meeting.day_to_s %>
+                </li>
+            <% end %>   
+    <% end %>
+    <h4> Recitations: </h4>
+    <% schedule.recitations.each do |recitation| %>
+        <% course = recitation.course %>
+        <%= course.department %> <%= course.number_to_s %> <%= recitation.listing_to_s %> -
+            <% recitation.meetings.each do |meeting| %>
+                <li>
+                <%= meeting.start_time_to_s %> to <%= meeting.end_time_to_s %> on <%= meeting.day_to_s %>
+                </li>
+            <% end %>   
+    <% end %>
+    </div>
+<% end %>
+<br>
