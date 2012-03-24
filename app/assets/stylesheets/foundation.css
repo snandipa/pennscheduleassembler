@@ -112,10 +112,8 @@
 	float:left;
 	align:center;
 	width:612px;
-	!--height:397px;
 	-moz-border-radius: 4px 4px / 4px 4px;
 	border-radius: 4px;
-	!--border-right: 1px gray solid;
 	border-top: 1px gray solid;
 	border-bottom: 1px gray solid;
 	border-left: 1px gray solid;
@@ -126,10 +124,6 @@
 	.row
 	{
 	float: left;
-	!--border-top: 1px red solid;
-	!--border-bottom: 1px gray solid;
-	!--border-left: 1px gray solid;
-	!--border-right: 1px gray solid;
 	}
 	.headercell
 	{
@@ -146,7 +140,7 @@
 	text-align: center;
 	height: 20px;
 	float: left;
-	!--border-top: 1px gray solid;
+
 	border-bottom: 1px gray solid;
 	border-left: 1px gray solid;
 	border-right: 1px gray solid;
@@ -162,7 +156,7 @@
 
 	div.transbox
 	{
-	    !--width:750px;
+
 	    margin-left:auto;
             margin-right:auto;
 	    margin-top: auto;
