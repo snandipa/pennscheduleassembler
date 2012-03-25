@@ -12,8 +12,14 @@
   <h4><%= link_to "I want to add more courses. Take me back!", scheduling_course_path %></h4><br />
   <h4><%= link_to "I want to add more requirements!", scheduling_reqs_path %></h4>
   <br><br>
-  <%= render :partial => 'shared/sharing' %>
-  <%= render :partial => 'shared/scheduleupdated' %>
+  
+  
+  <% unless current_user.schedules.blank? %>
+    <%= render :partial => 'shared/scheduleupdated' %>
+    <%= render :partial => 'shared/sharing' %>
+  <% else %>
+    Since we could not create any schedules, let's try removing some of your softer constraints. Which ones would you like to get rid of?
+  <% end %>
   
   
 </div>
