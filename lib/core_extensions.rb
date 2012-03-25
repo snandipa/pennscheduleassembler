@@ -71,6 +71,13 @@ class Array
         return combination_array
     end
     
+    def corresponding_courses
+        the_corresponding_courses = Array.new
+        self.each do |constraint|
+            the_corresponding_courses << constraint.course
+        end
+        return the_corresponding_courses
+    end
     
     def to_course_combinations(constraints)
         #self is the array of degree Reqconstraints
@@ -89,6 +96,9 @@ class Array
         constraints_counter = 0
         total_periods = num_combinations
         total_repeats = num_combinations
+        
+        the_corresponding_courses = constraints.corresponding_courses
+        
         for col in (0..num_constraints-1)
           
           total_repeats = total_repeats / num_sections[col]
@@ -97,9 +107,13 @@ class Array
           for num_period in (0..total_periods-1)
             for repeat in (0..total_repeats-1)
                 the_course = self[constraints_counter].requirement.courses[num_period % num_sections[col]]
+                puts "1. HIHIHIHIHIHIHIHIHIHIHIHIHIHIHIHIHIH #{constraints}"
                 #if course doesn't match PCR ratings, then add a blank course
                 if the_course.difficulty_rating > self[col].difficulty_rating_ub || the_course.course_rating < self[col].course_rating_lb
                     the_course = Course.find_by_cusip(0)
+                elsif the_corresponding_courses.include? the_course
+                    the_course = Course.find_by_cusip(0)
+                    puts "2. HIHIHIHIHIHIHIHIHIHIHIHIHIHIHIHIHIH"
                 end
                 #if course already exists within the schedule, then add a blank course
                 combination_array[combination_counter][col]=the_course

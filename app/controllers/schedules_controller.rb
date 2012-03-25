@@ -15,7 +15,7 @@ class SchedulesController < ApplicationController
     combination_constraints = constraints.to_section_combinations
     combination_constraints = combination_constraints.remove_overlaps
     
-    #apply timing constraints if they exist
+    #TIMING REQUIREMENTS
     combination_constraints = combination_constraints.apply_timing_constraints(current_user.timings) if !(current_user.timings.empty?)
     
     combination_constraints.each do |sections|
@@ -28,6 +28,7 @@ class SchedulesController < ApplicationController
     
     workable_sections = Array.new(combination_constraints)
     
+    #WORKSHEET REQUIREMENTS
     if !(current_user.reqconstraints.empty?)
 
       workable_sections = Array.new
