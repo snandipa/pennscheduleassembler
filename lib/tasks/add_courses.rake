@@ -7,6 +7,11 @@ namespace :courses do
         end
     end
     
+    task :engineering_course => :environment do
+        c = Course.find_by_name("Senior Design")
+        c.requirements << Requirement.find_by_category("E")
+    end
+    
     desc 'Adding the marked for deletion course'
     task :onecourse => :environment do
         Course.create(:department => "MARK", :number => 000, :name => "for deletion", :cusip => 0, :cus => 0, :course_rating => 0, :difficulty_rating => 4)
