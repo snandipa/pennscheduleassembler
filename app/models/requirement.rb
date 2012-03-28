@@ -1,7 +1,7 @@
 class Requirement < ActiveRecord::Base
     attr_accessible :name, :category
   
-    has_many :reqconstraints, :dependent => :destroy
+    has_and_belongs_to_many :reqconstraints
     
     has_and_belongs_to_many :courses
     

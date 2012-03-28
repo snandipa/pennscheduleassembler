@@ -3,6 +3,8 @@ Pennscheduleassembler::Application.routes.draw do
   get "reqconstraints/create"
 
   get "reqconstraints/destroy"
+  
+  get "reqconstraints/create_or"
 
   get "schedules/create"
 
