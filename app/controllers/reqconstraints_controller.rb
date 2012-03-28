@@ -35,7 +35,7 @@ class ReqconstraintsController < ApplicationController
       when "NS"
         Requirement.find_by_category("NS").reqconstraints << @reqconstraint
       when "E"
-        Requirement.find_by_category("H").reqconstraints << @reqconstraint
+        Requirement.find_by_category("E").reqconstraints << @reqconstraint
       end
     end
 

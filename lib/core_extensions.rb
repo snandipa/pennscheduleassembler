@@ -82,10 +82,18 @@ class Array
     def to_course_combinations(constraints)
         #self is the array of degree Reqconstraints
         num_sections = Array.new
-
+        
         self.each do |reqconstraint|
-          num_sections << reqconstraint.requirement.courses.count
+          reqconstraint_counter = 0
+          reqconstraint.requirements.each do |requirement|
+              #figure out how many sections are within all the requirements you have inserted
+              reqconstraint_counter = reqconstraint_counter + requirement.courses.count
+          end
+          num_sections << reqconstraint_counter
         end
+        
+
+        
         
         num_constraints = num_sections.length
         num_combinations = num_sections.inject(1) { |prod, element| prod * element }
@@ -106,7 +114,16 @@ class Array
           combination_counter = 0
           for num_period in (0..total_periods-1)
             for repeat in (0..total_repeats-1)
-                the_course = self[constraints_counter].requirement.courses[num_period % num_sections[col]]
+                            
+                #figure out all the courses that correspond to the (possibly multiple) requirement
+                all_possible_courses = Array.new
+                current_reqconstraint_reqs = self[constraints_counter].requirements
+                puts "EW.((((((((((((((((())))))))))))))) #{self[constraints_counter].to_s} class: #{current_reqconstraint_reqs.class}"
+                current_reqconstraint_reqs.each do |req|
+                    all_possible_courses = all_possible_courses + req.courses
+                end
+                
+                the_course = all_possible_courses[num_period % num_sections[col]]
                 puts "1. HIHIHIHIHIHIHIHIHIHIHIHIHIHIHIHIHIH #{constraints}"
                 #if course doesn't match PCR ratings, then add a blank course
                 if the_course.difficulty_rating > self[col].difficulty_rating_ub || the_course.course_rating < self[col].course_rating_lb
