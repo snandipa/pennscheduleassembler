@@ -11,6 +11,15 @@
     <%= render :partial => 'shared/sharing' %>
   <% else %>
     Since we could not create any schedules, let's try removing some of your softer constraints. Which ones would you like to get rid of?
+    
+     <%= form_tag url_for(:controller => 'schedules', :action => 'redo_assemble'), :method => 'get' do %>
+         <br>
+      <%= radio_button_tag 'selected_redo[]', 'req' %> My requirement constraints are more important than my timing constraints <br>
+      <%= radio_button_tag 'selected_redo[]', 'timing' %> My timing constraints are more important than my requirement constraints <br>
+  
+      <%= submit_tag "Delete some soft constraints", class: 'medium nice blue radius button' %>
+    <% end %>
+  
   <% end %>
   
     <div class= "constraintbox">

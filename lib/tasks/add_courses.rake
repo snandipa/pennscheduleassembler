@@ -51,8 +51,46 @@ namespace :courses do
         
         c.sections << s1 << s2
         c.recitations << r1
+        
+        r = Requirement.find_by_category("H")
+        
+        r.courses << c
+        r.save
 
     end
+    
+    task :addengm002 => :environment do
+        c = Course.create(:department => "ENGM", :number => 2, :name => "English for Engineers", :cusip => 9292, :cus => 1.0, :course_rating => 3.3, :difficulty_rating => 2.3)
+        s1 = Section.create(listing:2, course_id:Course.find_by_cusip(9292).id, instructor:"John Smith", instructor_rating:3.4)
+        t1 = Meeting.create(start_time:9, end_time:10.5, day:2)
+        t2 = Meeting.create(start_time:9, end_time:10.5, day:1)
+        s1.meetings << t1 << t2
+
+        c.sections << s1
+
+        r = Requirement.find_by_category("SS")
+        
+        r.courses << c
+        r.save
+
+    end
+    
+     task :addmath350 => :environment do
+        c = Course.create(:department => "MATH", :number => 350, :name => "Number Theory", :cusip => 9882, :cus => 1.0, :course_rating => 2.9, :difficulty_rating => 2.5)
+        s1 = Section.create(listing:1, course_id:Course.find_by_cusip(9882).id, instructor:"Murray Gerstenhaber", instructor_rating:2.5)
+        t1 = Meeting.create(start_time:12, end_time:13.5, day:2)
+        t2 = Meeting.create(start_time:12, end_time:13.5, day:4)
+        s1.meetings << t1 << t2
+        
+        c.sections << s1
+ 
+        r = Requirement.find_by_category("M")
+        
+        r.courses << c
+        r.save
+
+    end
+
     
     task :addsast002 => :environment do
         c = Course.create(:department => "SAST", :number => 2, :name => "Hindu Philosophy", :cusip => 4554, :cus => 1.0, :course_rating => 3.1, :difficulty_rating => 1.8)

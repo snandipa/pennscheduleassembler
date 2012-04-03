@@ -108,7 +108,6 @@ class Array
         the_corresponding_courses = constraints.corresponding_courses
         
         for col in (0..num_constraints-1)
-          
           total_repeats = total_repeats / num_sections[col]
           total_periods = num_combinations/total_repeats
           combination_counter = 0
@@ -118,19 +117,17 @@ class Array
                 #figure out all the courses that correspond to the (possibly multiple) requirement
                 all_possible_courses = Array.new
                 current_reqconstraint_reqs = self[constraints_counter].requirements
-                puts "EW.((((((((((((((((())))))))))))))) #{self[constraints_counter].to_s} class: #{current_reqconstraint_reqs.class}"
                 current_reqconstraint_reqs.each do |req|
                     all_possible_courses = all_possible_courses + req.courses
                 end
                 
                 the_course = all_possible_courses[num_period % num_sections[col]]
-                puts "1. HIHIHIHIHIHIHIHIHIHIHIHIHIHIHIHIHIH #{constraints}"
                 #if course doesn't match PCR ratings, then add a blank course
                 if the_course.difficulty_rating > self[col].difficulty_rating_ub || the_course.course_rating < self[col].course_rating_lb
                     the_course = Course.find_by_cusip(0)
                 elsif the_corresponding_courses.include? the_course
                     the_course = Course.find_by_cusip(0)
-                    puts "2. HIHIHIHIHIHIHIHIHIHIHIHIHIHIHIHIHIH"
+                    
                 end
                 #if course already exists within the schedule, then add a blank course
                 combination_array[combination_counter][col]=the_course
