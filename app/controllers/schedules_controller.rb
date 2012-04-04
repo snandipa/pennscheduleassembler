@@ -21,13 +21,6 @@ class SchedulesController < ApplicationController
     #TIMING REQUIREMENTS
     combination_constraints = combination_constraints.apply_timing_constraints(current_user.timings) if !(current_user.timings.empty?)
     
-    combination_constraints.each do |sections|
-      puts "After removing overlaps and applying timing constraints, A New Set of Sections:"
-      sections.each do |section|
-        puts section.to_s
-      end
-    end
-    puts ""
     
     workable_sections = Array.new(combination_constraints)
     
@@ -49,14 +42,6 @@ class SchedulesController < ApplicationController
         
       end
 
-      all_degree_combinations.each do |sections|
-        puts "Array of Section Combinations Pertaining to the Degree Requirements:"
-        sections.each do |section|
-          puts section
-        end
-      end
-      puts ""
-      
       #see if combos of combination_constraints and all_degree_combinations works to create a real schedule
       combination_constraints.each do |course_constraints|
         all_degree_combinations.each do |degree_constraints|
