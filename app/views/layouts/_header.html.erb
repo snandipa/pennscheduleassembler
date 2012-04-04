@@ -1,10 +1,11 @@
 <header>
-  
-  <nav class="round"><font face="palatino", font size="4">
-  <div class="headerbox">
+  <br><br>
+<font face="palatino", font size="4">
+    <div class="box",style=float:left;>
+    <!-- div class="headerbox">
 
-      <!--%= link_to "Home", root_path %-->
-      <%= link_to "Help", help_path %></li>
+      <%= link_to "Home", root_path %>
+      | <%= link_to "Help", help_path %></li>
       <% if signed_in? %>
         | <%= link_to "Profile", current_user %>
         | <%= link_to "Users", users_path %>
@@ -12,16 +13,65 @@
         | <%= link_to "List of Courses", courses_path %>
         | <%= link_to "Schedule Classes", scheduling_course_path %>
       <% end %>
-      <!--%= link_to "Help", help_path %></li-->
       <% if signed_in? %>
         | <%= link_to "Sign out", signout_path %></li>
       <% else %>
         | <%= link_to "Sign in", signin_path %></li>
       <% end %>
-      <br><br>
+      <br><br-->
       <%= link_to image_tag("PSA_Logo.png",{:alt => "Penn Schedule Assembler"}), root_path %>
+  
+  </div>
+<div style=float:left;>
+<% if signed_in? %>
+  <div class="headerboxsignin">
+    <% else %>
+      <div class="headerboxsignout">
+        <% end %>
+    <ul class="nav-bar">
+        <% if signed_in? %>
+        <li>
+		<a href="<%= root_path %>" class="main">Home</a>
+        </li>
+        <li>
+		<a href="<%= user_path(current_user) %>" class="main">Profile</a>
+        </li>
+        <!--li>
+		<a href="<%= users_path %>" class="main">Users</a>
+        </li-->
+        <!--li>
+		<a href="<%= edit_user_path(current_user) %>" class="main">Settings</a>
+        </li>
+        <li>
+		<a href="<%= courses_path %>" class="main">List of Courses</a>
+        </li>
+        <li>
+		<a href="<%= scheduling_course_path %>" class="main">Schedule Courses</a>
+        </li-->
+      <% end %>
+      <% if signed_in? %>
+        <!--li>
+		<a href="<%= help_path %>" class="main">Help</a>
+        </li-->
+        <li>
+		<a href="<%= signout_path %>" class="main">Sign Out</a>
+        </li>
+        <% else %>
+        <li>
+		<a href="<%= root_path %>" class="main">Home</a>
+        </li>
+        <li>
+		<a href="<%= signin_path %>" class="main">Sign In</a>
+        </li>
+        <!--li>
+		<a href="<%= help_path %>" class="main">Help</a>
+        </li-->
+        <% end %>
+	
+</ul>
+  </div>
   </font>
   </div>
-  </nav>
+<br><br><br>
 
 </header>

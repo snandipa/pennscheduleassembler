@@ -1,0 +1,33 @@
+<h1>Your schedules have been assembled!</h1>
+
+<div class="allbox">
+  <h4><%= link_to "I want to add more courses. Take me back!", scheduling_course_path %></h4><br />
+  <h4><%= link_to "I want to add more requirements!", scheduling_reqs_path %></h4>
+  <br><br>
+  
+  
+  <% unless current_user.schedules.blank? %>
+    <%= render :partial => 'shared/scheduleupdated' %>
+    <%= render :partial => 'shared/sharing' %>
+  <% else %>
+    Since we could not create any schedules, let's try removing some of your softer constraints. Which ones would you like to get rid of?
+    
+     <%= form_tag url_for(:controller => 'schedules', :action => 'redo_assemble'), :method => 'get' do %>
+         <br>
+      <%= radio_button_tag 'selected_redo[]', 'req' %> My requirement constraints are more important than my timing constraints <br>
+      <%= radio_button_tag 'selected_redo[]', 'timing' %> My timing constraints are more important than my requirement constraints <br>
+  
+      <%= submit_tag "Delete some soft constraints", class: 'medium nice blue radius button' %>
+    <% end %>
+  
+  <% end %>
+  
+    <div class= "constraintbox">
+    <%= render :partial => 'shared/constraint' %>
+    <br><br>
+    <%= render :partial => 'shared/timing' %>
+    <br><br>
+    <%= render :partial => 'shared/reqs' %>
+  </div>
+  
+</div>

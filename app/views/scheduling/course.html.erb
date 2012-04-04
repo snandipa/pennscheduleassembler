@@ -1,25 +1,39 @@
-<h1>Which courses would you like to have?</h1>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("body").css("display", "none");
+ 
+    $("body").fadeIn(2000);
+ 
+    $("a.transition").click(function(event){
+        event.preventDefault();
+        linkLocation = this.href;
+        $("body").fadeOut(1000, redirectPage);
+    });
+ 
+    function redirectPage() {
+        window.location = linkLocation;
+    }
+});
+</script>
 
 <div class= "allbox">
   <h4 align="right"><%= link_to "Timing Constraints >>", scheduling_timing_path, class:'medium nice blue radius button' %>
   </h4>
+  <br><br>
+  <h3>Which courses would you like to take?</h3>
   <br>
   <div class="querybox">
 
-       <h6>Search for your course below</h6>
+       <h6>Search for your course below</h6><br>
   <%= form_tag scheduling_course_path, :method => 'get' do %>
   <p>
-    Department: <%= text_field_tag :search_department, params[:search_department] %><br>
-    Number: <%= text_field_tag :search_number, params[:search_number] %><br>
+    Department: <%= text_field_tag :search_department, params[:search_department], class: 'small nice form' %><br>
+    Number: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= text_field_tag :search_number, params[:search_number], class: 'small nice form' %><br>
     
     <%= submit_tag "Search", :name => nil %>
   </p>
 <% end %>
-
-
-
-
-  </div>
+</div>
   
   <div class="contextbox">
     
@@ -28,13 +42,14 @@
     <% if @searched_courses.blank? %>
       Could not find any of those courses. Sorry!
     <% else %>
+            
      <% @searched_courses.each do |course| %>
      <%= form_for @constraint do |f| %>
       
       <%= f.hidden_field :user_id, :value => current_user.id %>
         
           <%= f.hidden_field :course_id, :value => course.id %>
-          <%= course.department %> <%= course.number %> - <%= course.name %> <%= f.submit class: 'medium nice blue radius button' %>
+          <%= link_to "#{course.department} #{course.number_to_s} - #{course.name}", course %><%= f.submit class: 'small nice blue radius button' %>
           <br />
         <% end %>
       <% end %>

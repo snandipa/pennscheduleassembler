@@ -1,38 +1,62 @@
-<h1>Which worksheet requirements would you like to add?</h1>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("body").css("display", "none");
+ 
+    $("body").fadeIn(2000);
+ 
+    $("a.transition").click(function(event){
+        event.preventDefault();
+        linkLocation = this.href;
+        $("body").fadeOut(1000, redirectPage);
+    });
+ 
+    function redirectPage() {
+        window.location = linkLocation;
+    }
+});
+</script>
 
 <div class= "allbox">
-    <span class="left">
-  <h4><%= link_to "<< Timings", scheduling_timing_path, class:'medium nice blue radius button' %></h4></span>
-  <span class="right">
+    <div class="left">
+  <h4><%= link_to "<< Timings", scheduling_timing_path, class:'medium nice blue radius button' %></h4></div>
+  <div class="right">
   <h4>      <%= form_tag url_for(:controller => 'schedules', :action => 'create'), :method => 'get' do %>
     <%= submit_tag "Schedule Classes >>", class: 'medium nice blue radius button' %>
-  <% end %></h4></span>
-  
+  <% end %></h4></div>
   <br><br><br><br>
+  <h3>Which worksheet requirements would you like to add?</h3>
+
+  <br>
+  
+<div class="querybox">
+<h6>Requirement Selection</h6><br>
  
-  <div class= "constraintbox">
+ <%= form_tag url_for(:controller => 'reqconstraints', :action => 'create_or'), :method => 'get' do %>
+  The requirement that I want to add can be within any of these elective categories: <br>
+    <%= check_box_tag 'selected_reqs[]', 'SS' %> Social Science <br>
+    <%= check_box_tag 'selected_reqs[]', 'H' %> Humanities <br>
+    <%= check_box_tag 'selected_reqs[]', 'NS' %> Natural Science <br>
+    <%= check_box_tag 'selected_reqs[]', 'M' %> Math <br>
+    <%= check_box_tag 'selected_reqs[]', 'E' %> Engineering <br>
+    
+    I want my course to be rated ABOVE: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= text_field_tag :course_rating_lb %> <br><br>
+    I want the course difficulty to be BELOW: &nbsp&nbsp<%= text_field_tag :difficulty_rating_ub %><br>
+
+    <%= submit_tag "Insert Requirement", class: 'small nice blue radius button' %>
+  <% end %>
+</div>
+
+<div class="contextbox">
+    Enter the requirements which you would like to fulfill.
+  </div>
+
+<div class= "constraintbox">
     <%= render :partial => 'shared/constraint' %>
     <br><br>
     <%= render :partial => 'shared/timing' %>
     <br><br>
     <%= render :partial => 'shared/reqs' %>
   </div>
-  
-<h6>Requirement Selection</h6>
- 
- <%= form_tag url_for(:controller => 'reqconstraints', :action => 'create_or'), :method => 'get' do %>
-  The requirement that I want to add can be within any of these elective categories: <br>
-    <%= check_box_tag 'selected_reqs[]', 'SS' %> Social Science <br>
-    <%= check_box_tag 'selected_reqs[]', 'H' %> Humanities <br>
-    <%= check_box_tag 'selected_reqs[]', 'NS' %> Natural Sciences <br>
-    <%= check_box_tag 'selected_reqs[]', 'M' %> Math <br>
-    <%= check_box_tag 'selected_reqs[]', 'E' %> Engineering <br>
-    
-    I want my course to be rated ABOVE <%= text_field_tag :course_rating_lb %> <br><br>
-    I want the course difficulty to be BELOW <%= text_field_tag :difficulty_rating_ub %><br>
-
-    <%= submit_tag "Insert Requirement", class: 'medium nice blue radius button' %>
-  <% end %>
   
  
 

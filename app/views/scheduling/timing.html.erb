@@ -1,22 +1,40 @@
-<h1>When do you not want to go to class?</h1>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("body").css("display", "none");
+ 
+    $("body").fadeIn(2000);
+ 
+    $("a.transition").click(function(event){
+        event.preventDefault();
+        linkLocation = this.href;
+        $("body").fadeOut(1000, redirectPage);
+    });
+ 
+    function redirectPage() {
+        window.location = linkLocation;
+    }
+});
+</script>
 
 <div class="allbox">
-  <span class="left">
-  <h4><%= link_to "<< Courses", scheduling_course_path, class:'medium nice blue radius button' %></h4></span>
-  <span class="right">
-  <h4><%= link_to "Requirements >>", scheduling_reqs_path, class:'medium nice blue radius button' %></h4></span>
-  
+  <div class="left">
+  <h4><%= link_to "<< Courses", scheduling_course_path, class:'medium nice blue radius button' %></h4></div>
+  <div class="right">
+  <h4><%= link_to "Requirements >>", scheduling_reqs_path, class:'medium nice blue radius button' %></h4></div>
   <br><br><br><br>
+  <h3>When do you not want to go to class?</h3>
+  
+  <br>
     
   <div class="querybox"> 
-  <h6>Timing Selection</h6>
+  <h6>Timing Selection</h6><br>
 
   <%= form_tag url_for(:controller => 'timings', :action => 'create'), :method => 'get' do %>
-    I don't want to go to class between <%= select_tag :start_time, options_from_collection_for_select(@start_meetings, 'start_time','start_time_to_s') %>
-    and <%= select_tag :end_time, options_from_collection_for_select(@end_meetings, 'end_time','end_time_to_s') %>
-    on <%= select_tag :day, options_from_collection_for_select(@day_meetings, 'day','day_to_s') %>
+    <div style="float: left;margin-right:10px;">I don't want to go to class between </div> <div style="float: left;margin-right:10px;"><%= select_tag :start_time, options_from_collection_for_select(@start_meetings, 'start_time','start_time_to_s') %></div>
+    <div style="float: left;margin-right:10px;">and</div> <div style="float: left;margin-right:10px;"><%= select_tag :end_time, options_from_collection_for_select(@end_meetings, 'end_time','end_time_to_s') %></div>
+    <div style="float: left;margin-right:10px;">on</div> <div style="float: left;margin-right:10px;"><%= select_tag :day, options_from_collection_for_select(@day_meetings, 'day','day_to_s') %></div>
 
-    <%= submit_tag "Add Timing Constraint", class: 'medium nice blue radius button' %>
+    <%= submit_tag "Add Timing Constraint", class: 'small nice blue radius button' %>
   <% end %>
 
   </div>

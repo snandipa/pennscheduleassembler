@@ -76,10 +76,9 @@
 	}
 	
 	body {
-		/*text-align:center;*/
-		background-color: #2F4F4F;
-		background-image: url("bgch1.jpg");
-		/*background-repeat:repeat;*/
+		text-align:center;
+		/*background-image: url("bgch1.jpg");
+		background-repeat:repeat;*/
 		font-family: "Myriad Pro", sans-serif; font-size: 13px; line-height: 18px; color: #555; position: relative; -webkit-font-smoothing: antialiased; }
 		/*font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size: 13px; line-height: 18px; color: #555; position: relative; -webkit-font-smoothing: antialiased; }*/
 /*	--------------------------------------------------
@@ -87,23 +86,46 @@
 	-------------------------------------------------- */
 	
 	.right {
+        float:left;
+	width:33%;
         }
         .left {
-        width:250px;
         float:left;
+	width:33%;
         }
 	
 	div.box
 	{
+		floath:left;
+		width:330px;
 	}
 
+	div.headerboxsignin
+	{
+	/*margin-left:auto;
+	margin-right:auto;
+	margin-top:auto;
+	margin-bottom:auto;*/
+	overflow:hidden;
+	width:455px;
+	}
+	
+	div.headerboxsignout
+	{
+	/*margin-left:auto;
+	margin-right:auto;
+	margin-top:auto;
+	margin-bottom:auto;*/
+	overflow:hidden;
+	width:304px;
+	}
+	
 	div.headerbox
-	    {
-	    width:1000px;
-	    margin-top: 10px;
-	    margin-left:150px;
-	    margin-bottom:30px;
-	    }
+	{
+	margin-left:220px;
+	margin-bottom:50px;
+	display:inline;
+	}
 	    
 	/*Schedule*/
 	
@@ -237,7 +259,7 @@
 	
 	div.querybox
 	    {
-	    width:630px;
+	    width:625px;
 	    padding:10px;
 	    margin-bottom:20px;
 	    border:2px solid black;
@@ -725,9 +747,9 @@
    	Nav Bar with Dropdowns
 	-------------------------------------------------- */
 	
-	.nav-bar { height: 45px; background: #fff; margin-top: 20px; border: 1px solid #ddd; }	
-	.nav-bar>li { float: left; display: block; position: relative; padding: 0; margin: 0; border-right: 1px solid #ddd; line-height: 45px; }
-	.nav-bar>li>a.main { position: relative; padding: 0 20px; display: block; text-decoration: none; font-size: 15px; font-size: 1.5rem; }
+	.nav-bar { height: 40px; background: #fff; margin-top: 20px; border: 1px solid #ddd; }	
+	.nav-bar>li { text-align:center; width: 150px; float: left; display: block; position: relative; padding: 0; margin: 0; border-right: 1px solid #ddd; line-height: 40px; }
+	.nav-bar>li>a.main { position: relative; padding: 0 20px; display: block; text-decoration: none; font-size: 14px; font-size: 1.4rem; }
 	.nav-bar>li>input { margin: 0 16px; }
 	.nav-bar>li ul { margin-bottom: 0; }
 	.nav-bar>li li { line-height: 1.3; }

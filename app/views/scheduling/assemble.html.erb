@@ -1,25 +1,45 @@
-<h1>Your schedules have been assembled!</h1>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("body").css("display", "none");
+ 
+    $("body").fadeIn(2000);
+ 
+    $("a.transition").click(function(event){
+        event.preventDefault();
+        linkLocation = this.href;
+        $("body").fadeOut(1000, redirectPage);
+    });
+ 
+    function redirectPage() {
+        window.location = linkLocation;
+    }
+});
+</script>
 
 <div class="allbox">
-  <h4><%= link_to "I want to add more courses. Take me back!", scheduling_course_path %></h4><br />
-  <h4><%= link_to "I want to add more requirements!", scheduling_reqs_path %></h4>
+  <h4><%= link_to "Add More Courses", scheduling_course_path, class:'medium nice blue radius button' %></h4>
+  <h4><%= link_to "Add More Timings", scheduling_timing_path, class:'medium nice blue radius button' %></h4>
+  <h4><%= link_to "Add More Requirements", scheduling_reqs_path, class:'medium nice blue radius button' %></h4>
+  <!--h4><%= link_to "I want to add more courses. Take me back!", scheduling_course_path %></h4><br />
+  <h4><%= link_to "I want to add more requirements!", scheduling_reqs_path %></h4-->
   <br><br>
-  
   
   <% unless current_user.schedules.blank? %>
     <%= render :partial => 'shared/scheduleupdated' %>
-    <%= render :partial => 'shared/sharing' %>
-  <% else %>
-    Since we could not create any schedules, let's try removing some of your softer constraints. Which ones would you like to get rid of?
     
+    <div class="contextbox">
+    <%= render :partial => 'shared/sharing' %>
+    </div>
+  <% else %>
+    <div class="contextbox">
+          
      <%= form_tag url_for(:controller => 'schedules', :action => 'redo_assemble'), :method => 'get' do %>
          <br>
       <%= radio_button_tag 'selected_redo[]', 'req' %> My requirement constraints are more important than my timing constraints <br>
       <%= radio_button_tag 'selected_redo[]', 'timing' %> My timing constraints are more important than my requirement constraints <br>
-  
       <%= submit_tag "Delete some soft constraints", class: 'medium nice blue radius button' %>
     <% end %>
-  
+    </div>
   <% end %>
   
     <div class= "constraintbox">

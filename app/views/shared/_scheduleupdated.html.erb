@@ -40,24 +40,25 @@
 
 
 </div>
-    <% color_array = ["#FFFFFF", "#0000FF", "#008B8B", "#A52A2A"] %>
+    <% color_array = ["#008B8B", "#556B2F", "#DAA520","#CD5C5C","#87CEFA","#BA55D3","#3CB371","#7B68EE","#FF4500","#FF0000","#6A5ACD","#00FF7F","#9ACD32","#BC8F8F","#778899"] %>
     <% counter = 0 %>
     <% schedule.sections.each do |section| %>
         <% course = section.course %>
             <% section.meetings.each do |meeting| %>
-                <div style="position:absolute;left:<%= (100*meeting.day)+2+(2*meeting.day) %>px;top:<%= 24+(2*21*(meeting.start_time-9)) %>px;height:<%= ((2*21*(meeting.end_time-meeting.start_time))-1) %>px;width:100px;background-color:<%= color_array[counter] %>;text-align:center;color:#000;"><%= course.department %> <%= course.number_to_s %>-<%= section.listing_to_s %></div>  
+                <div style="position:absolute;left:<%= (100*meeting.day)+2+(2*meeting.day) %>px;top:<%= 24+(2*21*(meeting.start_time-schedule.earliest_start_time)) %>px;height:<%= ((2*21*(meeting.end_time-meeting.start_time))-1) %>px;width:100px;background-color:<%= color_array[counter] %>;text-align:center;color:#000;"><%= course.department %> <%= course.number_to_s %>-<%= section.listing_to_s %></div>  
             <% end %>
             <% counter = counter + 1 %>
     <% end %>
-    
+    <% counter1 = 14 %>
     <% schedule.recitations.each do |recitation| %>
         <% course = recitation.course %>
             <% recitation.meetings.each do |meeting| %>
-                <div style="position:absolute;left:<%= (100*meeting.day)+2+(2*meeting.day)%>px;top:<%= 24+(2*21*(meeting.start_time-9))%>px;height:<%= ((2*21*(meeting.end_time-meeting.start_time))-1)%>px;width:100px;background-color:#7FFF00;text-align:center;color:#000;"><%= course.department %> <%= course.number_to_s %>-<%= recitation.listing_to_s %></div>
+                <div style="position:absolute;left:<%= (100*meeting.day)+2+(2*meeting.day)%>px;top:<%= 24+(2*21*(meeting.start_time-schedule.earliest_start_time))%>px;height:<%= ((2*21*(meeting.end_time-meeting.start_time))-1)%>px;width:100px;background-color:<%= color_array[counter1] %>;text-align:center;color:#000;"><%= course.department %> <%= course.number_to_s %>-<%= recitation.listing_to_s %></div>
+            <% counter1 = counter1 - 1 %>
             <% end %>   
     <% end %>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
 <h4>Metrics</h4>
   <strong>Course:</strong> <%= schedule.avg_course_rating %><br>
   <strong>Instructor:</strong> <%= schedule.avg_instructor_rating %><br>
@@ -82,6 +83,5 @@
                 </li>
             <% end %>   
     <% end %>
-    </div>
 <% end %>
 <br>

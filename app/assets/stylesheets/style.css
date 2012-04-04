@@ -1,0 +1,43 @@
+/* CSS Document */
+
+body
+{
+	background: #ffffff url(img/bg.gif) repeat-x;
+}
+
+#main
+{
+	margin: auto;
+	width: 700px;
+	height: 600px;
+	background: #fff;
+}
+
+#main p
+{
+	padding: 10px;
+}
+
+#rightSide
+{
+	float: right;
+	margin-right: 10px;
+	height: 500px;
+	width: 200px;
+	background: #fff url(img/rightbg.gif) repeat-x;
+}
+
+#rightSide h1
+{
+	color: #fff;
+	margin-left: 5px;
+}
+
+#leftSide
+{
+	float: left;
+	height: 500px;
+	width: 200px;
+	background: #fff url(img/bg.gif) repeat-x;
+	margin-left: 10px;
+}
