@@ -1,4 +1,4 @@
-namespace :courses3 do
+namespace :courses3h do
 
 task :addSTSC016 => :environment do
         c = Course.create(:department => "STSC", :number => 16, :name => "Islamic Science", :cusip => 8881, :cus => 1.0, :course_rating => 2.4, :difficulty_rating => 2.2)
@@ -156,35 +156,6 @@ task :addPSCI110 => :environment do
        
 s1.meetings << t1
         c.sections << s1 
-        r = Requirement.find_by_category("SS")
-        
-        r.courses << c
-        r.save
-end
-
-task :addPSCI215 => :environment do
-        c = Course.create(:department => "PSCI", :number => 215, :name => "Political Institutions and Economic Performance", :cusip => 7888, :cus => 1.0, :course_rating => 2.2, :difficulty_rating => 2.9)
-        s1 = Section.create(listing:1, course_id:Course.find_by_cusip(7888).id, instructor:"Brendam Oleary", instructor_rating:2.15)
-        t1 = Meeting.create(start_time:10.5, end_time:12, day:2)
-        t2 = Meeting.create(start_time:10.5, end_time:12, day:4)
-        
-s1.meetings << t1 << t2
-       
-r1 = Recitation.create(listing:100, course_id:Course.find_by_cusip(7888).id)
-        t2 = Meeting.create(start_time:11, end_time:12, day:3)
-        r1.meetings << t2
-
-       
-r2 = Recitation.create(listing:102, course_id:Course.find_by_cusip(7882).id)
-        t2 = Meeting.create(start_time:15, end_time:16, day:3)
-        r2.meetings << t2
-              
-r3 = Recitation.create(listing:103, course_id:Course.find_by_cusip(7882).id)
-        t2 = Meeting.create(start_time:13, end_time:14, day:3)
-        r3.meetings << t2
-
-        c.sections << s1 
-c.recitations << r1 << r2 << r3
         r = Requirement.find_by_category("SS")
         
         r.courses << c
@@ -410,5 +381,5 @@ end
 
 
         desc "Run all bootstrapping tasks"
-        task :all => [:addCBE150, :addECON013, :addECON039, :addPSCI010, :addPSCI110, :addPSCI215, :addCRIM370, :addCRIM601, :addCRIM604 , :addCINE016, :addCINE063, :addCINE065, :addCINE101, :addCINE111, :addGEOL130, :addCINE116, :addGEOL511, :addGEOL670, :addGEOL422, :addROML296, :addROML512]
+        task :all => [:addCBE150, :addECON013, :addECON039, :addPSCI010, :addPSCI110, :addCRIM370, :addCRIM601, :addCRIM604 , :addCINE016, :addCINE063, :addCINE065, :addCINE101, :addCINE111, :addGEOL130, :addCINE116, :addGEOL511, :addGEOL670, :addGEOL422, :addROML296, :addROML512]
 end
