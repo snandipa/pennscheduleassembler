@@ -1,5 +1,5 @@
-<strong>Worksheet Constraints</strong>
+<strong><u><div style="text-align:center">Satisfy These Requirements</u></strong></div><br>
   <% @reqs.each do |req| %>
-  <li><%= req.to_s %> | <%= button_to "Delete", req, :method => :delete %>
+  <li><%= req.to_s %> <%= button_to "Delete", req, :method => :delete,class:'tiny nice red radius button' %>
   </li>
  <% end %>

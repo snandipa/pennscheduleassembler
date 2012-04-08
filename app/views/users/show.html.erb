@@ -1,26 +1,14 @@
-<table class="profile" summary="Profile information">
+<br><br><br><%= link_to "Schedule my Classes!", scheduling_course_path, class:'medium nice blue radius button' %>
+<div class=box>
+  
+  <h1><%= @user.name %></h1>
+      <strong>Sharecode:</strong> <%= @user.sharecode %><br><br>
+      <%= link_to "Edit Account",edit_user_path(current_user), class:'small nice white radius button' %></div>
+      
 <div class="allbox">
-<div class="left"><%= link_to "Edit Account",edit_user_path(current_user), class:'medium nice blue radius button' %></div>
-<div class="right"><%= link_to "Schedule my Classes!", scheduling_course_path, class:'medium nice blue radius button' %></div>
-  <br>
-  <tr>
-    <td class="main"-->
-      <h1>
-        <%= @user.name %>
-      </h1>
-    <!--/td-->
-    <td class="sidebar round">
-      <strong>Name</strong> <%= @user.name %><br />
-      Sharecode <%= @user.sharecode %><br />
-    </td>
-    <td>
       <% if @user==current_user %>
-        <%= render :partial => "shared/constraint" %>
         <%= render :partial => 'shared/scheduleupdated' %>
       <% end %>
-    </td>
-  </tr>
-</table>
   </div>
 
 

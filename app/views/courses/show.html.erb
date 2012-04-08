@@ -1,54 +1,48 @@
 
-<br><br>
-<table class="profile" summary="Course information">
+<center><table class="profile" summary="Course information" style="border:2px solid black;-moz-border-radius:8px;border-radius:8px;margin-top: 30px;margin-bottom:50px;">
   <tr>
     <td class="main">
       <h1>
         <%= @course.department %> <%= @course.number_to_s %>
       </h1>
-    </td>
-    <td class="sidebar round">
-      <strong>Department</strong> <%= @course.department %><br />
-      <strong>Number</strong> <%= @course.number_to_s %><br />
-      <strong>Name</strong> <%= @course.name %><br />
-      <strong>Course Units</strong> <%= @course.cus %><br />
-      <strong>Course Rating</strong> <%= @course.course_rating %><br />
-      <strong>Difficulty Rating</strong> <%= @course.difficulty_rating %><br />
-      <strong>URL</strong>  <%= link_to course_path(@course), @course %><br />
+    
+      <strong>Department:</strong> <%= @course.department %><br />
+      <strong>Course Number:</strong> <%= @course.number_to_s %><br />
+      <strong>Course Name:</strong> <%= @course.name %><br />
+      <strong>Course Units:</strong> <%= @course.cus %><br />
+      <strong>Course Rating:</strong> <%= @course.course_rating %><br />
+      <strong>Difficulty Rating:</strong> <%= @course.difficulty_rating %><br />
     </td>
     <td>
-        <strong>Sections</strong><br><br>
+        <strong><u>Sections</strong></u><br><br>
       <% @course.sections.each do |section| %>
-        Listing: <%= section.listing %> with <%= section.instructor %><br /> who is rated <%= section.instructor_rating %><br />
-        goes from
-          <% section.meetings.each do |meeting| %>
+        <strong>Section:</strong> <%= section.listing_to_s %> <br> <strong>Instructor:</strong> <%= section.instructor %><br> <strong>Instructor Rating:</strong> <%= section.instructor_rating %><br />
+            <% section.meetings.each do |meeting| %>
             <li><%= meeting.start_time_to_s %> to <%= meeting.end_time_to_s %>
             on <%= meeting.day_to_s %> </li>
           <% end %>
-        <br />
         <br>
       <% end %>
     </td>
       <td>
-        <strong>Recitations</strong><br><br>
+        <strong><u>Recitations</strong></u><br><br>
       <% @course.recitations.each do |recitation| %>
-        Listing: <%= recitation.listing %> goes from
+        <strong>Recitation:</strong> <%= recitation.listing_to_s %>
           <% recitation.meetings.each do |meeting| %>
             <li><%= meeting.start_time_to_s %> to <%= meeting.end_time_to_s %>
             on <%= meeting.day_to_s %> </li>
           <% end %>
-        <br />
         <br>
       <% end %>
     </td>
     <td>
-        <strong>Crosslisted Classes</strong><br><br>
+        <strong><u>Crosslisted Classes</strong></u><br><br>
           <%= @course.crosslistings %>
         <br />
         <br>
     </td>
         <td>
-        <strong>Requirements Fulfilled</strong><br><br>
+        <strong><u>Requirements Fulfilled</strong></u><br><br>
           <% @course.requirements.each do |requirement| %>
             <li><%= requirement.name %></li>
           <% end %>
@@ -57,3 +51,5 @@
     </td>
   </tr>
 </table>
+</div>
+</center>

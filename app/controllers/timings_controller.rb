@@ -28,7 +28,7 @@ class TimingsController < ApplicationController
     
     if any_overlap
       clean_through_timings  
-      redirect_to scheduling_timing_path, :flash => { :success => "Multiple timings updated!" }
+      redirect_to scheduling_timing_path, :flash => { :success => "Multiple timings updated" }
       return
     else    
       create_unique_timing
@@ -70,7 +70,7 @@ class TimingsController < ApplicationController
     
     if any_overlap
       clean_through_timings  
-      redirect_to scheduling_timing_path, :flash => { :success => "Multiple timings updated!" }
+      redirect_to scheduling_timing_path, :flash => { :success => "Multiple timings updated" }
       return
     else    
       create_unique_timing(check_meeting)
@@ -128,7 +128,7 @@ class TimingsController < ApplicationController
     #this is probably the wrong way to do it..but keep for now's sake
     @timing.meetings << @meeting
     if @timing.save
-      redirect_to scheduling_timing_path, :flash => { :success => "Timing added!" }
+      redirect_to scheduling_timing_path, :flash => { :success => "Timing added" }
       return
     else
       redirect_to scheduling_timing_path, :flash => { :failure => @timing.errors.full_messages }
@@ -138,7 +138,7 @@ class TimingsController < ApplicationController
 
   def destroy
     Timing.find(params[:id]).destroy #is this proper?
-    redirect_to scheduling_timing_path, :flash => { :success => "Timing deleted!" }
+    redirect_to scheduling_timing_path, :flash => { :success => "Timing deleted" }
   end
 
 end

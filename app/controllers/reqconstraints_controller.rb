@@ -2,7 +2,7 @@ class ReqconstraintsController < ApplicationController
   def create
     @reqconstraint = Reqconstraint.new(params[:reqconstraint])
     if @reqconstraint.save
-      redirect_to scheduling_reqs_path, :flash => { :success => "Requirement added!" }
+      redirect_to scheduling_reqs_path, :flash => { :success => "Requirement added" }
     else
       redirect_to scheduling_reqs_path, :flash => { :failure => "Somethings wrong" }
     end
@@ -10,13 +10,13 @@ class ReqconstraintsController < ApplicationController
 
   def destroy
     Reqconstraint.find(params[:id]).destroy #is this proper?
-    redirect_to scheduling_reqs_path, :flash => { :success => "Requirement deleted!" }
+    redirect_to scheduling_reqs_path, :flash => { :success => "Requirement deleted" }
   end
   
   def create_or
     
     if params[:selected_reqs].blank?
-      redirect_to scheduling_reqs_path, :flash => { :failure => "Please check the boxes that you want" }
+      redirect_to scheduling_reqs_path, :flash => { :failure => "Please check the boxes that satisfy your requirements" }
       return
     end
     #params[:course_rating_lb] = 0 if params[:course_rating_lb].blank?
@@ -41,7 +41,7 @@ class ReqconstraintsController < ApplicationController
 
     puts "%^%^%^%^%^^%^%^%^ #{params}"
     if @reqconstraint.save
-      redirect_to scheduling_reqs_path, :flash => { :success => "Requirement added!" }
+      redirect_to scheduling_reqs_path, :flash => { :success => "Requirement added" }
     else
       redirect_to scheduling_reqs_path, :flash => { :failure => "Somethings wrong" }
     end

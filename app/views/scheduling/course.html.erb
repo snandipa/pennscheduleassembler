@@ -24,15 +24,18 @@ $(document).ready(function() {
   <br>
   <div class="querybox">
 
+       <div style="text-align:center">
        <h6>Search for your course below</h6><br>
   <%= form_tag scheduling_course_path, :method => 'get' do %>
   <p>
-    Department: <%= text_field_tag :search_department, params[:search_department], class: 'small nice form' %><br>
-    Number: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= text_field_tag :search_number, params[:search_number], class: 'small nice form' %><br>
+    Department: &nbsp <%= text_field_tag :search_department, params[:search_department], class: 'small nice form' %> &nbsp&nbsp&nbsp
+    Number: &nbsp <%= text_field_tag :search_number, params[:search_number], class: 'small nice form' %>&nbsp&nbsp&nbsp
     
-    <%= submit_tag "Search", :name => nil %>
+    <%= submit_tag "Search", :name => nil, class:'small nice white radius button'%>
   </p>
 <% end %>
+
+</div>
 </div>
   
   <div class="contextbox">
@@ -49,11 +52,10 @@ $(document).ready(function() {
       <%= f.hidden_field :user_id, :value => current_user.id %>
         
           <%= f.hidden_field :course_id, :value => course.id %>
-          <%= link_to "#{course.department} #{course.number_to_s} - #{course.name}", course %><%= f.submit class: 'small nice blue radius button' %>
-          <br />
+          <li><%= link_to "#{course.department} #{course.number_to_s} - #{course.name}", course %><br><%= f.submit class: 'tiny nice white radius button' %>
+          </li>
         <% end %>
       <% end %>
-      <br>
     
     <% end %>
     
@@ -64,10 +66,11 @@ $(document).ready(function() {
   
   <div class= "constraintbox">
     <%= render :partial => 'shared/constraint' %>
-    <br><br>
+    <br>
     <%= render :partial => 'shared/timing' %>
-    <br><br>
+    <br>
     <%= render :partial => 'shared/reqs' %>
+    <br>
   </div>
 
 </div>

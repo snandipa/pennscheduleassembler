@@ -27,14 +27,14 @@ $(document).ready(function() {
   <br>
     
   <div class="querybox"> 
-  <h6>Timing Selection</h6><br>
+  <h6 style="text-align:center">Timing Selection</h6><br>
 
   <%= form_tag url_for(:controller => 'timings', :action => 'create'), :method => 'get' do %>
     <div style="float: left;margin-right:10px;">I don't want to go to class between </div> <div style="float: left;margin-right:10px;"><%= select_tag :start_time, options_from_collection_for_select(@start_meetings, 'start_time','start_time_to_s') %></div>
     <div style="float: left;margin-right:10px;">and</div> <div style="float: left;margin-right:10px;"><%= select_tag :end_time, options_from_collection_for_select(@end_meetings, 'end_time','end_time_to_s') %></div>
     <div style="float: left;margin-right:10px;">on</div> <div style="float: left;margin-right:10px;"><%= select_tag :day, options_from_collection_for_select(@day_meetings, 'day','day_to_s') %></div>
 
-    <%= submit_tag "Add Timing Constraint", class: 'small nice blue radius button' %>
+    <br><br><center><%= submit_tag "Add Timing Constraint", class: 'small nice white radius button' %></center>
   <% end %>
 
   </div>
@@ -45,10 +45,11 @@ $(document).ready(function() {
   
   <div class= "constraintbox">
     <%= render :partial => 'shared/constraint' %>
-    <br><br>
+    <br>
     <%= render :partial => 'shared/timing' %>
-    <br><br>
+    <br>
     <%= render :partial => 'shared/reqs' %>
+    <br>
   </div>
 
 </div>

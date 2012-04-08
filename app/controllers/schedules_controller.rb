@@ -63,10 +63,11 @@ class SchedulesController < ApplicationController
       schedules.each {|schedule| schedule.compute_metrics}
       
       length_of_time = Time.now - initial_time
-      redirect_to scheduling_assemble_path, :flash => { :success => "Schedules have been added! Time: #{length_of_time} and Size: #{initial_size_of_constraints}" }
+      #Time: #{length_of_time} and Size: #{initial_size_of_constraints}
+      redirect_to scheduling_assemble_path, :flash => { :success => "Schedules have been added!" }
       return
     else
-      redirect_to scheduling_assemble_path, :flash => { :failure => "Could not create any schedules. Try removing courses or timing constraints?" }
+      redirect_to scheduling_assemble_path, :flash => { :failure => "Sorry, we could not create any schedules. Try adjusting your constraints" }
       return
     end
 
@@ -86,16 +87,16 @@ class SchedulesController < ApplicationController
     return_param = u.share_with_friends(params)
     case return_param
     when 0
-      redirect_to scheduling_assemble_path, :flash => { :failure => "That sharecode doesn't exist!" }
+      redirect_to scheduling_assemble_path, :flash => { :failure => "Sorry, that sharecode doesn't exist" }
       return
     when -1
-      redirect_to scheduling_assemble_path, :flash => { :failure => "Your friend doesn't have any schedules created yet. Tell them to do that!" }
+      redirect_to scheduling_assemble_path, :flash => { :failure => "Your friend doesn't have any schedules created yet" }
       return
     when -2
-      redirect_to scheduling_assemble_path, :flash => { :failure => "There is no overlap between your and your friends schedules. I restored your original schedules" }
+      redirect_to scheduling_assemble_path, :flash => { :failure => "There is no overlap between your and your friend's schedules. Your original schedules were restored" }
       return
     when 1
-      redirect_to scheduling_assemble_path, :flash => {:success => "Your new schedules that work with your friend are shown below!"}
+      redirect_to scheduling_assemble_path, :flash => {:success => "Your new schedules that work with your friend's are shown below!"}
       return
     else
       redirect_to scheduling_assemble_path, :flash => {:failure => "I don't even know how you got this"}
@@ -115,7 +116,7 @@ class SchedulesController < ApplicationController
       current_user_timings.each do |pop_timing| #start taking away timing constraints
         pop_timing.destroy #destroy least important timing
         if redo_create == 1
-          redirect_to scheduling_assemble_path, :flash => {:success => "Created schedules by taking away timing constraints!"}
+          redirect_to scheduling_assemble_path, :flash => {:success => "Created schedules by taking away timing constraints"}
           return
         end
       end
@@ -126,7 +127,7 @@ class SchedulesController < ApplicationController
         current_user.save
         pop_req.destroy
         if redo_create == 1
-          redirect_to scheduling_assemble_path, :flash => {:success => "Created schedules by taking away requirement constraints!"}
+          redirect_to scheduling_assemble_path, :flash => {:success => "Created schedules by taking away requirement constraints"}
           return
         end
       end
@@ -145,7 +146,7 @@ class SchedulesController < ApplicationController
       #  end
       #end
       
-      redirect_to scheduling_assemble_path, :flash => {:failure => "We can create no schedules, even taking away constraints. You must change your hard constraints"}
+      redirect_to scheduling_assemble_path, :flash => {:failure => "No schedules could be created, even after removing your constraints. You must adjust your course constraints"}
       return
       
     else      
@@ -155,7 +156,7 @@ class SchedulesController < ApplicationController
         current_user.save
         pop_req.destroy
         if redo_create == 1
-          redirect_to scheduling_assemble_path, :flash => {:success => "Created schedules by taking away requirement constraints!"}
+          redirect_to scheduling_assemble_path, :flash => {:success => "Created schedules by removing requirement constraints"}
           return
         end
       end
@@ -165,12 +166,12 @@ class SchedulesController < ApplicationController
       current_user_timings.each do |pop_timing| #start taking away timing constraints
         pop_timing.destroy #destroy least important timing
         if redo_create == 1
-          redirect_to scheduling_assemble_path, :flash => {:success => "Created schedules by taking away timing constraints!"}
+          redirect_to scheduling_assemble_path, :flash => {:success => "Created schedules by removing timing constraints"}
           return
         end
       end
       
-      redirect_to scheduling_assemble_path, :flash => {:failure => "We can create no schedules, even taking away constraints. You must change your hard constraints"}
+      redirect_to scheduling_assemble_path, :flash => {:failure => "No schedules could be created, even after removing your constraints. You must adjust your course constraints"}
       return
       
     end

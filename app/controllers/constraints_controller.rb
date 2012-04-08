@@ -16,15 +16,15 @@ class ConstraintsController < ApplicationController
         
         
     if @constraint.save
-      redirect_to scheduling_course_path, :flash => { :success => "Constraint added!" }
+      redirect_to scheduling_course_path, :flash => { :success => "Course constraint added" }
     else
-      redirect_to scheduling_course_path, :flash => { :failure => "Constraint already exists" }
+      redirect_to scheduling_course_path, :flash => { :failure => "Course constraint already exists" }
     end
   end
   
   def destroy
     Constraint.find(params[:id]).destroy #is this proper?
-    redirect_to scheduling_course_path, :flash => { :success => "Constraint deleted!" }
+    redirect_to scheduling_course_path, :flash => { :success => "Course constraint deleted" }
   end
 
 end

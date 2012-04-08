@@ -1,6 +1,11 @@
   <%i=1%>
   <% @schedules.each do |schedule| %>
-  <h2><u>Schedule <%=i%></u></h2>
+  <h3 style=><u>Schedule <%=i%></u></h3>
+  <div class="metricbox"><h5>Metrics</h5>
+    <div style="text-align:left;">
+  <strong>Course:</strong> <%= schedule.avg_course_rating %><br>
+  <strong>Instructor:</strong> <%= schedule.avg_instructor_rating %><br>
+  <strong>Difficulty:</strong> <%= schedule.avg_difficulty_rating %><br><br></div></div><br>
   <%i+=1%> 
 
 <div class="schedulebox">
@@ -9,7 +14,7 @@
 <div class="grid">
     
     <div class="row">
-<div class="headercell" style="width: 100px;">SCHEDULE</div>
+<div class="headercell" style="width: 100px;"></div>
 <div class="headercell" style="width: 100px;">Monday</div>
 <div class="headercell" style="width: 100px;">Tuesday</div>
 <div class="headercell" style="width: 100px;">Wednesday</div>
@@ -40,7 +45,7 @@
 
 
 </div>
-    <% color_array = ["#008B8B", "#556B2F", "#DAA520","#CD5C5C","#87CEFA","#BA55D3","#3CB371","#7B68EE","#FF4500","#FF0000","#6A5ACD","#00FF7F","#9ACD32","#BC8F8F","#778899"] %>
+    <% color_array = ["#82c9c9", "#98b06e","#dfbb5f","#cf7a7a","#a1d0ee","#c67dd8","#83cea4","#a59cda","#df8d6f","#f98e8e","#998fd1","#8fe5ba","#bbd28b","#f28686","#a0a0a1"] %>
     <% counter = 0 %>
     <% schedule.sections.each do |section| %>
         <% course = section.course %>
@@ -57,31 +62,7 @@
             <% counter1 = counter1 - 1 %>
             <% end %>   
     <% end %>
+<br><br><br>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
-<h4>Metrics</h4>
-  <strong>Course:</strong> <%= schedule.avg_course_rating %><br>
-  <strong>Instructor:</strong> <%= schedule.avg_instructor_rating %><br>
-  <strong>Difficulty:</strong> <%= schedule.avg_difficulty_rating %><br><br>
-  <h4>Sections: </h4>
-    <% schedule.sections.each do |section| %>
-        <% course = section.course %>
-        <%= course.department %> <%= course.number_to_s %> <%= section.listing_to_s %> -
-            <% section.meetings.each do |meeting| %>
-                <li>
-                <%= meeting.start_time_to_s %> to <%= meeting.end_time_to_s %> on <%= meeting.day_to_s %>
-                </li>
-            <% end %>   
-    <% end %>
-    <h4> Recitations: </h4>
-    <% schedule.recitations.each do |recitation| %>
-        <% course = recitation.course %>
-        <%= course.department %> <%= course.number_to_s %> <%= recitation.listing_to_s %> -
-            <% recitation.meetings.each do |meeting| %>
-                <li>
-                <%= meeting.start_time_to_s %> to <%= meeting.end_time_to_s %> on <%= meeting.day_to_s %>
-                </li>
-            <% end %>   
-    <% end %>
 <% end %>
 <br>

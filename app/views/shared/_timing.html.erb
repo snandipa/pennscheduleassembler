@@ -1,9 +1,9 @@
-<strong>Do Not Have Class On:</strong>
+<strong><u><div style="text-align:center">Do Not Have Class From</u></strong></div><br>
   <% @timings.each do |timing| %>
   <% timing.meetings.each do |meeting| %>
   <li><%= meeting.start_time_to_s %> to <%= meeting.end_time_to_s %> on
       <%= meeting.day_to_s %>
-      <%= button_to "Delete", timing, :method => :delete %>
+      <%= button_to "Delete", timing, :method => :delete,class:'tiny nice red radius button' %>
   </li>
   <% end %>
  <% end %>

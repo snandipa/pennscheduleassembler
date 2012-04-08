@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      redirect_to @user, :flash => { :success => "Welcome to the Sample App!" }
+      redirect_to @user, :flash => { :success => "Welcome to the Penn Schedule Assembler!" }
     else
       @title = "Sign up"
       render 'new'
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   
   def update
     if @user.update_attributes(params[:user])
-      redirect_to @user, :flash => { :success => "Profile updated." }
+      redirect_to @user, :flash => { :success => "Profile updated" }
     else
       @title = "Edit user"
       render 'edit'

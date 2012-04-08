@@ -1,9 +1,11 @@
-<h1>Edit user</h1>
 
+<div class="box">
+  <h1>Edit Account</h1>
 <%= form_for(@user) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <%= render 'fields', :f => f %>
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", class:'small nice blue radius button'%>
+  </div>
   </div>
 <% end %>

@@ -1,7 +1,11 @@
 ---
+PSA_LOGO_final.png: PSA_LOGO_final-08c7463fd8c4d03c67dd9fd7baf923fb.png
 PSA_Logo.png: PSA_Logo-9d0dd7a11c2bd6aa8b3479342d6e0c3c.png
 bg.gif: bg-329c35e317a5989ad0463f8fddf3bc03.gif
 bgch1.jpg: bgch1-aca96551620d1a6e96d80b02019a9478.jpg
+img/bg.gif: img/bg-329c35e317a5989ad0463f8fddf3bc03.gif
+img/bg2.gif: img/bg2-ebe84a3d915ea956ecc57e3c522ff395.gif
+img/bg3.gif: img/bg3-4fbc8f30c4f61356d5c938be3679eb68.gif
 misc/button-gloss.png: misc/button-gloss-6f80afd3cce8d2e50cae35880d59ec51.png
 misc/button-overlay.png: misc/button-overlay-29f8ecbdb6eae59c140eb97fb398e005.png
 misc/custom-form-sprites.png: misc/custom-form-sprites-1b4ecb37c5721edb23669c9e40086954.png
@@ -21,4 +25,4 @@ orbit/timer-black.png: orbit/timer-black-54c373de4b71d9b5edc8428114ec8048.png
 rails.png: rails-782b548cc1ba7f898cdad2d9eb8420d2.png
 wood_background_1.jpg: wood_background_1-e5ca1896ce917a7185001093fa0873d5.jpg
 application.js: application-0be659f35605334891be8397a7a46d9e.js
-application.css: application-02f36b2f71486ee7036d3d566af885d8.css
+application.css: application-ac224c3adfe9f4c330d3f8549b0a9c77.css

@@ -1,6 +1,8 @@
-<strong>Share your schedule with your friends!</strong>
+<div style="text-align:center;">
+<strong><u>Share a course with your friends!</u></strong><br><br>
   <%= form_tag url_for(:controller => 'schedules', :action => 'share_with_friends'), :method => 'get' do %>
-    <%= text_field_tag :requested_sharecode, "Enter your friend's share code here:" %>
-    <%= collection_select "course", :course_id, @schedule_courses, :id, :title %>
-    <%= submit_tag "Share now!!", class: 'medium nice blue radius button' %>
+    Friend's Sharecode:<%= text_field_tag :requested_sharecode %><br><br>
+    <div style=" margin-left:68px;"><%= collection_select "course", :course_id, @schedule_courses, :id, :title %></div><br>
+    <%= submit_tag "Share now", class: 'small nice white radius button' %></div>
   <% end %>
+</div>

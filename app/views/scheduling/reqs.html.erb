@@ -29,20 +29,19 @@ $(document).ready(function() {
   <br>
   
 <div class="querybox">
-<h6>Requirement Selection</h6><br>
+<h6 style = "text-align:center">Requirement Selection</h6><br>
  
  <%= form_tag url_for(:controller => 'reqconstraints', :action => 'create_or'), :method => 'get' do %>
-  The requirement that I want to add can be within any of these elective categories: <br>
     <%= check_box_tag 'selected_reqs[]', 'SS' %> Social Science <br>
     <%= check_box_tag 'selected_reqs[]', 'H' %> Humanities <br>
     <%= check_box_tag 'selected_reqs[]', 'NS' %> Natural Science <br>
     <%= check_box_tag 'selected_reqs[]', 'M' %> Math <br>
-    <%= check_box_tag 'selected_reqs[]', 'E' %> Engineering <br>
+    <%= check_box_tag 'selected_reqs[]', 'E' %> Engineering <br><br>
     
-    I want my course to be rated ABOVE: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= text_field_tag :course_rating_lb %> <br><br>
-    I want the course difficulty to be BELOW: &nbsp&nbsp<%= text_field_tag :difficulty_rating_ub %><br>
+    with course rating <strong>above</strong>: &nbsp <%= text_field_tag :course_rating_lb %> &nbsp
+    and course difficulty <strong>below</strong>: &nbsp<%= text_field_tag :difficulty_rating_ub %><br><br>
 
-    <%= submit_tag "Insert Requirement", class: 'small nice blue radius button' %>
+    <center><%= submit_tag "Insert Requirement", class: 'small nice white radius button' %></center>
   <% end %>
 </div>
 
@@ -52,10 +51,11 @@ $(document).ready(function() {
 
 <div class= "constraintbox">
     <%= render :partial => 'shared/constraint' %>
-    <br><br>
+    <br>
     <%= render :partial => 'shared/timing' %>
-    <br><br>
+    <br>
     <%= render :partial => 'shared/reqs' %>
+    <br>
   </div>
   
  

@@ -1,6 +1,6 @@
-<strong>Constraints</strong>
+<strong><u><div style="text-align:center">Take These Courses</u></strong></div><br>
   <% constraints = current_user.constraints.all %>
   <% constraints.each do |constraint| %>
-  <li><%= constraint.course.name %> | <%= button_to "Delete", constraint, :method => :delete %>
+  <li><%= link_to constraint.course.name, constraint.course %> <%= button_to "Delete", constraint, :method => :delete,class:'tiny nice red radius button' %>
   </li>
  <% end %>

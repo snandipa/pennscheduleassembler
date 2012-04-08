@@ -20,34 +20,33 @@ $(document).ready(function() {
   <h4><%= link_to "Add More Courses", scheduling_course_path, class:'medium nice blue radius button' %></h4>
   <h4><%= link_to "Add More Timings", scheduling_timing_path, class:'medium nice blue radius button' %></h4>
   <h4><%= link_to "Add More Requirements", scheduling_reqs_path, class:'medium nice blue radius button' %></h4>
-  <!--h4><%= link_to "I want to add more courses. Take me back!", scheduling_course_path %></h4><br />
-  <h4><%= link_to "I want to add more requirements!", scheduling_reqs_path %></h4-->
   <br><br>
   
   <% unless current_user.schedules.blank? %>
     <%= render :partial => 'shared/scheduleupdated' %>
-    
+        
     <div class="contextbox">
     <%= render :partial => 'shared/sharing' %>
     </div>
   <% else %>
     <div class="contextbox">
-          
+        <div style="text-align:center">
      <%= form_tag url_for(:controller => 'schedules', :action => 'redo_assemble'), :method => 'get' do %>
-         <br>
-      <%= radio_button_tag 'selected_redo[]', 'req' %> My requirement constraints are more important than my timing constraints <br>
-      <%= radio_button_tag 'selected_redo[]', 'timing' %> My timing constraints are more important than my requirement constraints <br>
-      <%= submit_tag "Delete some soft constraints", class: 'medium nice blue radius button' %>
+            <strong style="text-align:center"><u>Adjust Constraints</strong></u><br></div>
+      <%= radio_button_tag 'selected_redo[]', 'req' %> My <strong>requirement</strong> constraints are more important than my <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp timing constraints <br>
+      <%= radio_button_tag 'selected_redo[]', 'timing' %> My <strong>timing</strong> constraints are more important than my <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp requirement constraints <br>
+      <br><%= submit_tag "Delete some soft constraints", class: 'small nice red radius button' %>
     <% end %>
     </div>
   <% end %>
   
     <div class= "constraintbox">
     <%= render :partial => 'shared/constraint' %>
-    <br><br>
+    <br>
     <%= render :partial => 'shared/timing' %>
-    <br><br>
+    <br>
     <%= render :partial => 'shared/reqs' %>
+    <br>
   </div>
   
 </div>
