@@ -142,23 +142,25 @@ class Array
         end
         
         #Clean up combination_array
+        puts "(&*&*&*&*&*&*&*&*&) before delete combonation arrya: #{combination_array}"
         combination_array.delete_if {|combo| combo[0]==combo[1]} #ASSUME A Nx2 ARRAY!!
         combination_array.each do |combo|
+            puts "(&*&*&*&*&*&*&*&*&) combo: #{combo}"
             combo.sort! { |a,b| a.id <=> b.id } #a and b are courses #sorts them in order of id
             #puts "(&*&*&*&*&*&*&*&*&) 1. combination size before: #{combination_array.size}"
             #combination_array.delete(combo) if combo.violates_boundaries
             #puts "(&*&*&*&*&*&*&*&*&) 1. combination size after: #{combination_array.size}"
         end
         
-        puts "(&*&*&*&*&*&*&*&*&) 1. combination size before new way: #{combination_array.size}"
+        #puts "(&*&*&*&*&*&*&*&*&) 1. combination size before new way: #{combination_array.size}"
         combination_array.delete_if {|combo| combo.violates_boundaries}
-        puts "(&*&*&*&*&*&*&*&*&) 1. combination size after: #{combination_array.size}"
+        #puts "(&*&*&*&*&*&*&*&*&) 1. combination size after: #{combination_array.size}"
         
         return combination_array.uniq
     end
     
     def violates_boundaries
-        puts "(&*&*&*&*&*&*&*&*&) 2. Hello within violates boundaries function"
+        #puts "(&*&*&*&*&*&*&*&*&) 2. Hello within violates boundaries function"
         self.each do |course|
             return true if course.cusip==0
         end

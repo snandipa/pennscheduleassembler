@@ -4,7 +4,6 @@ class Course < ActiveRecord::Base
   has_many :sections, :dependent => :destroy
   has_many :recitations, :dependent => :destroy
   has_many :constraints, :dependent => :destroy
-  has_many :reqconstraints, :dependent => :destroy
   
   #has_and_belongs_to_many :crosslists
   has_and_belongs_to_many :requirements

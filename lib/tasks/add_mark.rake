@@ -1,5 +1,5 @@
 
-namespace :onecourse do
+namespace :markcourse do
     desc 'Adding the marked for deletion course'
     task :add => :environment do
         Course.create(:department => "MARK", :number => 000, :name => "for deletion", :cusip => 0, :cus => 0, :course_rating => 0, :difficulty_rating => 4)

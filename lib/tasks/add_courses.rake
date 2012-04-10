@@ -5,6 +5,11 @@ namespace :courses do
         c.each do |course|
             course.destroy
         end
+        
+        Course.create(:department => "MARK", :number => 000, :name => "for deletion", :cusip => 0, :cus => 0, :course_rating => 0, :difficulty_rating => 4)
+        s = Section.create(listing:0, course_id:Course.find_by_cusip(0).id, instructor:"NA", instructor_rating:0)
+        c=Course.find_by_cusip(0)
+        c.sections << s
     end
     
     task :engineering_course => :environment do
