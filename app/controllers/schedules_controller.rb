@@ -56,7 +56,7 @@ class SchedulesController < ApplicationController
     if workable_sections.length > 0 #create schedules!
       num_created = 0
       workable_sections.each do |potential_schedule|
-        create_schedule(potential_schedule) if num_created < 12
+        create_schedule(potential_schedule) if num_created < 8
         num_created=num_created+1
       end
       u=User.find(current_user.id)
@@ -232,7 +232,7 @@ class SchedulesController < ApplicationController
     if workable_sections.length > 0 #create schedules!
       num_created = 0
       workable_sections.each do |potential_schedule|
-        create_schedule(potential_schedule) if num_created < 12
+        create_schedule(potential_schedule) if num_created < 8
         num_created=num_created+1
       end
 
