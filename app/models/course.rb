@@ -19,6 +19,14 @@ class Course < ActiveRecord::Base
     end
   end
   
+  def course_rating_to_s
+    return course_rating.round(2).to_s
+  end
+  
+  def difficulty_rating_to_s
+    return difficulty_rating.round(2).to_s
+  end
+  
   def self.search(search_department,search_number)
 
     if !search_department.blank? && search_number.blank?

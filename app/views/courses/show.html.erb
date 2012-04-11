@@ -10,8 +10,8 @@
       <strong>Course Number:</strong> <%= @course.number_to_s %><br />
       <strong>Course Name:</strong> <%= @course.name %><br />
       <strong>Course Units:</strong> <%= @course.cus %><br />
-      <strong>Course Rating:</strong> <%= @course.course_rating %><br />
-      <strong>Difficulty Rating:</strong> <%= @course.difficulty_rating %><br />
+      <strong>Course Rating:</strong> <%= @course.course_rating_to_s %><br />
+      <strong>Difficulty Rating:</strong> <%= @course.difficulty_rating_to_s %><br />
     </td>
     <td>
         <strong><u>Sections</strong></u><br><br>
@@ -35,16 +35,10 @@
         <br>
       <% end %>
     </td>
-    <td>
-        <strong><u>Crosslisted Classes</strong></u><br><br>
-          <%= @course.crosslistings %>
-        <br />
-        <br>
-    </td>
         <td>
         <strong><u>Requirements Fulfilled</strong></u><br><br>
           <% @course.requirements.each do |requirement| %>
-            <li><%= requirement.name %></li>
+            <%= requirement.name %>
           <% end %>
         <br />
         <br>

@@ -54,8 +54,10 @@ class SchedulesController < ApplicationController
     end
 
     if workable_sections.length > 0 #create schedules!
+      num_created = 0
       workable_sections.each do |potential_schedule|
-        create_schedule(potential_schedule)
+        create_schedule(potential_schedule) if num_created < 12
+        num_created=num_created+1
       end
       u=User.find(current_user.id)
       schedules=u.schedules
@@ -228,9 +230,12 @@ class SchedulesController < ApplicationController
     end
 
     if workable_sections.length > 0 #create schedules!
+      num_created = 0
       workable_sections.each do |potential_schedule|
-        create_schedule(potential_schedule)
+        create_schedule(potential_schedule) if num_created < 12
+        num_created=num_created+1
       end
+
       u=User.find(current_user.id)
       schedules=u.schedules
       schedules.sort! { |a,b| a.avg_instructor_rating <=> b.avg_instructor_rating }
