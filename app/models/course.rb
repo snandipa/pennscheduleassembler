@@ -38,7 +38,7 @@ class Course < ActiveRecord::Base
       search_number = search_number.strip
       find(:all, :conditions => ['department LIKE ? AND number = ?', "%#{search_department}%", "#{search_number}"])
     else
-      return "Please search here."
+      return "Please search for the courses which you want to take. After adding all of your courses, move on the the Timing Constraints."
     end
   end
   

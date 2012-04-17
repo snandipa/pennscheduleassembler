@@ -1,9 +1,10 @@
 <br><br><br><%= link_to "Schedule my Classes!", scheduling_course_path, class:'medium nice blue radius button' %>
 <div class=box>
-  
   <h1><%= @user.name %></h1>
       <strong>Sharecode:</strong> <%= @user.sharecode %><br><br>
-      <%= link_to "Edit Account",edit_user_path(current_user), class:'small nice white radius button' %></div>
+      <%= link_to "Edit Account",edit_user_path(current_user), class:'small nice white radius button' %><br><br>
+      After making your schedules, register for your courses using <a href="https://medley.isc-seo.upenn.edu/penn_portal/intouch/splash.html">Penn InTouch</a> 
+      </div>
       
 <div class="allbox">
       <% if @user==current_user %>

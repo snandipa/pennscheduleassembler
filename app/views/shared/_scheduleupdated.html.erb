@@ -1,12 +1,14 @@
   <%i=1%>
   <% @schedules.each do |schedule| %>
-  <h3 style=><u>Schedule <%=i%></u></h3>
-  <div class="metricbox"><h5>Metrics</h5>
+  <h3><u>Schedule <%=i%></u></h3>
+  <div class="metricbox"><strong><h5><u>Metrics</h5></u></strong>
     <div style="text-align:left;">
   <strong>Course:</strong> <%= schedule.avg_course_rating %><br>
   <strong>Instructor:</strong> <%= schedule.avg_instructor_rating %><br>
   <strong>Difficulty:</strong> <%= schedule.avg_difficulty_rating %><br><br></div></div><br>
-  <%i+=1%> 
+
+  
+  <%i+=1%><br> 
 
 <div class="schedulebox">
 <%earliest_end_time= schedule.earliest_start_time %> 
@@ -62,7 +64,20 @@
             <% counter1 = counter1 - 1 %>
             <% end %>   
     <% end %>
-<br><br><br>
+    
+      <div class="coursebox2">
+    <div style="text-align:left;">
+    <h6 style="text-align:left">Sections: </h6>
+    <ul><% schedule.sections.each do |section| %>
+        <% course = section.course %>
+        <%= link_to "#{course.department} #{course.number_to_s} - #{section.listing_to_s} #{course.name}", course %><br>
+           <% end %></ul>
+    <h6 style="text-align:left"> Recitations: </h6>
+    <% schedule.recitations.each do |recitation| %>
+        <% course = recitation.course %>
+        <%= link_to "#{course.department} #{course.number_to_s} - #{recitation.listing_to_s} #{course.name}", course %><br> 
+    <% end %>
+    </div></div> <br><br>
 
 <% end %>
-<br>
+

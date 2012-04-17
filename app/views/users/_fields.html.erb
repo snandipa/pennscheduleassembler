@@ -9,13 +9,13 @@
 </div>
 <div class="field">
   <strong><%= f.label :password %></strong>
-  <%= f.password_field :password %><br><br>
+  <%= f.password_field :password %><br>(minimum 6 characters)<br><br>
 </div>
 <div class="field">
   <strong><%= f.label :password_confirmation, "Confirm Password" %></strong>
   <%= f.password_field :password_confirmation %><br><br>
 </div>
 <div class="field">
-  <strong><%= f.label :sharecode, "Sharecode" %></strong>
-  <%= f.text_field :sharecode %><br><br>
+  <strong><%= f.label :sharecode, "Sharecode - To share courses with you friends!" %></strong> 
+  <%= f.text_field :sharecode %><br>(minimum 3 characters)<br><br>
 </div>

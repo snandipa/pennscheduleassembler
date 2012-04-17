@@ -1,8 +1,7 @@
 <div style="text-align:center;">
-<strong><u>Share a course with your friends!</u></strong><br><br>
-  <%= form_tag url_for(:controller => 'schedules', :action => 'share_with_friends'), :method => 'get' do %>
+<strong><u>Share a course with your friends!</u></strong><br>
+  <%= form_tag url_for(:controller => 'schedules', :action => 'share_with_friends'), :method => 'get' do %></div>
     Friend's Sharecode:<%= text_field_tag :requested_sharecode %><br><br>
-    <div style=" margin-left:68px;"><%= collection_select "course", :course_id, @schedule_courses, :id, :title %></div><br>
-    <%= submit_tag "Share now", class: 'small nice white radius button' %></div>
+    <%= collection_select "course", :course_id, @schedule_courses, :id, :title %><br>
+    <center><%= submit_tag "Share now", class: 'small nice white radius button' %></center>
   <% end %>
-</div>

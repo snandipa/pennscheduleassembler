@@ -1,7 +1,7 @@
 <div class="box">
   <h1>Sign Up</h1>
 <%= form_for(@user) do |f| %>
-  <%= render 'shared/error_messages', :object => f.object %>
+  <p><%= render 'shared/error_messages', :object => f.object %></p>
   <%= render 'fields', :f => f %>
   <div class="actions">
     <%= f.submit "Submit", class:'small nice blue radius button'%>
